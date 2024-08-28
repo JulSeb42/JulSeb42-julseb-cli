@@ -1,7 +1,7 @@
 /*=============================================== UsersList ===============================================*/
 
 import type { AxiosResponse } from "axios"
-import { useFetch, Text, Grid, generateNumbers } from "tsx-library-julseb"
+import { useFetch, Text, Grid, generateNumbers } from "@julseb-lib/react"
 import { userService } from "api"
 import { UserCard, UserCardSkeleton } from "components"
 import type { User } from "types"

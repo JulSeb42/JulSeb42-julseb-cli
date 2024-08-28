@@ -1,6 +1,6 @@
 /*=============================================== Goodbye ===============================================*/
 
-import { Text } from "tsx-library-julseb"
+import { Text } from "@julseb-lib/react"
 import { Page } from "components"
 
 export function Goodbye() {

@@ -1,7 +1,7 @@
 /*=============================================== AnonRoute ===============================================*/
 
 import { Navigate } from "react-router-dom"
-import { PageLoading } from "tsx-library-julseb"
+import { PageLoading } from "@julseb-lib/react"
 import { useAuthContext } from "context"
 import { PATHS } from "routes"
 

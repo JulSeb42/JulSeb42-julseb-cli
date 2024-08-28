@@ -1,40 +1,15 @@
 /*=============================================== ImageUploader types ===============================================*/
 
-import type { ValidationTypes, AllColorsTypes } from "tsx-library-julseb/types"
+import type { ILibInputImage } from "@julseb-lib/react/component-props"
 
 enum inputSizes {
     small,
     large,
 }
 
-export type InputImageSizeTypes = keyof typeof inputSizes
+export type IInputImageSize = keyof typeof inputSizes
 
-export interface ImageUploaderProps {
-    id: string
-    label?: string
-    helper?: string
-    helperBottom?:
-        | undefined
-        | string
-        | {
-              text?: string | undefined
-              icon?: string
-              iconColor?: AllColorsTypes
-          }
-
-    img: string
-
-    validation?: ValidationTypes
-    inputSize?: InputImageSizeTypes
-    value?: never
-
-    icons?: {
-        empty?: string | JSX.Element
-        hover?: string | JSX.Element
-        sizeEmpty?: number
-        sizeHover?: number
-    }
-
+export interface IImageUploader extends ILibInputImage {
     setImageUrl: (imageUrl: string) => void
     setIsLoading: (isLoading: boolean) => void
 }

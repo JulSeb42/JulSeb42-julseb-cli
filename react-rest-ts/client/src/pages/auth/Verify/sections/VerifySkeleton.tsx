@@ -1,6 +1,6 @@
 /*=============================================== VerifySkeleton ===============================================*/
 
-import { Skeleton } from "tsx-library-julseb"
+import { Skeleton } from "@julseb-lib/react"
 import { Page } from "components"
 
 export function VerifySkeleton() {

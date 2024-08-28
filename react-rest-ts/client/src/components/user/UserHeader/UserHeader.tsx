@@ -8,7 +8,7 @@ import {
     Skeleton,
     SkeletonShine,
     getFirstName,
-} from "tsx-library-julseb"
+} from "@julseb-lib/react"
 import type { UserHeaderProps } from "components/user/UserHeader/types"
 
 export function UserHeader({
@@ -28,7 +28,9 @@ export function UserHeader({
 
     return (
         <Flexbox alignItems="center" gap="xs">
-            <Avatar img={user?.avatar} alt={`Avatar ${user?.fullName}`} />
+            <Avatar
+                img={{ src: user?.avatar, alt: `Avatar ${user?.fullName}` }}
+            />
             <Text tag="h1">{title}</Text>
         </Flexbox>
     )

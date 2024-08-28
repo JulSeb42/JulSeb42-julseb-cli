@@ -1,7 +1,7 @@
 /*=============================================== ErrorMessage component ===============================================*/
 
-import { Alert } from "tsx-library-julseb"
-import type { ErrorMessage } from "types"
+import { Alert } from "@julseb-lib/react"
+import type { IErrorMessage } from "types"
 
 export function ErrorMessage({ error }: ErrorMessageProps) {
     if (!error) return null
@@ -18,5 +18,5 @@ export function ErrorMessage({ error }: ErrorMessageProps) {
 }
 
 interface ErrorMessageProps {
-    error: ErrorMessage
+    error: IErrorMessage
 }

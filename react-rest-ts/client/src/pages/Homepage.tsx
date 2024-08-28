@@ -1,6 +1,6 @@
 /*=============================================== Homepage ===============================================*/
 
-import { Text } from "tsx-library-julseb"
+import { Text } from "@julseb-lib/react"
 import { useAuthContext } from "context"
 import { Page } from "components"
 

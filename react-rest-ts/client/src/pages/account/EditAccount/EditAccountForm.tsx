@@ -1,13 +1,13 @@
 /*=============================================== EditAccountForm ===============================================*/
 
 import { useState, type ChangeEvent, type FormEvent } from "react"
-import { Form, Input } from "tsx-library-julseb"
+import { Form, Input } from "@julseb-lib/react"
 import { useNavigate } from "react-router-dom"
 import { useAuthContext } from "context"
 import { userService } from "api"
 import { ImageUploader, ErrorMessage } from "components"
 import { PATHS } from "routes"
-import type { ErrorMessage as ErrorMessageType } from "types"
+import type { IErrorMessage } from "types"
 
 export function EditAccountForm() {
     const navigate = useNavigate()
@@ -19,8 +19,7 @@ export function EditAccountForm() {
     })
     const [avatar, setAvatar] = useState(user?.avatar!)
     const [isLoading, setIsLoading] = useState(false)
-    const [errorMessage, setErrorMessage] =
-        useState<ErrorMessageType>(undefined)
+    const [errorMessage, setErrorMessage] = useState<IErrorMessage>(undefined)
 
     const handleInputs = (e: ChangeEvent<HTMLInputElement>) =>
         setInputs({ ...inputs, [e.target.id]: e.target.value })
@@ -66,7 +65,7 @@ export function EditAccountForm() {
                 />
 
                 <ImageUploader
-                    img={avatar}
+                    value={avatar}
                     setImageUrl={setAvatar}
                     setIsLoading={setIsLoading}
                     id="avatar"

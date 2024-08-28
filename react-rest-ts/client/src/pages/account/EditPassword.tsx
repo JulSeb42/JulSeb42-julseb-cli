@@ -2,14 +2,14 @@
 
 import { useState, type ChangeEvent, type FormEvent } from "react"
 import { useNavigate } from "react-router-dom"
-import { Text, Form, Input, passwordRegex } from "tsx-library-julseb"
-import type { ValidationTypes } from "tsx-library-julseb/types"
+import { Text, Form, Input, passwordRegex } from "@julseb-lib/react"
+import type { LibValidationStatus } from "@julseb-lib/react/types"
 import { useAuthContext } from "context"
 import { userService } from "api"
 import { Page, ErrorMessage } from "components"
 import { PATHS } from "routes"
 import { COMMON_TEXTS } from "shared"
-import type { ErrorMessage as ErrorMessageType } from "types"
+import type { IErrorMessage as ErrorMessageType } from "types"
 
 export function EditPassword() {
     const { user, setUser, setToken } = useAuthContext()
@@ -21,7 +21,10 @@ export function EditPassword() {
     })
     const [validation, setValidation] = useState<
         | undefined
-        | { oldPassword?: ValidationTypes; newPassword?: ValidationTypes }
+        | {
+              oldPassword?: LibValidationStatus
+              newPassword?: LibValidationStatus
+          }
     >(undefined)
     const [errorMessage, setErrorMessage] =
         useState<ErrorMessageType>(undefined)
@@ -36,8 +39,8 @@ export function EditPassword() {
             [id]:
                 value.length > 0
                     ? passwordRegex.test(value)
-                        ? "passed"
-                        : "not-passed"
+                        ? true
+                        : false
                     : undefined,
         })
     }
@@ -47,8 +50,8 @@ export function EditPassword() {
 
         if (!passwords.oldPassword || !passwords.newPassword) {
             setValidation({
-                oldPassword: !passwords.oldPassword ? "not-passed" : undefined,
-                newPassword: !passwords.newPassword ? "not-passed" : undefined,
+                oldPassword: !passwords.oldPassword ? false : undefined,
+                newPassword: !passwords.newPassword ? false : undefined,
             })
             return
         }
@@ -74,40 +77,24 @@ export function EditPassword() {
             >
                 <Input
                     id="oldPassword"
-                    password
+                    type="password"
                     label="Old password"
-                    helperBottom={{
-                        text:
-                            validation?.oldPassword === "not-passed"
-                                ? COMMON_TEXTS.ERRORS.PASSWORD_NOT_VALID
-                                : undefined,
-                        icon:
-                            validation?.oldPassword === "not-passed"
-                                ? COMMON_TEXTS.ERRORS.ICON_PASSWORD_NOT_VALID
-                                : undefined,
-                        iconColor: "danger",
+                    validation={{
+                        status: validation?.oldPassword,
+                        message: COMMON_TEXTS.ERRORS.PASSWORD_NOT_VALID,
                     }}
-                    validation={validation?.oldPassword}
                     value={passwords.oldPassword}
                     onChange={handlePassword}
                     autoFocus
                 />
                 <Input
                     id="newPassword"
-                    password
+                    type="password"
                     label="New password"
-                    helperBottom={{
-                        text:
-                            validation?.newPassword === "not-passed"
-                                ? COMMON_TEXTS.ERRORS.PASSWORD_NOT_VALID
-                                : undefined,
-                        icon:
-                            validation?.newPassword === "not-passed"
-                                ? COMMON_TEXTS.ERRORS.ICON_PASSWORD_NOT_VALID
-                                : undefined,
-                        iconColor: "danger",
+                    validation={{
+                        status: validation?.newPassword,
+                        message: COMMON_TEXTS.ERRORS.PASSWORD_NOT_VALID,
                     }}
-                    validation={validation?.newPassword}
                     value={passwords.newPassword}
                     onChange={handlePassword}
                 />

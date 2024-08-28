@@ -1,17 +1,17 @@
 /*=============================================== ImageUploader ===============================================*/
 
 import type { ChangeEvent } from "react"
-import { InputImage } from "tsx-library-julseb"
+import { InputImage } from "@julseb-lib/react"
 import { cloudinaryService } from "api"
-import type { ImageUploaderProps } from "components/ImageUploader/types"
+import type { IImageUploader } from "components/ImageUploader/types"
 
 export function ImageUploader({
-    img,
+    value,
     id,
     setImageUrl,
     setIsLoading,
     ...rest
-}: ImageUploaderProps) {
+}: IImageUploader) {
     const handleImage = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
 
@@ -45,7 +45,7 @@ export function ImageUploader({
         <InputImage
             {...rest}
             id={id}
-            img={img}
+            value={value}
             onChange={(e: any) => handleImage(e)}
         />
     )

@@ -2,7 +2,7 @@
 
 import { useState, type ChangeEvent, type FormEvent } from "react"
 import { useNavigate } from "react-router-dom"
-import { Form, Input } from "tsx-library-julseb"
+import { Form, Input } from "@julseb-lib/react"
 import { useAuthContext } from "context"
 import { authService } from "api"
 import { ErrorMessage } from "components"
@@ -49,7 +49,7 @@ export function LoginForm() {
 
                 <Input
                     id="password"
-                    password
+                    type="password"
                     value={inputs.password}
                     onChange={handleInputs}
                     label="Password"

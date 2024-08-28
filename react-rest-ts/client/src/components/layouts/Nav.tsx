@@ -1,44 +1,17 @@
-/*=============================================== Header ===============================================*/
+/*=============================================== Nav ===============================================*/
 
 import { useEffect, useState } from "react"
 import { NavLink } from "react-router-dom"
-import {
-    Header as Container,
-    ButtonIcon,
-    uuid,
-    Skeleton,
-} from "tsx-library-julseb"
-import { useAuthContext, useThemeContext } from "context"
-import { SITE_DATA } from "shared"
-import { PATHS } from "routes"
+import { ButtonIcon, uuid, Skeleton, useLibTheme } from "@julseb-lib/react"
+import { useAuthContext } from "context"
 import { baseLinks, anonLinks, protectedLinks } from "data"
 import { NavLink as NavLinkType } from "types"
 
-export function Header() {
-    const { toggleTheme, selectedTheme } = useThemeContext()
-
-    return (
-        <Container
-            logo={{ text: SITE_DATA.NAME, to: PATHS.ROOT }}
-            navMobileVariant="drawer"
-        >
-            <Nav />
-
-            <ButtonIcon
-                icon={selectedTheme === "dark" ? "sun" : "moon"}
-                size={24}
-                variant="transparent"
-                color="background"
-                onClick={toggleTheme}
-                aria-label="Toggle theme"
-            />
-        </Container>
-    )
-}
-
-function Nav() {
+export function Nav() {
     const { isLoggedIn, logoutUser, isLoading } = useAuthContext()
     const [allLinks, setAllLinks] = useState<Array<NavLinkType>>(baseLinks)
+
+    const { toggleTheme, selectedTheme } = useLibTheme()
 
     useEffect(() => {
         if (isLoggedIn) {
@@ -81,6 +54,15 @@ function Nav() {
                     </button>
                 )
             )}
+
+            <ButtonIcon
+                icon={selectedTheme === "dark" ? "sun" : "moon"}
+                size={24}
+                variant="transparent"
+                color="background"
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
+            />
         </>
     )
 }

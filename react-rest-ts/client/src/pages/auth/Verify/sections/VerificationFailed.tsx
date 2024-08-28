@@ -1,8 +1,8 @@
 /*=============================================== VerificationFailed ===============================================*/
 
-import { Text } from "tsx-library-julseb"
+import { Text } from "@julseb-lib/react"
 import { Page, ErrorMessage } from "components"
-import type { ErrorMessage as ErrorMessageType } from "types"
+import type { IErrorMessage } from "types"
 
 export function VerificationFailed({ errorMessages }: VerificationFailedProps) {
     return (
@@ -19,5 +19,5 @@ export function VerificationFailed({ errorMessages }: VerificationFailedProps) {
 }
 
 interface VerificationFailedProps {
-    errorMessages: ErrorMessageType
+    errorMessages: IErrorMessage
 }

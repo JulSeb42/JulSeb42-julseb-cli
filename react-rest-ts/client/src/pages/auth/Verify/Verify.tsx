@@ -10,14 +10,14 @@ import {
     VerificationFailed,
     VerificationSuccess,
 } from "pages/auth/Verify/sections"
-import type { ErrorMessage } from "types"
+import type { IErrorMessage } from "types"
 
 export function Verify() {
     const { user, setUser, isLoggedIn, setToken } = useAuthContext()
     const { token, id } = useParams<{ id: string; token: string }>()
 
     const [isLoading, setIsLoading] = useState<boolean>(true)
-    const [errorMessage, setErrorMessage] = useState<ErrorMessage | string>(
+    const [errorMessage, setErrorMessage] = useState<IErrorMessage | string>(
         undefined
     )
 

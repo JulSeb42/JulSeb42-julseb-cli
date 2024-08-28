@@ -9,8 +9,8 @@ import {
     Text,
     Skeleton,
     Flexbox,
-} from "tsx-library-julseb"
-import type { ValidationTypes } from "tsx-library-julseb/types"
+} from "@julseb-lib/react"
+import type { LibValidationStatus } from "@julseb-lib/react/types"
 import { authService, userService } from "api"
 import { ErrorMessage } from "components"
 import { COMMON_TEXTS } from "shared"
@@ -43,7 +43,7 @@ export function ResetPasswordForm() {
     }, [id])
 
     const [password, setPassword] = useState("")
-    const [validation, setValidation] = useState<ValidationTypes>(undefined)
+    const [validation, setValidation] = useState<LibValidationStatus>(undefined)
     const [errorMessage, setErrorMessage] = useState(undefined)
 
     const handlePassword = (e: ChangeEvent<HTMLInputElement>) => {
@@ -53,9 +53,9 @@ export function ResetPasswordForm() {
 
         if (value.length > 0) {
             if (passwordRegex.test(value)) {
-                setValidation("passed")
+                setValidation(true)
             } else {
-                setValidation("not-passed")
+                setValidation(false)
             }
         } else {
             setValidation(undefined)
@@ -69,7 +69,7 @@ export function ResetPasswordForm() {
             .resetPassword({
                 password,
                 resetToken: token,
-                id,
+                _id: id!,
             })
             .then(() => navigate(PATHS.LOGIN))
             .catch(err => setErrorMessage(err))
@@ -90,20 +90,14 @@ export function ResetPasswordForm() {
             <Form onSubmit={handleSubmit} buttonPrimary={{ text: "Send" }}>
                 <Input
                     id="password"
-                    password
+                    type="password"
                     label="New password"
-                    helperBottom={{
-                        text: validation
-                            ? COMMON_TEXTS.ERRORS.PASSWORD_NOT_VALID
-                            : "",
-                        icon:
-                            validation &&
-                            COMMON_TEXTS.ERRORS.ICON_PASSWORD_NOT_VALID,
-                        iconColor: "danger",
-                    }}
                     value={password}
                     onChange={handlePassword}
-                    validation={validation}
+                    validation={{
+                        status: validation,
+                        message: COMMON_TEXTS.ERRORS.PASSWORD_NOT_VALID,
+                    }}
                 />
             </Form>
 

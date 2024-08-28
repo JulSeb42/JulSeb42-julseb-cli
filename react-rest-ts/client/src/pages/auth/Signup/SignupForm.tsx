@@ -2,13 +2,13 @@
 
 import { useState, type ChangeEvent, type FormEvent } from "react"
 import { useNavigate } from "react-router-dom"
-import { Form, Input, passwordRegex, getRandomAvatar } from "tsx-library-julseb"
-import type { ValidationTypes } from "tsx-library-julseb/types"
+import { Form, Input, passwordRegex, getRandomAvatar } from "@julseb-lib/react"
+import type { LibValidationStatus } from "@julseb-lib/react/types"
 import { useAuthContext } from "context"
 import { authService } from "api"
 import { ErrorMessage } from "components"
 import { PATHS } from "routes"
-import type { ErrorMessage as ErrorMessageType } from "types"
+import type { IErrorMessage as ErrorMessageType } from "types"
 import { COMMON_TEXTS } from "../../../../../shared"
 
 export function SignupForm() {
@@ -23,7 +23,7 @@ export function SignupForm() {
     const [errorMessage, setErrorMessage] =
         useState<ErrorMessageType>(undefined)
     const [validationPassword, setValidationPassword] =
-        useState<ValidationTypes>(undefined)
+        useState<LibValidationStatus>(undefined)
 
     const handleInputs = (e: ChangeEvent<HTMLInputElement>) => {
         setInputs({
@@ -33,9 +33,9 @@ export function SignupForm() {
 
         if (e.target.id === "password" && e.target.value.length > 0) {
             if (passwordRegex.test(e.target.value)) {
-                setValidationPassword("passed")
+                setValidationPassword(true)
             } else {
-                setValidationPassword("not-passed")
+                setValidationPassword(false)
             }
         } else {
             setValidationPassword(undefined)
@@ -46,7 +46,7 @@ export function SignupForm() {
         e.preventDefault()
 
         if (!passwordRegex.test(inputs.password)) {
-            setValidationPassword("not-passed")
+            setValidationPassword(false)
             return
         }
 
@@ -85,13 +85,10 @@ export function SignupForm() {
                     label="Password"
                     value={inputs.password}
                     onChange={handleInputs}
-                    password
-                    validation={validationPassword}
-                    helperBottom={{
-                        text:
-                            validationPassword === "not-passed"
-                                ? COMMON_TEXTS.ERRORS.PASSWORD_NOT_VALID
-                                : undefined,
+                    type="password"
+                    validation={{
+                        status: validationPassword,
+                        message: COMMON_TEXTS.ERRORS.PASSWORD_NOT_VALID,
                     }}
                 />
             </Form>

@@ -1,6 +1,6 @@
 /*=============================================== UserCardSkeleton ===============================================*/
 
-import { SkeletonCard, Skeleton } from "tsx-library-julseb"
+import { SkeletonCard, Skeleton } from "@julseb-lib/react"
 
 export function UserCardSkeleton() {
     return (

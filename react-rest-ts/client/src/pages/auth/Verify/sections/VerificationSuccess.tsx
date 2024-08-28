@@ -1,7 +1,7 @@
 /*=============================================== VerificationSuccess ===============================================*/
 
 import { Link } from "react-router-dom"
-import { Text } from "tsx-library-julseb"
+import { Text } from "@julseb-lib/react"
 import { Page } from "components"
 import { PATHS } from "routes"
 

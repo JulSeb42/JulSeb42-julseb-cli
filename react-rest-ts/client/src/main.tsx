@@ -1,15 +1,15 @@
 /*=============================================== Main ===============================================*/
 
 import ReactDOM from "react-dom/client"
-import { ThemeProviderWrapper } from "tsx-library-julseb"
+import { ThemeProviderWrapper } from "@julseb-lib/react"
 import { App } from "App"
 import { AuthProviderWrapper } from "context"
 
-import "tsx-library-julseb/index.css"
+import "@julseb-lib/react/index.css"
 import "styles/index.css"
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-    <ThemeProviderWrapper>
+    <ThemeProviderWrapper stylesheetManager>
         <AuthProviderWrapper>
             <App />
         </AuthProviderWrapper>

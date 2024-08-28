@@ -6,7 +6,7 @@ import { useAuthContext } from "context"
 import { userService } from "api"
 import { DangerZone, ErrorMessage } from "components"
 import { PATHS } from "routes"
-import type { ErrorMessage as ErrorMessageType } from "types"
+import type { IErrorMessage as ErrorMessageType } from "types"
 
 export function DeleteAccount() {
     const navigate = useNavigate()
