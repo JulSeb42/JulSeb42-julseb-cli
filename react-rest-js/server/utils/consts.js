@@ -1,19 +1,28 @@
 /*=============================================== Consts ===============================================*/
 
-import "dotenv/config"
+require("dotenv/config")
 
-export const MONGODB_URI =
+const MONGODB_URI =
     process.env.MONGODB_URI || "mongodb://localhost/react-rest-js"
 
-export const PORT = process.env.PORT || 5005
+const PORT = process.env.PORT || 5005
 
-export const ORIGIN = process.env.ORIGIN || "http://localhost:5173"
+const ORIGIN = process.env.ORIGIN || "http://localhost:5173"
 
-export const TOKEN_SECRET = process.env.TOKEN_SECRET || ""
+const TOKEN_SECRET = process.env.TOKEN_SECRET || ""
 
-export const jwtConfig = {
+const jwtConfig = {
     algorithm: "HS256",
     expiresIn: "10d",
 }
 
-export const SALT_ROUNDS = 10
+const SALT_ROUNDS = 10
+
+module.exports = {
+    MONGODB_URI,
+    PORT,
+    ORIGIN,
+    TOKEN_SECRET,
+    jwtConfig,
+    SALT_ROUNDS,
+}

@@ -1,7 +1,7 @@
 /*=============================================== Connect to database ===============================================*/
 
-import mongoose from "mongoose"
-import { MONGODB_URI } from "../utils/consts"
+const mongoose = require("mongoose")
+const { MONGODB_URI } = require("../utils/consts")
 
 mongoose
     .connect(MONGODB_URI)

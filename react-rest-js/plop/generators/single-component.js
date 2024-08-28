@@ -34,12 +34,12 @@ const generateSingleFileComponent = (
         actions: [
             {
                 type: "add",
-                path: "../client/src/components/{{ pascalCase name }}.tsx",
+                path: "../client/src/components/{{ pascalCase name }}.jsx",
                 templateFile: "./templates/single-component.hbs",
             },
             {
                 type: "modify",
-                path: "../client/src/components/index.ts",
+                path: "../client/src/components/index.js",
                 template:
                     'export * from "components/{{ pascalCase name }}"\n$1',
                 pattern: /(\/\/ prependHere)/g,

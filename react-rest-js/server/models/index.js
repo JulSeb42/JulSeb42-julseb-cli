@@ -1,4 +1,9 @@
 /*=============================================== Exports ===============================================*/
 
-export * from "./User.model"
-// prependHere
+const { UserModel } = require("./User.model")
+// prependImport
+
+module.exports = {
+    UserModel,
+    // prependExport
+}

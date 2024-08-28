@@ -1,9 +1,6 @@
 /*=============================================== Generate model ===============================================*/
 
-const {
-    generateModelActions,
-    generateTypeActions,
-} = require("../utils/generate-actions")
+const { generateModelActions } = require("../utils/generate-actions")
 
 const generateModel = (/** @type {import('plop').NodePlopAPI} */ plop) => {
     const { setGenerator } = plop
@@ -17,7 +14,7 @@ const generateModel = (/** @type {import('plop').NodePlopAPI} */ plop) => {
                 message: "Enter route's name",
             },
         ],
-        actions: [...generateModelActions, ...generateTypeActions(false)],
+        actions: generateModelActions,
     })
 }
 

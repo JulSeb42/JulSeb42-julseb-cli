@@ -1,17 +1,16 @@
 /*=============================================== App ===============================================*/
 
-import "dotenv/config"
-import express from "express"
-import config from "./config"
-import allRoutes from "./routes"
-import { errorHandler } from "./error-handling"
-import { BASE_API_URL } from "../shared"
-
-import "./db"
+require("dotenv/config")
+const express = require("express")
+const config = require("./config")
+const allRoutes = require("./routes")
+const { errorHandler } = require("./error-handling")
+const { BASE_API_URL } = require("./utils")
+require("./db")
 
 const app = express()
 config(app)
 app.use(BASE_API_URL, allRoutes)
 errorHandler(app)
 
-export default app
+module.exports = app

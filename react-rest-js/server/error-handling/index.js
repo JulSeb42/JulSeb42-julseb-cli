@@ -1,8 +1,8 @@
 /*=============================================== Error handling ===============================================*/
 
-import { COMMON_TEXTS } from "../../shared"
+const { COMMON_TEXTS } = require("../utils")
 
-export function errorHandler(app) {
+function errorHandler(app) {
     app.use((_, res) => {
         res.status(404).json({
             errorMessage: COMMON_TEXTS.ERRORS.ROUTE_NOT_EXIST,
@@ -19,3 +19,5 @@ export function errorHandler(app) {
         }
     })
 }
+
+module.exports = { errorHandler }

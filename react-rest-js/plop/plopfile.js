@@ -6,8 +6,7 @@ const {
     generatePage,
     generateRoute,
     generateSingleFileComponent,
-    generateType,
-} = require("./generators/index")
+} = require("./generators/index.js")
 
 // Generate components, etc.
 
@@ -17,5 +16,4 @@ module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
     generateModel(plop) // yarn plop:m
     generatePage(plop) // yarn plop:p
     generateRoute(plop) // yarn plop:r
-    generateType(plop) // yarn plop:ty
 }

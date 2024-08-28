@@ -1,12 +1,12 @@
 /*=============================================== Users routes ===============================================*/
 
-import { Router } from "express"
-import bcrypt from "bcryptjs"
-import jwt from "jsonwebtoken"
-import { passwordRegex } from "ts-utils-julseb"
-import { UserModel } from "../models"
-import { SALT_ROUNDS, TOKEN_SECRET, jwtConfig } from "../utils"
-import { COMMON_TEXTS, SERVER_PATHS } from "../../shared"
+const { Router } = require("express")
+const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
+const { passwordRegex } = require("ts-utils-julseb")
+const { UserModel } = require("../models")
+const { SALT_ROUNDS, TOKEN_SECRET, jwtConfig } = require("../utils")
+const { COMMON_TEXTS, SERVER_PATHS } = require("../utils")
 
 const router = Router()
 
@@ -108,4 +108,4 @@ router.delete(PATHS.DELETE_ACCOUNT(), async (req, res, next) => {
         .catch(err => next(err))
 })
 
-export default router
+module.exports = router

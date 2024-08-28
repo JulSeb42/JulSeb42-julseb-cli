@@ -1,10 +1,10 @@
 /*=============================================== All routes ===============================================*/
 
-import { Router } from "express"
-import { SERVER_PATHS } from "../../shared"
-import auth from "./auth"
-import users from "./users"
-import uploader from "./uploader"
+const { Router } = require("express")
+const { SERVER_PATHS } = require("../utils")
+const auth = require("./auth")
+const users = require("./users")
+const uploader = require("./uploader")
 // prependImport
 
 const router = Router()
@@ -18,4 +18,4 @@ router.use(SERVER_PATHS.USERS.ROOT, users)
 router.use(SERVER_PATHS.UPLOADER.ROOT, uploader)
 // prependRouterUse
 
-export default router
+module.exports = router

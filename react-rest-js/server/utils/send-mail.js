@@ -1,7 +1,7 @@
 /*=============================================== Sendmail function ===============================================*/
 
-import "dotenv/config"
-import nodemailer from "nodemailer"
+require("dotenv/config")
+const nodemailer = require("nodemailer")
 
 const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -12,7 +12,7 @@ const transporter = nodemailer.createTransport({
     },
 })
 
-export function sendMail(to, subject, html) {
+function sendMail(to, subject, html) {
     let mailDetails = {
         from: process.env.EMAIL,
         to: to,
@@ -29,3 +29,5 @@ export function sendMail(to, subject, html) {
         }
     })
 }
+
+module.exports = { sendMail }

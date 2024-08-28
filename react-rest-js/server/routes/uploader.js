@@ -1,8 +1,8 @@
 /*=============================================== Uploader ===============================================*/
 
-import { Router } from "express"
-import { fileUploader } from "../config/cloudinary.config"
-import { SERVER_PATHS } from "../../shared"
+const { Router } = require("express")
+const { fileUploader } = require("../config/cloudinary.config")
+const { SERVER_PATHS } = require("../utils")
 
 const router = Router()
 
@@ -19,4 +19,4 @@ router.put(
     }
 )
 
-export default router
+module.exports = router

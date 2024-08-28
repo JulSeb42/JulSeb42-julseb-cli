@@ -1,12 +1,12 @@
 /*=============================================== Config ===============================================*/
 
-import express from "express"
-import logger from "morgan"
-import cookieParser from "cookie-parser"
-import cors from "cors"
-import { ORIGIN } from "../utils/consts"
+const express = require("express")
+const logger = require("morgan")
+const cookieParser = require("cookie-parser")
+const cors = require("cors")
+const { ORIGIN } = require("../utils/consts")
 
-export default function config(app) {
+function config(app) {
     app.set("trust proxy", 1)
 
     app.use(
@@ -22,3 +22,5 @@ export default function config(app) {
     app.use(express.urlencoded({ extended: false }))
     app.use(cookieParser())
 }
+
+module.exports = config

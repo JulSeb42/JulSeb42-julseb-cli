@@ -1,6 +1,6 @@
 /*=============================================== User model ===============================================*/
 
-import { Schema, model } from "mongoose"
+const { Schema, model } = require("mongoose")
 
 const userSchema = new Schema(
     {
@@ -15,4 +15,6 @@ const userSchema = new Schema(
     { timestamps: true }
 )
 
-export const UserModel = model("User", userSchema)
+const UserModel = model("User", userSchema)
+
+module.exports = { UserModel }

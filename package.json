@@ -18,5 +18,16 @@
     },
     "bin": {
         "@julseb-lib/julseb-cli": "index.js"
+    },
+    "resolutions": {
+        "inquirer": "9.3.5"
+    },
+    "overrides": {
+        "node-plop": {
+            "inquirer": "9.3.5"
+        }
+    },
+    "peerDependencies": {
+        "inquirer": "9.3.5"
     }
 }

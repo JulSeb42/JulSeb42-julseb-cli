@@ -5,35 +5,22 @@
 const generateModelActions = [
     {
         type: "add",
-        path: "../server/models/{{ pascalCase name }}.model.ts",
+        path: "../server/models/{{ pascalCase name }}.model.js",
         templateFile: "./templates/model.hbs",
     },
     {
         type: "modify",
-        path: "../server/models/index.ts",
-        template: 'export * from "./{{ pascalCase name }}.model"\n$1',
-        pattern: /(\/\/ prependHere)/g,
+        path: "../server/models/index.js",
+        template:
+            'const { {{ pascalCase name }}Model } = require("./{{ pascalCase name }}.model")\n$1',
+        pattern: /(\/\/ prependImport)/g,
+    },
+    {
+        type: "modify",
+        path: "../server/models/index.js",
+        template: "{{ pascalCase name }}Model,\n$1",
+        pattern: /(\/\/ prependExport)/g,
     },
 ]
 
-const generateTypeActions = interface => {
-    return [
-        {
-            type: "add",
-            path: `../shared/types/{{ pascalCase name }}.${
-                interface ? "interface" : "type"
-            }.ts`,
-            templateFile: "./templates/type.hbs",
-        },
-        {
-            type: "modify",
-            path: "../shared/types/index.ts",
-            template: `export * from "./{{ pascalCase name }}.${
-                interface ? "interface" : "type"
-            }"\n$1`,
-            pattern: /(\/\/ prependHere)/g,
-        },
-    ]
-}
-
-module.exports = { generateModelActions, generateTypeActions }
+module.exports = { generateModelActions }

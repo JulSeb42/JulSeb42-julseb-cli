@@ -1,3 +1,5 @@
 /*=============================================== Exports ===============================================*/
 
-export * from "./jwt.middleware"
+const { isAuthenticated } = require("./jwt.middleware")
+
+module.exports = { isAuthenticated }

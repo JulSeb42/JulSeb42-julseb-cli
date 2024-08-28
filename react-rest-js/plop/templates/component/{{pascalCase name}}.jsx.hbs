@@ -1,0 +1,29 @@
+/*=============================================== {{ pascalCase name }} component ===============================================*/
+
+{{#if forward}}
+import { forwardRef } from "react"
+{{/if}}
+import { Styled{{ pascalCase name }} } from "components/{{ pascalCase name }}/styles"
+
+{{#if forward}}
+export const {{ pascalCase name }} = forwardRef(
+    (
+        { "data-testid": testid, {{#if as}}as,{{/if}}{{#if children}} children,{{/if}} },
+        ref
+    ) => {
+        return (
+            <Styled{{ pascalCase name }} data-testid={testid}{{#if as}} as={as}{{/if}} ref={ref}>
+                {{#if children}}{children}{{/if}}
+            </Styled{{ pascalCase name }}>
+        )
+    }
+)
+{{else}}
+export function {{ pascalCase name }}({ "data-testid": testid, {{#if as}}as,{{/if}}{{#if children}} children,{{/if}} }) {
+	return (
+		<Styled{{ pascalCase name }} data-testid={testid}{{#if as}} as={as}{{/if}}>
+            {{#if children}}{children}{{/if}}
+		</Styled{{ pascalCase name }}>
+	)
+}
+{{/if}}

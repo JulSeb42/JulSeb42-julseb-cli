@@ -1,8 +1,8 @@
 /*=============================================== {{ pascalCase name }} routes ===============================================*/
 
-import { Router } from "express"
-import { SERVER_PATHS } from "../../shared"
-import { {{ pascalCase name }}Model } from "../models"
+const { Router }  = require("express")
+const { SERVER_PATHS } = require("../utils")
+const { {{ pascalCase name }}Model } = require("../models")
 
 const router = Router()
 
@@ -22,4 +22,4 @@ router.get(PATHS.GET_{{ constantCase name }}(), async (req, res, next) => {
         .catch(err => next(err))
 })
 
-export default router
+module.exports = router

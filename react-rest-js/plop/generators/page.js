@@ -48,26 +48,26 @@ const generatePage = (/** @type {import('plop').NodePlopAPI} */ plop) => {
                 {
                     type: "add",
                     path: data.multi
-                        ? "../client/src/pages/{{ pascalCase name }}/{{ pascalCase name }}.tsx"
-                        : "../client/src/pages/{{ pascalCase name }}.tsx",
+                        ? "../client/src/pages/{{ pascalCase name }}/{{ pascalCase name }}.jsx"
+                        : "../client/src/pages/{{ pascalCase name }}.jsx",
                     templateFile: "./templates/page/page-file.hbs",
                 },
                 {
                     type: "modify",
-                    path: "../client/src/routes/routes.tsx",
+                    path: "../client/src/routes/routes.jsx",
                     template:
                         'import { {{ pascalCase name }} } from "pages/{{ pascalCase name }}"\n$1',
                     pattern: /(\/\/ prependImport)/g,
                 },
                 {
                     type: "modify",
-                    path: "../client/src/routes/routes.tsx",
+                    path: "../client/src/routes/routes.jsx",
                     template: generatePageRoute(data.protected),
                     pattern: /(\/\/ prependRoute)/g,
                 },
                 {
                     type: "modify",
-                    path: "../client/src/routes/paths.ts",
+                    path: "../client/src/routes/paths.js",
                     template:
                         '{{ constantCase name }}: "/{{ pathCase path }}",\n$1',
                     pattern: /(\/\/ prependPath)/g,
@@ -77,7 +77,7 @@ const generatePage = (/** @type {import('plop').NodePlopAPI} */ plop) => {
             if (data.multi) {
                 actions.push({
                     type: "add",
-                    path: "../client/src/pages/{{ pascalCase name }}/index.ts",
+                    path: "../client/src/pages/{{ pascalCase name }}/index.js",
                     templateFile: "./templates/page/page-index.hbs",
                 })
             }
@@ -85,7 +85,7 @@ const generatePage = (/** @type {import('plop').NodePlopAPI} */ plop) => {
             if (data.tests)
                 actions.push({
                     type: "add",
-                    path: "../client/cypress/e2e/{{ pascalCase name }}.cy.ts",
+                    path: "../client/cypress/e2e/{{ pascalCase name }}.cy.js",
                     templateFile: "./templates/page/__tests__/test.hbs",
                 })
 

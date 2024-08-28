@@ -1,6 +1,6 @@
 /*=============================================== JWT middleware ===============================================*/
 
-import { expressjwt as jwt } from "express-jwt"
+const { expressjwt: jwt } = require("express-jwt")
 
 const getTokenFromHeaders = req => {
     if (
@@ -14,9 +14,11 @@ const getTokenFromHeaders = req => {
     return null
 }
 
-export const isAuthenticated = jwt({
+const isAuthenticated = jwt({
     secret: process.env.TOKEN_SECRET,
     algorithms: ["HS256"],
     requestProperty: "payload",
     getToken: getTokenFromHeaders,
 })
+
+module.exports = { isAuthenticated }

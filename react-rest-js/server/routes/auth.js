@@ -1,13 +1,23 @@
 /*=============================================== Authentification routes ===============================================*/
 
-import { Router } from "express"
-import bcrypt from "bcryptjs"
-import jwt from "jsonwebtoken"
-import { passwordRegex, emailRegex, getRandomString } from "ts-utils-julseb"
-import { UserModel } from "../models"
-import { isAuthenticated } from "../middleware"
-import { jwtConfig, SALT_ROUNDS, TOKEN_SECRET, sendMail } from "../utils"
-import { COMMON_TEXTS, SERVER_PATHS } from "../../shared"
+const { Router } = require("express")
+const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
+const {
+    passwordRegex,
+    emailRegex,
+    getRandomString,
+} = require("ts-utils-julseb")
+const { UserModel } = require("../models")
+const { isAuthenticated } = require("../middleware")
+const {
+    jwtConfig,
+    SALT_ROUNDS,
+    TOKEN_SECRET,
+    sendMail,
+    COMMON_TEXTS,
+    SERVER_PATHS,
+} = require("../utils")
 
 const router = Router()
 
@@ -228,4 +238,4 @@ router.put(PATHS.RESET_PASSWORD, async (req, res, next) => {
         .catch(err => next(err))
 })
 
-export default router
+module.exports = router

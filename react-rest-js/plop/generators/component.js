@@ -59,7 +59,7 @@ const generateComponent = (/** @type {import('plop').NodePlopAPI} */ plop) => {
                 },
                 {
                     type: "modify",
-                    path: "../client/src/components/index.ts",
+                    path: "../client/src/components/index.js",
                     template:
                         'export * from "components/{{ pascalCase name }}"\n$1',
                     pattern: /(\/\/ prependHere)/g,
@@ -69,7 +69,7 @@ const generateComponent = (/** @type {import('plop').NodePlopAPI} */ plop) => {
             if (data.tests)
                 actions.push({
                     type: "add",
-                    path: "../client/src/components/{{ pascalCase name }}/__tests__/{{ pascalCase name }}.cy.tsx",
+                    path: "../client/src/components/{{ pascalCase name }}/__tests__/{{ pascalCase name }}.cy.jsx",
                     templateFile: "./templates/component/__tests__/test.hbs",
                 })
 
