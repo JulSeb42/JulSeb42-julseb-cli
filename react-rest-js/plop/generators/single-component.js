@@ -12,6 +12,10 @@ const generateSingleFileComponent = (
                 type: "input",
                 name: "name",
                 message: "Enter the component's name",
+                validate: data => {
+                    if (!data) return "Name is required"
+                    return true
+                },
             },
             {
                 type: "confirm",

@@ -14,7 +14,11 @@ const generateModel = (/** @type {import('plop').NodePlopAPI} */ plop) => {
             {
                 type: "input",
                 name: "name",
-                message: "Enter route's name",
+                message: "Enter model's name",
+                validate: data => {
+                    if (!data) return "Name is required"
+                    return true
+                },
             },
         ],
         actions: [...generateModelActions, ...generateTypeActions(false)],

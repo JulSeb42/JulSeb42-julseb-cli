@@ -8,7 +8,15 @@ const generateType = (/** @type {import('plop').NodePlopAPI} */ plop) => {
     setGenerator("type", {
         description: "TS type",
         prompts: [
-            { type: "input", name: "name", message: "Enter's name" },
+            {
+                type: "input",
+                name: "name",
+                message: "Enter type's name",
+                validate: data => {
+                    if (!data) return "Name is required"
+                    return true
+                },
+            },
             {
                 type: "confirm",
                 name: "interface",
@@ -16,9 +24,7 @@ const generateType = (/** @type {import('plop').NodePlopAPI} */ plop) => {
                 default: false,
             },
         ],
-        actions: data => {
-            return generateTypeActions(data.interface)
-        },
+        actions: data => generateTypeActions(data.interface),
     })
 }
 

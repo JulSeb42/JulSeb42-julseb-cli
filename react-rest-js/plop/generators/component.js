@@ -10,17 +10,15 @@ const generateComponent = (/** @type {import('plop').NodePlopAPI} */ plop) => {
                 type: "input",
                 name: "name",
                 message: "Enter component's name",
+                validate: data => {
+                    if (!data) return "Name is required"
+                    return true
+                },
             },
             {
                 type: "input",
                 name: "tag",
                 message: "Enter HTML tag",
-                default: "div",
-            },
-            {
-                type: "input",
-                name: "attribute",
-                message: "Enter HTML attribute",
                 default: "div",
             },
             {

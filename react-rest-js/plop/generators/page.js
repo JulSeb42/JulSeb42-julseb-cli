@@ -1,5 +1,6 @@
 /*=============================================== Generate page ===============================================*/
 
+const { toTitleCase, toKebabCase } = require("ts-utils-julseb")
 const { generatePageRoute } = require("../utils/generate-page-route")
 
 const generatePage = (/** @type {import('plop').NodePlopAPI} */ plop) => {
@@ -12,16 +13,22 @@ const generatePage = (/** @type {import('plop').NodePlopAPI} */ plop) => {
                 type: "input",
                 name: "name",
                 message: "Enter page's name",
+                validate: data => {
+                    if (!data) return "Name is required"
+                    return true
+                },
             },
             {
                 type: "input",
                 name: "title",
                 message: "Enter page title",
+                default: data => toTitleCase(data?.name || ""),
             },
             {
                 type: "input",
                 name: "path",
                 message: "Enter path",
+                default: data => `/${toKebabCase(data?.name || "")}`,
             },
             {
                 type: "confirm",
@@ -69,7 +76,7 @@ const generatePage = (/** @type {import('plop').NodePlopAPI} */ plop) => {
                     type: "modify",
                     path: "../client/src/routes/paths.js",
                     template:
-                        '{{ constantCase name }}: "/{{ pathCase path }}",\n$1',
+                        '{{ constantCase name }}: "/{{ kebabCase path }}",\n$1',
                     pattern: /(\/\/ prependPath)/g,
                 },
             ]

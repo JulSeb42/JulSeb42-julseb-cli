@@ -15,6 +15,10 @@ const generateRoute = (/** @type {import('plop').NodePlopAPI} */ plop) => {
                 type: "input",
                 name: "name",
                 message: "Enter route's name",
+                validate: data => {
+                    if (!data) return "Name is required"
+                    return true
+                },
             },
         ],
         actions: [
