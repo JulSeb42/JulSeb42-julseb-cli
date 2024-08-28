@@ -1,0 +1,25 @@
+/*=============================================== {{ pascalCase name }} service ===============================================*/
+
+import { http } from "api"
+import { SERVER_PATHS } from "shared"
+import { generateServerRoute } from "utils"
+import type { ApiResponse, {{ pascalCase name }} } from "types"
+
+const { {{ constantCase name }}: PATHS } = SERVER_PATHS
+
+const generateRoute = (
+    route: Exclude<keyof typeof PATHS, "ROOT">,
+    id?: string
+) => generateServerRoute("{{ constantCase name }}", route, id)
+
+class {{ pascalCase name }}Service {
+    all{{ pascalCase name }}s(): ApiResponse<Array<{{ pascalCase name }}>> {
+        return http.get(generateRoute("ALL_{{ constantCase name }}S"))
+    }
+
+    get{{ pascalCase name }}(id: string): ApiResponse<{{ pascalCase name }}> {
+        return http.get(generateRoute("GET_{{ constantCase name }}", id))
+    }
+}
+
+export const {{ camelCase name }}Service = new {{ pascalCase name }}Service()
