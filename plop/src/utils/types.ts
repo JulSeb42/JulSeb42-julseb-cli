@@ -25,7 +25,7 @@ export type ExtendedActionTypes =
     | AddManyActionConfig
     | ModifyActionConfig
     | AppendActionConfig
-    | CustomActionFunction
+    | CustomActionFunction | string
 
 export type PlopCaseModifier =
     | "camelCase"

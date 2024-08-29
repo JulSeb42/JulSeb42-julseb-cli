@@ -1,3 +1,4 @@
+import { toKebabCase } from "ts-utils-julseb";
 import { projectTypes, packageManagers, packageManagersNames, REPOS_BASE_URL, languages, } from "../utils/constants.js";
 import { replaceProjectNameModifyFullStack } from "../utils/replace-project-name-fullstack.js";
 import { copyFullStackEnv } from "../utils/copy-env.js";
@@ -51,28 +52,38 @@ export default (plop) => {
                 "Cloning project",
                 {
                     type: "runCommand",
-                    command: `git init ${data === null || data === void 0 ? void 0 : data.projectName}`,
+                    command: `git init ${toKebabCase(data === null || data === void 0 ? void 0 : data.projectName)}`,
                 },
                 ...addCommandPrefix(data === null || data === void 0 ? void 0 : data.projectName, [
+                    "Remove and add again git",
                     {
                         type: "runCommand",
                         command: "rm -rf .git && git init",
                     },
+                    "Add git remote",
                     {
                         type: "runCommand",
                         command: `git remote add origin ${REPOS_BASE_URL}`,
                     },
+                    "Add sparseCheckout",
                     {
                         type: "runCommand",
                         command: "git config core.sparseCheckout true",
                     },
+                    "Echo",
                     {
                         type: "runCommand",
                         command: `echo "${boilerplate}" >> .git/info/sparse-checkout`,
                     },
+                    "Pull",
                     {
                         type: "runCommand",
                         command: "git pull origin master",
+                    },
+                    "Move all files from cloned folder to new folder",
+                    {
+                        type: "runCommand",
+                        command: "rm -rf ./plop",
                     },
                     {
                         type: "runCommand",
