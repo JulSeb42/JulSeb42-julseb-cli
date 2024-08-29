@@ -95,11 +95,11 @@ export default (plop) => {
             if (projectType === projectTypes[0].name ||
                 projectType === projectTypes[1].name) {
                 if ((data === null || data === void 0 ? void 0 : data.cypressTesting) === false) {
-                    actions.push(...removeCypress(data.projectName));
+                    actions.push(...removeCypress(data.projectName, boilerplate));
                 }
                 actions.push(...[
                     "Replace all titles inside your new app",
-                    ...replaceProjectNameModifyFullStack(boilerplate),
+                    ...replaceProjectNameModifyFullStack(boilerplate, projectLang),
                     "Create .env files",
                     ...copyFullStackEnv(data === null || data === void 0 ? void 0 : data.projectName),
                 ]);

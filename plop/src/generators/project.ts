@@ -118,14 +118,17 @@ export default (plop: NodePlopAPI) => {
                 projectType === projectTypes[1].name
             ) {
                 if (data?.cypressTesting === false) {
-                    actions.push(...removeCypress(data.projectName))
+                    actions.push(
+                        ...removeCypress(data.projectName, boilerplate)
+                    )
                 }
 
                 actions.push(
                     ...[
                         "Replace all titles inside your new app",
                         ...(replaceProjectNameModifyFullStack(
-                            boilerplate
+                            boilerplate,
+                            projectLang!
                         ) as any),
                         "Create .env files",
                         ...copyFullStackEnv(data?.projectName),

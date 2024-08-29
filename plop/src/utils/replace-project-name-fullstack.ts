@@ -1,9 +1,12 @@
+import type { ActionType } from "plop"
 import {
     // addCommandPrefix,
     addPathPrefix,
 } from "./add-command-prefix.js"
+import type { ExtendedActionTypes } from "./types.js"
+
 // import { replaceStringInFile } from "./replace-in-file.js"
-// import { toKebabCase, toTitleCase } from "ts-utils-julseb"
+// import { toKebabCase, toTitleCase } from "${lang}-utils-julseb"
 
 /**
  * @deprecated
@@ -38,7 +41,7 @@ export function replaceProjectNameCommandsFullStack(
     //     {
     //         type: "runCommand",
     //         command: replaceStringInFile(
-    //             "server/utils/consts.ts",
+    //             "server/utils/consts.${lang}",
     //             repoName,
     //             kebabName
     //         ),
@@ -46,7 +49,7 @@ export function replaceProjectNameCommandsFullStack(
     //     {
     //         type: "runCommand",
     //         command: replaceStringInFile(
-    //             "server/config/cloudinary.config.ts",
+    //             "server/config/cloudinary.config.${lang}",
     //             repoName,
     //             kebabName
     //         ),
@@ -62,7 +65,7 @@ export function replaceProjectNameCommandsFullStack(
     //     {
     //         type: "runCommand",
     //         command: replaceStringInFile(
-    //             "shared/site-data.ts",
+    //             "shared/site-data.${lang}",
     //             repoName,
     //             titleName
     //         ),
@@ -84,13 +87,13 @@ export function replaceProjectNameCommandsFullStack(
         },
         {
             type: "modify",
-            path: "server/utils/consts.ts",
+            path: "server/utils/consts.${lang}",
             template: "{{ kebabCase projectName }}",
             pattern: repoName,
         },
         {
             type: "modify",
-            path: "server/config/cloudinary.config.ts",
+            path: "server/config/cloudinary.config.${lang}",
             template: "{{ kebabCase projectName }}",
             pattern: repoName,
         },
@@ -102,14 +105,17 @@ export function replaceProjectNameCommandsFullStack(
         },
         {
             type: "modify",
-            path: "shared/site-data.ts",
+            path: "shared/site-data.${lang}",
             template: "{{ titleCase projectName }}",
             pattern: repoName,
         },
     ])
 }
 
-export function replaceProjectNameModifyFullStack(repoName: string) {
+export function replaceProjectNameModifyFullStack(
+    repoName: string,
+    lang: string
+) {
     // ? Replace vite-rest by toKebabCase(data.projectName) in server package.json
     // ? Replace client-vite-rest by toKebabCase(`client-${projectName}`) in client package.json
     // ? Replace MONGODB_URI vite-rest in server/consts
@@ -117,7 +123,7 @@ export function replaceProjectNameModifyFullStack(repoName: string) {
     // ? Replace cloudinary config projectName
     // ? Replace index.html client title for projectName
 
-    return addPathPrefix([
+    const paths: Array<Exclude<ActionType, string>> = [
         {
             type: "modify",
             path: "package.json",
@@ -132,13 +138,13 @@ export function replaceProjectNameModifyFullStack(repoName: string) {
         },
         {
             type: "modify",
-            path: "server/utils/consts.ts",
+            path: `server/utils/consts.${lang}`,
             template: "{{ kebabCase projectName }}",
             pattern: repoName,
         },
         {
             type: "modify",
-            path: "server/config/cloudinary.config.ts",
+            path: `server/config/cloudinary.config.${lang}`,
             template: "{{ kebabCase projectName }}",
             pattern: repoName,
         },
@@ -148,11 +154,34 @@ export function replaceProjectNameModifyFullStack(repoName: string) {
             template: "{{ titleCase projectName }}",
             pattern: repoName,
         },
-        {
+    ]
+
+    if (lang === "ts")
+        paths.push({
             type: "modify",
-            path: "shared/site-data.ts",
+            path: `shared/site-data.${lang}`,
             template: "{{ titleCase projectName }}",
             pattern: repoName,
-        },
-    ])
+        })
+
+    if (lang === "js")
+        paths.push(
+            ...[
+                {
+                    type: "modify",
+                    // @ts-ignore
+                    path: `server/utils/site-data.${lang}`,
+                    template: "{{ titleCase projectName }}",
+                    pattern: repoName,
+                },
+                {
+                    type: "modify",
+                    path: `client/src/data/site-data.${lang}`,
+                    template: "{{ titleCase projectName }}",
+                    pattern: repoName,
+                },
+            ]
+        )
+
+    return addPathPrefix(paths)
 }

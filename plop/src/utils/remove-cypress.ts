@@ -1,6 +1,6 @@
 import type { ExtendedActionTypes } from "./types.js"
 
-export function removeCypress(projectName: string) {
+export function removeCypress(projectName: string, boilerplate: string) {
     const actions: Array<ExtendedActionTypes> = [
         "Removing Cypress",
         {
@@ -11,7 +11,7 @@ export function removeCypress(projectName: string) {
         {
             type: "add",
             path: `${process.cwd()}/${projectName}/client/package.json`,
-            templateFile: "../templates/react-rest-ts/package.hbs",
+            templateFile: `../templates/${boilerplate}/package.hbs`,
         },
         "Remove plop generator for component and page",
         {
@@ -23,13 +23,13 @@ export function removeCypress(projectName: string) {
             type: "add",
             path: `${process.cwd()}/${projectName}/plop/generators/component.js`,
             templateFile:
-                "../templates/react-rest-ts/plop-component-no-tests.hbs",
+                `../templates/${boilerplate}/plop-component-no-tests.hbs`,
         },
         "Add new plop generator for page",
         {
             type: "add",
             path: `${process.cwd()}/${projectName}/plop/generators/page.js`,
-            templateFile: "../templates/react-rest-ts/plop-page-no-tests.hbs",
+            templateFile: `../templates/${boilerplate}/plop-page-no-tests.hbs`,
         },
     ]
 
