@@ -15,7 +15,7 @@ const configPath = path.join(__dirname, "plop/scripts/plopfile.js")
 Plop.prepare(
     {
         cwd: argv.cwd,
-        configPath: path.join(__dirname, "plop/scripts/plopfile.js"),
+        configPath,
         preload: argv.preload || [],
         completion: argv.completion,
     },
