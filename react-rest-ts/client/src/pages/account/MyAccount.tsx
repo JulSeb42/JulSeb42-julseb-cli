@@ -6,7 +6,7 @@ import { useAuthContext } from "context"
 import { Page, UserHeader } from "components"
 import { PATHS } from "routes"
 
-export function MyAccount() {
+export const MyAccount = () => {
     const { user } = useAuthContext()
 
     return (

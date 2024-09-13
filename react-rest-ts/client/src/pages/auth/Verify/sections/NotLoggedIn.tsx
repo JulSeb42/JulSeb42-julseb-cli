@@ -3,7 +3,7 @@
 import { Text } from "@julseb-lib/react"
 import { Page } from "components"
 
-export function NotLoggedIn() {
+export const NotLoggedIn = () => {
     return (
         <Page title="Verify your account">
             <Text tag="h1">You are not logged in!</Text>

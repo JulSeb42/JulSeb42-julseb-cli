@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import { Page } from "components"
 import { PATHS } from "routes"
 
-export function NotFound() {
+export const NotFound = () => {
     return (
         <Page title="404">
             <Text tag="h1">Page not found</Text>

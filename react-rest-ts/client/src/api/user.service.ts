@@ -1,8 +1,8 @@
 /*=============================================== User service ===============================================*/
 
 import { http } from "api"
-import { SERVER_PATHS } from "shared"
 import { generateServerRoute } from "utils"
+import type { SERVER_PATHS } from "shared"
 import type {
     ApiResponse,
     User,
@@ -10,33 +10,26 @@ import type {
     EditPasswordFormData,
 } from "types"
 
-const { USERS: PATHS } = SERVER_PATHS
+type PATHS = keyof typeof SERVER_PATHS.USERS
 
-const generateRoute = (
-    route: Exclude<keyof typeof PATHS, "ROOT">,
-    id?: string
-) => generateServerRoute("USERS", route, id)
+const generateRoute = (route: Exclude<PATHS, "ROOT">, id?: string) =>
+    generateServerRoute("USERS", route, id)
 
 class UserService {
-    async allUsers(): ApiResponse<Array<User>> {
-        return await http.get(generateRoute("ALL_USERS"))
-    }
+    allUsers = async (): ApiResponse<Array<User>> =>
+        await http.get(generateRoute("ALL_USERS"))
 
-    async getUser(id: string): ApiResponse<User> {
-        return await http.get(generateRoute("USER", id))
-    }
+    getUser = async (id: string): ApiResponse<User> =>
+        await http.get(generateRoute("USER", id))
 
-    async editAccount(id: string, data: EditAccountFormData) {
-        return await http.put(generateRoute("EDIT_ACCOUNT", id), data)
-    }
+    editAccount = async (id: string, data: EditAccountFormData) =>
+        await http.put(generateRoute("EDIT_ACCOUNT", id), data)
 
-    async editPassword(id: string, data: EditPasswordFormData) {
-        return await http.put(generateRoute("EDIT_PASSWORD", id), data)
-    }
+    editPassword = async (id: string, data: EditPasswordFormData) =>
+        await http.put(generateRoute("EDIT_PASSWORD", id), data)
 
-    async deleteAccount(id: string) {
-        return await http.delete(generateRoute("DELETE_ACCOUNT", id))
-    }
+    deleteAccount = async (id: string) =>
+        await http.delete(generateRoute("DELETE_ACCOUNT", id))
 }
 
 export const userService = new UserService()

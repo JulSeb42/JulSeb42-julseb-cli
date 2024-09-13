@@ -7,7 +7,7 @@ import { EditAccountForm } from "pages/account/EditAccount/EditAccountForm"
 import { DeleteAccount } from "pages/account/EditAccount/DeleteAccount"
 import { PATHS } from "routes"
 
-export function EditAccount() {
+export const EditAccount = () => {
     return (
         <Page title="Edit your account" mainWidth="form">
             <Text tag="h1">Edit your account</Text>

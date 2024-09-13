@@ -7,7 +7,7 @@ import { userService } from "api"
 import { Page, UserHeader } from "components"
 import type { User } from "types"
 
-export function PublicProfile() {
+export const PublicProfile = () => {
     const { id } = useParams<{ id: string }>()
 
     const { response, error, loading } = useFetch<AxiosResponse>(

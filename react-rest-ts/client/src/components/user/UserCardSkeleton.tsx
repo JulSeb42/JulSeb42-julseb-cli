@@ -1,8 +1,9 @@
 /*=============================================== UserCardSkeleton ===============================================*/
 
+import type { FC } from "react"
 import { SkeletonCard, Skeleton } from "@julseb-lib/react"
 
-export function UserCardSkeleton() {
+export const UserCardSkeleton: FC = () => {
     return (
         <SkeletonCard
             borderRadius="m"

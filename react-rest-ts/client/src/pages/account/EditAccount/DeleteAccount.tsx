@@ -8,7 +8,7 @@ import { DangerZone, ErrorMessage } from "components"
 import { PATHS } from "routes"
 import type { IErrorMessage as ErrorMessageType } from "types"
 
-export function DeleteAccount() {
+export const DeleteAccount = () => {
     const navigate = useNavigate()
 
     const { user, logoutUser } = useAuthContext()

@@ -1,11 +1,12 @@
 /*=============================================== UserCard component ===============================================*/
 
+import type { FC } from "react"
 import { Avatar, Text } from "@julseb-lib/react"
 import { PATHS } from "routes"
 import { StyledUserCard } from "components/user/UserCard/styles"
-import type { UserCardProps } from "components/user/UserCard/types"
+import type { IUserCard } from "components/user/UserCard/types"
 
-export function UserCard({ user }: UserCardProps) {
+export const UserCard: FC<IUserCard> = ({ user }) => {
     return (
         <StyledUserCard
             to={PATHS.USER(user?._id)}

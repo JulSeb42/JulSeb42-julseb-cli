@@ -5,13 +5,13 @@ import { InputImage } from "@julseb-lib/react"
 import { cloudinaryService } from "api"
 import type { IImageUploader } from "components/ImageUploader/types"
 
-export function ImageUploader({
+export const ImageUploader: FC<IImageUploader> = ({
     value,
     id,
     setImageUrl,
     setIsLoading,
     ...rest
-}: IImageUploader) {
+}) => {
     const handleImage = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
 

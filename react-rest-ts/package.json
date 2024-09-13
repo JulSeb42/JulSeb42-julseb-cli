@@ -9,7 +9,7 @@
         "server": "nodemon --watch './**/*.ts' --exec 'ts-node' server/index.ts",
         "client": "cd client && yarn dev",
         "dev": "concurrently --kill-others 'yarn server' 'yarn client'",
-        "plop": "plop --plopfile 'plop/plopfile.js'",
+        "plop": "tsc --p ./plop/tsconfig.json && plop --plopfile 'plop/plopfile.js'",
         "plop:c": "yarn plop component",
         "plop:sc": "yarn plop single-component",
         "plop:p": "yarn plop page",

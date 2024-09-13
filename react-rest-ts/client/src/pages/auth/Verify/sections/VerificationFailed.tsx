@@ -4,7 +4,7 @@ import { Text } from "@julseb-lib/react"
 import { Page, ErrorMessage } from "components"
 import type { IErrorMessage } from "types"
 
-export function VerificationFailed({ errorMessages }: VerificationFailedProps) {
+export const VerificationFailed = ({ errorMessages }: IVerificationFailed) => {
     return (
         <Page title="Verify your account">
             <Text tag="h1">Verification failed</Text>
@@ -18,6 +18,6 @@ export function VerificationFailed({ errorMessages }: VerificationFailedProps) {
     )
 }
 
-interface VerificationFailedProps {
+interface IVerificationFailed {
     errorMessages: IErrorMessage
 }

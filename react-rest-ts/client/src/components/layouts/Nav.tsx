@@ -5,11 +5,11 @@ import { NavLink } from "react-router-dom"
 import { ButtonIcon, uuid, Skeleton, useLibTheme } from "@julseb-lib/react"
 import { useAuthContext } from "context"
 import { baseLinks, anonLinks, protectedLinks } from "data"
-import { NavLink as NavLinkType } from "types"
+import type { INavLink } from "types"
 
-export function Nav() {
+export const Nav = () => {
     const { isLoggedIn, logoutUser, isLoading } = useAuthContext()
-    const [allLinks, setAllLinks] = useState<Array<NavLinkType>>(baseLinks)
+    const [allLinks, setAllLinks] = useState<Array<INavLink>>(baseLinks)
 
     const { toggleTheme, selectedTheme } = useLibTheme()
 

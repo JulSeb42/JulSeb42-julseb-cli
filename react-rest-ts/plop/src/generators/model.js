@@ -3,7 +3,7 @@
 const {
     generateModelActions,
     generateTypeActions,
-} = require("../utils/generate-actions")
+} = require("../utils/generate-actions.mts")
 
 const generateModel = (/** @type {import('plop').NodePlopAPI} */ plop) => {
     const { setGenerator } = plop

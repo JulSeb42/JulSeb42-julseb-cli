@@ -1,7 +1,13 @@
 /*=============================================== Global types ===============================================*/
 
-import type { ReactNode } from "react"
+import type { FunctionComponent } from "react"
+import type {
+    ReactChildren,
+    DispatchState as DispatchType,
+} from "@julseb-lib/react/types"
 
 declare global {
-    type Children = ReactNode | Array<ReactNode>
+    type Children = ReactChildren
+    type DispatchState<T> = DispatchType<T>
+    type FC<T = FunctionComponent> = FunctionComponent<T>
 }

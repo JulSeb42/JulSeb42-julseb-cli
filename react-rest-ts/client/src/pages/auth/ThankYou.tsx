@@ -3,7 +3,7 @@
 import { Text } from "@julseb-lib/react"
 import { Page } from "components"
 
-export function ThankYou() {
+export const ThankYou = () => {
     return (
         <Page title="Thank you!">
             <Text tag="h1">Thank you for creating your account!</Text>

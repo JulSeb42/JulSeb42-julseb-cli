@@ -5,7 +5,7 @@ import { Text } from "@julseb-lib/react"
 import { Page } from "components"
 import { PATHS } from "routes"
 
-export function VerificationSuccess() {
+export const VerificationSuccess = () => {
     return (
         <Page title="Verify your account">
             <Text tag="h1">Your account is verifed!</Text>

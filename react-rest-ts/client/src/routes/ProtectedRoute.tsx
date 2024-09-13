@@ -5,10 +5,10 @@ import { PageLoading } from "@julseb-lib/react"
 import { useAuthContext } from "context"
 import { PATHS } from "routes"
 
-export function ProtectedRoute({
+export const ProtectedRoute = ({
     children,
     redirectTo = PATHS.LOGIN,
-}: ProtectedRouteProps) {
+}: IProtectedRoute) => {
     const { isLoggedIn, isLoading } = useAuthContext()
 
     return isLoading ? (
@@ -20,7 +20,7 @@ export function ProtectedRoute({
     )
 }
 
-interface ProtectedRouteProps {
+interface IProtectedRoute {
     children: Children
     redirectTo?: string
 }

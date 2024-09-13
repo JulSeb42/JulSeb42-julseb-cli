@@ -4,11 +4,11 @@ import { SERVER_PATHS } from "shared"
 
 type ParamFn = (param: string | Array<string>) => string
 
-export function generateServerRoute(
+export const generateServerRoute = (
     route: keyof typeof SERVER_PATHS,
     path: string,
     param?: string | Array<string>
-) {
+) => {
     const PATHS = SERVER_PATHS[route]
     const root = PATHS.ROOT
     const foundRoute: string | ParamFn = PATHS[path as keyof typeof PATHS]

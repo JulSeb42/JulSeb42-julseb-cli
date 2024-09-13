@@ -16,7 +16,7 @@ const generateModelActions = [
     },
 ]
 
-const generateTypeActions = interface => {
+const generateTypeActions = (interface: boolean) => {
     return [
         {
             type: "add",

@@ -4,7 +4,7 @@ import { Text } from "@julseb-lib/react"
 import { Page } from "components"
 import { ForgotPasswordForm } from "pages/auth/ForgotPassword/ForgotPasswordForm"
 
-export function ForgotPassword() {
+export const ForgotPassword = () => {
     return (
         <Page title="I forgot my password" mainWidth="form">
             <Text tag="h1">I forgot my password</Text>

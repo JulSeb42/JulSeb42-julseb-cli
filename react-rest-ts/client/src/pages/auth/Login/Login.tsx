@@ -6,7 +6,7 @@ import { Page } from "components"
 import { LoginForm } from "pages/auth/Login/LoginForm"
 import { PATHS } from "routes"
 
-export function Login() {
+export const Login = () => {
     return (
         <Page title="Log in" mainWidth="form">
             <Text tag="h1">Log in</Text>

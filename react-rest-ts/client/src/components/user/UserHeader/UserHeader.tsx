@@ -1,5 +1,6 @@
 /*=============================================== UserHeader component ===============================================*/
 
+import type { FC } from "react"
 import {
     Flexbox,
     Text,
@@ -9,14 +10,14 @@ import {
     SkeletonShine,
     getFirstName,
 } from "@julseb-lib/react"
-import type { UserHeaderProps } from "components/user/UserHeader/types"
+import type { IUserHeader } from "components/user/UserHeader/types"
 
-export function UserHeader({
+export const UserHeader: FC<IUserHeader> = ({
     user,
     isLoading,
     error,
     isAccount,
-}: UserHeaderProps) {
+}) => {
     if (isLoading) return <UserHeaderSkeleton />
 
     if (error?.response?.status === 400)
@@ -36,7 +37,7 @@ export function UserHeader({
     )
 }
 
-function UserHeaderSkeleton() {
+const UserHeaderSkeleton = () => {
     return (
         <SkeletonCard flexDirection="row" gap="xs" alignItems="center">
             <Skeleton width={48} height={48} borderRadius="circle" />

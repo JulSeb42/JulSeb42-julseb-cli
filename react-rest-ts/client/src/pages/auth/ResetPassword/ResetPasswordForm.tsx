@@ -17,7 +17,7 @@ import { COMMON_TEXTS } from "shared"
 import { PATHS } from "routes"
 import type { User } from "types"
 
-export function ResetPasswordForm() {
+export const ResetPasswordForm = () => {
     const navigate = useNavigate()
     const { token, id } = useParams<{ token: string; id: string }>()
 

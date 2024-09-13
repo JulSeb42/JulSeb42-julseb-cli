@@ -11,7 +11,7 @@ import { PATHS } from "routes"
 import type { IErrorMessage as ErrorMessageType } from "types"
 import { COMMON_TEXTS } from "../../../../../shared"
 
-export function SignupForm() {
+export const SignupForm = () => {
     const { loginUser } = useAuthContext()
     const navigate = useNavigate()
 

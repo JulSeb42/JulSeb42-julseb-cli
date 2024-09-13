@@ -3,7 +3,7 @@
 import { Skeleton } from "@julseb-lib/react"
 import { Page } from "components"
 
-export function VerifySkeleton() {
+export const VerifySkeleton = () => {
     return (
         <Page title="Verify your account">
             <Skeleton

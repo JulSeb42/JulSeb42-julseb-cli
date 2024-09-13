@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Button, Alert, Text, Flexbox } from "@julseb-lib/react"
 
-export function DangerZone({ texts, buttonPrimary }: DangerZoneProps) {
+export const DangerZone: FC<IDangerZone> = ({ texts, buttonPrimary }) => {
     const [isVisible, setIsVisible] = useState(false)
 
     return (
@@ -36,7 +36,7 @@ export function DangerZone({ texts, buttonPrimary }: DangerZoneProps) {
     )
 }
 
-interface DangerZoneProps {
+interface IDangerZone {
     texts: {
         buttonOpen: string
         body: string

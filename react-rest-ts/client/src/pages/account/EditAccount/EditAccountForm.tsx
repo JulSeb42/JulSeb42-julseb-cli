@@ -9,7 +9,7 @@ import { ImageUploader, ErrorMessage } from "components"
 import { PATHS } from "routes"
 import type { IErrorMessage } from "types"
 
-export function EditAccountForm() {
+export const EditAccountForm = () => {
     const navigate = useNavigate()
 
     const { user, setUser, setToken } = useAuthContext()

@@ -1,8 +1,8 @@
 /*=============================================== Auth service ===============================================*/
 
 import { http } from "api"
-import { SERVER_PATHS } from "shared"
 import { generateServerRoute } from "utils"
+import type { SERVER_PATHS } from "shared"
 import type {
     SignupFormData,
     LoginFormData,
@@ -11,37 +11,29 @@ import type {
     ResetPasswordFormData,
 } from "types"
 
-const { AUTH: PATHS } = SERVER_PATHS
+type PATHS = keyof typeof SERVER_PATHS.AUTH
 
-const generateRoute = (route: Exclude<keyof typeof PATHS, "ROOT">) =>
+const generateRoute = (route: Exclude<PATHS, "ROOT">) =>
     generateServerRoute("AUTH", route)
 
 class AuthService {
-    async signup(data: SignupFormData) {
-        return await http.post(generateRoute("SIGNUP"), data)
-    }
+    signup = async (data: SignupFormData) =>
+        await http.post(generateRoute("SIGNUP"), data)
 
-    async login(data: LoginFormData) {
-        return await http.post(generateRoute("LOGIN"), data)
-    }
+    login = async (data: LoginFormData) =>
+        await http.post(generateRoute("LOGIN"), data)
 
-    async loggedIn(data: LoggedInFormData) {
-        return await http.get(generateRoute("LOGGED_IN"), data)
-    }
+    loggedIn = async (data: LoggedInFormData) =>
+        await http.get(generateRoute("LOGGED_IN"), data)
 
-    async verify(id: string, token: string) {
-        return await http.put(
-            generateServerRoute("AUTH", "VERIFY", [id, token])
-        )
-    }
+    verify = async (id: string, token: string) =>
+        await http.put(generateServerRoute("AUTH", "VERIFY", [id, token]))
 
-    async forgotPassword(data: ForgotPasswordFormData) {
-        return await http.post(generateRoute("FORGOT_PASSWORD"), data)
-    }
+    forgotPassword = async (data: ForgotPasswordFormData) =>
+        await http.post(generateRoute("FORGOT_PASSWORD"), data)
 
-    async resetPassword(data: ResetPasswordFormData) {
-        return await http.put(generateRoute("RESET_PASSWORD"), data)
-    }
+    resetPassword = async (data: ResetPasswordFormData) =>
+        await http.put(generateRoute("RESET_PASSWORD"), data)
 }
 
 export const authService = new AuthService()

@@ -1,7 +1,7 @@
 {
     "Base React": {
         "prefix": "react",
-        "body": "/*=============================================== $1 ===============================================*/\n\nexport const $1 = ({ }: $1Props) => {\n    return (\n        <div>\n\n        </div>\n    )\n}\n\ninterface $1Props {\n\n}\n"
+        "body": "/*=============================================== $1 ===============================================*/\n\nexport const $1 = ({ }: I$1 => {\n    return (\n        <div>\n\n        </div>\n    )\n}\n\ninterface I$1 {\n\n}\n"
     },
     "Page React": {
         "prefix": "page",

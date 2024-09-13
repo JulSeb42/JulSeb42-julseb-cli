@@ -2,7 +2,7 @@
 
 import type { LibButtonLinkRequired } from "@julseb-lib/react/types"
 
-export type NavLink = LibButtonLinkRequired & {
+export type INavLink = LibButtonLinkRequired & {
     text: string
     end?: boolean
 }

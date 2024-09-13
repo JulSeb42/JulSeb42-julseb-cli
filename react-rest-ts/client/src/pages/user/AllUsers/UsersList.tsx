@@ -6,7 +6,7 @@ import { userService } from "api"
 import { UserCard, UserCardSkeleton } from "components"
 import type { User } from "types"
 
-export function UsersList() {
+export const UsersList = () => {
     const { response, error, loading } = useFetch<AxiosResponse>(
         userService.allUsers()
     )
@@ -27,7 +27,7 @@ export function UsersList() {
     )
 }
 
-function UsersListSkeleton() {
+const UsersListSkeleton = () => {
     return (
         <Grid col={3} gap="s">
             {generateNumbers(0, 4).map(n => (

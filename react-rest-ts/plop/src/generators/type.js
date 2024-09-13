@@ -1,6 +1,6 @@
 /*=============================================== Generate TS type ===============================================*/
 
-const { generateTypeActions } = require("../utils/generate-actions")
+const { generateTypeActions } = require("../utils/generate-actions.mts")
 
 const generateType = (/** @type {import('plop').NodePlopAPI} */ plop) => {
     const { setGenerator } = plop

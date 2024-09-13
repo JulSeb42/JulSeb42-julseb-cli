@@ -12,7 +12,7 @@ import {
 } from "pages/auth/Verify/sections"
 import type { IErrorMessage } from "types"
 
-export function Verify() {
+export const Verify = () => {
     const { user, setUser, isLoggedIn, setToken } = useAuthContext()
     const { token, id } = useParams<{ id: string; token: string }>()
 

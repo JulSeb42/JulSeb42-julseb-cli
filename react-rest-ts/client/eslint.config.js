@@ -42,7 +42,7 @@ export default [
             "react/function-component-definition": [
                 "warn",
                 {
-                    namedComponents: ["function-declaration"],
+                    namedComponents: ["arrow-function"],
                 },
             ],
             "react/jsx-key": "warn",

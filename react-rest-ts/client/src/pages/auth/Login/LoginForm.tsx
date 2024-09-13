@@ -7,7 +7,7 @@ import { useAuthContext } from "context"
 import { authService } from "api"
 import { ErrorMessage } from "components"
 
-export function LoginForm() {
+export const LoginForm = () => {
     const navigate = useNavigate()
     const { loginUser } = useAuthContext()
 

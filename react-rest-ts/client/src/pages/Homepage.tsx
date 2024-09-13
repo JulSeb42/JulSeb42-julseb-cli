@@ -4,7 +4,7 @@ import { Text } from "@julseb-lib/react"
 import { useAuthContext } from "context"
 import { Page } from "components"
 
-export function Homepage() {
+export const Homepage = () => {
     const { isLoggedIn, user } = useAuthContext()
 
     return (

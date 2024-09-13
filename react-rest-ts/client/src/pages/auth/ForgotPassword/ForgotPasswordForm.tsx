@@ -8,7 +8,7 @@ import { ErrorMessage } from "components"
 import { PATHS } from "routes"
 import type { IErrorMessage } from "types"
 
-export function ForgotPasswordForm() {
+export const ForgotPasswordForm = () => {
     const navigate = useNavigate()
 
     const [email, setEmail] = useState("")

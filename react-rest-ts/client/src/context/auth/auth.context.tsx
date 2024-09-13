@@ -6,14 +6,15 @@ import {
     createContext,
     useContext,
     type ReactNode,
+    type FC,
 } from "react"
 import { authService } from "api"
-import type { AuthContextType } from "context/types"
+import type { IAuthContext } from "context/types"
 import type { User } from "types"
 
-export const AuthContext = createContext<AuthContextType>(null as any)
+export const AuthContext = createContext<IAuthContext>(null as any)
 
-export function AuthProviderWrapper({ children }: AuthProviderWrapperProps) {
+export const AuthProviderWrapper: FC<IAuthProviderWrapper> = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [user, setUser] = useState<User | null>(null)
@@ -83,8 +84,8 @@ export function AuthProviderWrapper({ children }: AuthProviderWrapperProps) {
     )
 }
 
-export const useAuthContext = () => useContext(AuthContext) as AuthContextType
+export const useAuthContext = () => useContext(AuthContext) as IAuthContext
 
-interface AuthProviderWrapperProps {
+interface IAuthProviderWrapper {
     children: ReactNode
 }

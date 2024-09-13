@@ -11,7 +11,7 @@ import { PATHS } from "routes"
 import { COMMON_TEXTS } from "shared"
 import type { IErrorMessage as ErrorMessageType } from "types"
 
-export function EditPassword() {
+export const EditPassword = () => {
     const { user, setUser, setToken } = useAuthContext()
     const navigate = useNavigate()
 
