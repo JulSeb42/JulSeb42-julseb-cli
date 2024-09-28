@@ -7,13 +7,7 @@
         "dev": "vite --open",
         "build": "tsc && vite build",
         "lint": "./node_modules/.bin/eslint",
-        "preview": "vite preview",
-        "cy": "cypress",
-        "cy:open": "cypress open",
-        "cy:ct:run": "cypress run --component --browser electron",
-        "cy:ct:open": "cypress open --component --browser electron",
-        "cy:e2e:run": "cypress run --e2e --browser electron",
-        "cy:e2e:open": "cypress open --e2e --browser electron"
+        "preview": "vite preview"
     },
     "dependencies": {
         "@julseb-lib/react": "^0.0.10",
@@ -34,7 +28,6 @@
         "@typescript-eslint/eslint-plugin": "^8.3.0",
         "@typescript-eslint/parser": "^8.3.0",
         "@vitejs/plugin-react": "^4.3.1",
-        "cypress": "^13.14.0",
         "eslint": "^9.9.1",
         "eslint-plugin-import": "^2.29.1",
         "eslint-plugin-react": "^7.35.0",

@@ -1,10 +1,7 @@
 /*=============================================== Generate component ===============================================*/
-
-import { BASE_CLIENT_PATH } from "../utils/index.mjs"
-
-export const generateComponent = (/** @type {import('plop').NodePlopAPI} */ plop) => {
-    const { setGenerator } = plop
-
+import { BASE_CLIENT_PATH } from "../utils/index.mjs";
+export const generateComponent = (plop) => {
+    const { setGenerator } = plop;
     setGenerator("component", {
         description: "React component",
         prompts: [
@@ -23,7 +20,7 @@ export const generateComponent = (/** @type {import('plop').NodePlopAPI} */ plop
                 type: "input",
                 name: "attribute",
                 message: "Enter HTML attribute",
-                default: "div",
+                default: (data) => data.tag,
             },
             {
                 type: "confirm",
@@ -44,22 +41,24 @@ export const generateComponent = (/** @type {import('plop').NodePlopAPI} */ plop
                 default: true,
             },
         ],
-        actions: [
-            "Creating new files",
-            {
-                type: "addMany",
-                destination: `${BASE_CLIENT_PATH}/components/{{ pascalCase name }}`,
-                templateFiles: "./templates/component/*.hbs",
-                base: "./templates/component",
-            },
-            "Exporting your new component",
-            {
-                type: "modify",
-                path: `.${BASE_CLIENT_PATH}/components/index.ts`,
-                template:
-                    'export * from "components/{{ pascalCase name }}"\n$1',
-                pattern: /(\/\/ prependHere)/g,
-            },
-        ]
-    })
-}
+        actions: data => {
+            const actions = [
+                "Creating new files",
+                {
+                    type: "addMany",
+                    destination: `${BASE_CLIENT_PATH}/components/{{ pascalCase name }}`,
+                    templateFiles: "../templates/component/*.hbs",
+                    base: "../templates/component",
+                },
+                "Exporting your new component",
+                {
+                    type: "modify",
+                    path: `${BASE_CLIENT_PATH}/components/index.ts`,
+                    template: 'export * from "components/{{ pascalCase name }}"\n$1',
+                    pattern: /(\/\* prepend - do not remove \*\/)/g,
+                },
+            ];
+            return actions;
+        },
+    });
+};

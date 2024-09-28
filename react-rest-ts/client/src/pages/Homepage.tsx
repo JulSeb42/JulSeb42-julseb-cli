@@ -8,7 +8,7 @@ export const Homepage = () => {
     const { isLoggedIn, user } = useAuthContext()
 
     return (
-        <Page title="Home" data-testid="Homepage">
+        <Page title="Home">
             <Text tag="h1">Hello World!</Text>
 
             {isLoggedIn && (

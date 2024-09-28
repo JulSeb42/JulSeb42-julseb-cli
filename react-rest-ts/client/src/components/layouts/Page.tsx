@@ -1,16 +1,13 @@
 /*=============================================== Page ===============================================*/
 
 import { PageLayout } from "@julseb-lib/react"
-import type { LibMainSize, LibHeaderLink } from "@julseb-lib/react/types"
+import type { LibMainSize } from "@julseb-lib/react/types"
 import type { ILibPageLayout } from "@julseb-lib/react/component-props"
 import { SITE_DATA } from "shared"
 import { PATHS } from "routes"
-import { useAuthContext } from "context"
 import { Nav } from "components/layouts/Nav"
-import { baseLinks, anonLinks, protectedLinks } from "data"
 
 export const Page: FC<IPage> = ({
-    "data-testid": testid,
     children,
     isLoading,
     title,
@@ -19,10 +16,6 @@ export const Page: FC<IPage> = ({
     cover,
     mainWidth = "default",
 }) => {
-    const { isLoggedIn } = useAuthContext()
-    const restLinks = isLoggedIn ? protectedLinks : anonLinks
-    const links: Array<LibHeaderLink> = [...baseLinks, ...restLinks]
-
     return (
         <PageLayout
             isLoading={isLoading}
@@ -38,10 +31,8 @@ export const Page: FC<IPage> = ({
                 language: SITE_DATA.LANGUAGE,
             }}
             header={{
-                "data-testid": testid && `${testid}.Header`,
                 logo: { text: SITE_DATA.NAME, to: PATHS.ROOT },
                 nav: <Nav />,
-                // links,
             }}
             main={{ size: mainWidth }}
         >
@@ -51,7 +42,6 @@ export const Page: FC<IPage> = ({
 }
 
 type IPage = ILibPageLayout & {
-    "data-testid"?: string
     title: string
     description?: string
     keywords?: string | Array<string>

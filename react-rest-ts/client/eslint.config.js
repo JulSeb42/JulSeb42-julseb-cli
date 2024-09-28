@@ -60,12 +60,12 @@ export default [
             ],
             "react/prop-types": "off",
             "no-empty-pattern": "warn",
+            "@typescript-eslint/no-empty-object-type": "off",
         },
     },
     {
         ignores: [
             "eslint.config.js",
-            "cypress.config.ts",
             "plop/*",
             "vite.config.ts",
         ],

@@ -16,5 +16,3 @@ export const generatePageRoute = (pageType?: "protected" | "anon") => {
 
     return `{ path: ${pathName}, element: ${element} },\n$1`
 }
-
-module.exports = { generatePageRoute }

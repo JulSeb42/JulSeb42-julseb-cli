@@ -1,0 +1,13 @@
+/*=============================================== {{ pascalCase name }} types ===============================================*/
+
+export interface I{{ pascalCase name }} {
+    {{#if test}}
+    "data-testid"?: string
+    {{/if}}
+    {{#if children}}
+    children?: Children
+    {{/if}}
+    {{#if as}}
+    as?: ElementType
+    {{/if}}
+}

@@ -1,6 +1,6 @@
 /*=============================================== Global types ===============================================*/
 
-import type { FunctionComponent } from "react"
+import type { FunctionComponent, ElementType as ElType } from "react"
 import type {
     ReactChildren,
     DispatchState as DispatchType,
@@ -10,4 +10,5 @@ declare global {
     type Children = ReactChildren
     type DispatchState<T> = DispatchType<T>
     type FC<T = FunctionComponent> = FunctionComponent<T>
+    type ElementType = ElType
 }

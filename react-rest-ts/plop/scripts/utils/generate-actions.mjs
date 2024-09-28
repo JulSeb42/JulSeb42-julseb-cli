@@ -1,8 +1,6 @@
 /*=============================================== Generate actions ===============================================*/
-
 // Array of new actions, not to repeat this code
-
-const generateModelActions = [
+export const generateModelActions = [
     {
         type: "add",
         path: "../server/models/{{ pascalCase name }}.model.ts",
@@ -14,26 +12,19 @@ const generateModelActions = [
         template: 'export * from "./{{ pascalCase name }}.model"\n$1',
         pattern: /(\/\/ prependHere)/g,
     },
-]
-
-const generateTypeActions = (interface: boolean) => {
+];
+export const generateTypeActions = (withInterface) => {
     return [
         {
             type: "add",
-            path: `../shared/types/{{ pascalCase name }}.${
-                interface ? "interface" : "type"
-            }.ts`,
+            path: `../shared/types/{{ pascalCase name }}.${withInterface ? "interface" : "type"}.ts`,
             templateFile: "./templates/type.hbs",
         },
         {
             type: "modify",
             path: "../shared/types/index.ts",
-            template: `export * from "./{{ pascalCase name }}.${
-                interface ? "interface" : "type"
-            }"\n$1`,
+            template: `export * from "./{{ pascalCase name }}.${withInterface ? "interface" : "type"}"\n$1`,
             pattern: /(\/\/ prependHere)/g,
         },
-    ]
-}
-
-module.exports = { generateModelActions, generateTypeActions }
+    ];
+};
