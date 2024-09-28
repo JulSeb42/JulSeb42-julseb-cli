@@ -16,7 +16,7 @@ export default (plop: NodePlopAPI) => {
     generateComponent(plop) // yarn plop:c ✅
     generateSingleFileComponent(plop) // yarn plop:sc ✅
     generatePage(plop) // yarn plop:p ✅
-    generateType(plop) // yarn plop:ty
+    generateType(plop) // yarn plop:ty ✅
 
     /*====================== Server ======================*/
     generateRoute(plop) // yarn plop:r
