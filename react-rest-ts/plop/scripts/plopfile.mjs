@@ -3,10 +3,11 @@ import { generateComponent, generatePage, generateRoute, generateSingleFileCompo
 // Generate components, etc.
 export default (plop) => {
     /*====================== Client ======================*/
-    generateComponent(plop); // yarn plop:c
-    generateSingleFileComponent(plop); // yarn plop:sc
+    generateComponent(plop); // yarn plop:c ✅
+    generateSingleFileComponent(plop); // yarn plop:sc ✅
     generatePage(plop); // yarn plop:p
     generateType(plop); // yarn plop:ty
     /*====================== Server ======================*/
     generateRoute(plop); // yarn plop:r
+    // TODO: model with type
 };

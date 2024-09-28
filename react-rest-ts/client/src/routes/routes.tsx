@@ -16,7 +16,7 @@ import {
     Goodbye,
 } from "pages/auth"
 import { MyAccount, EditAccount, EditPassword } from "pages/account"
-// prependImport
+/* prepend import - do not remove */
 
 type Route = {
     path: string
@@ -112,8 +112,8 @@ export const routes: Array<Route> = [
             </ProtectedRoute>
         ),
     },
-
-    // prependRoute
+    
+    /* prepend route - do not remove */
 
     ...redirects,
 ]

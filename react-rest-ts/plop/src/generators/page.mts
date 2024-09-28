@@ -53,56 +53,43 @@ export const generatePage = (plop: NodePlopAPI) => {
                         : `${BASE_CLIENT_PATH}/pages/{{ pascalCase name }}.tsx`,
                     templateFile: "../templates/page/page-file.hbs",
                 },
-                // "Importing your new page in routes file",
-                // {
-                //     type: "modify",
-                //     path: `${BASE_CLIENT_PATH}/routes/routes.tsx`,
-                //     template:
-                //         'import { {{ pascalCase name }} } from "pages/{{ pascalCase name }}"\n$1',
-                //     pattern: /(\/\/ prependImport)/g,
-                // },
-                // "Adding your new page to the paths array",
-                // {
-                //     type: "modify",
-                //     path: `${BASE_CLIENT_PATH}/routes/routes.tsx`,
-                //     template: generatePageRoute(data?.protected),
-                //     pattern: /(\/\/ prependRoute)/g,
-                // },
-                // "Adding path to paths list",
-                // {
-                //     type: "modify",
-                //     path: `${BASE_CLIENT_PATH}/routes/paths.ts`,
-                //     template:
-                //         '{{ constantCase name }}: "/{{ pathCase path }}",\n$1',
-                //     pattern: /(\/\/ prependPath)/g,
-                // },
+                "Importing your new page in routes file",
+                {
+                    type: "modify",
+                    path: `${BASE_CLIENT_PATH}/routes/routes.tsx`,
+                    template:
+                        'import { {{ pascalCase name }} } from "pages/{{ pascalCase name }}"\n$1',
+                    pattern: /(\/\* prepend import - do not remove \*\/)/g,
+                },
+                "Adding your new page to the paths array",
+                {
+                    type: "modify",
+                    path: `${BASE_CLIENT_PATH}/routes/routes.tsx`,
+                    template: generatePageRoute(data?.protected),
+                    pattern: /(\/\* prepend route - do not remove \*\/)/g,
+                },
+                "Adding path to paths list",
+                {
+                    type: "modify",
+                    path: `${BASE_CLIENT_PATH}/routes/paths.ts`,
+                    template:
+                        '{{ constantCase name }}: "/{{ pathCase path }}",\n$1',
+                    pattern: /(\/\* prepend path - do not remove \*\/)/g,
+                },
             ]
 
-            // if (data?.multi) {
-            //     actions.push(
-            //         ...[
-            //             "Creating export from new folder",
-            //             {
-            //                 type: "add",
-            //                 path: `${BASE_CLIENT_PATH}/pages/{{ pascalCase name }}/index.ts`,
-            //                 templateFile: "../templates/page/page-index.hbs",
-            //             },
-            //         ]
-            //     )
-            // }
-
-            // if (data?.test) {
-            //     actions.push(
-            //         ...[
-            //             "Creating test file",
-            //             {
-            //                 type: "add",
-            //                 path: `../client/cypress/e2e/{{ pascalCase name }}.cy.ts`,
-            //                 templateFile: "../templates/react-rest-ts/",
-            //             },
-            //         ]
-            //     )
-            // }
+            if (data?.multi) {
+                actions.push(
+                    ...[
+                        "Creating export from new folder",
+                        {
+                            type: "add",
+                            path: `${BASE_CLIENT_PATH}/pages/{{ pascalCase name }}/index.ts`,
+                            templateFile: "../templates/page/page-index.hbs",
+                        },
+                    ]
+                )
+            }
 
             return actions
         },

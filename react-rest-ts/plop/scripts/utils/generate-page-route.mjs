@@ -4,13 +4,13 @@ export const generatePageRoute = (pageType) => {
     const elementComp = "<{{ pascalCase name }} />";
     let element;
     if (pageType === "protected") {
-        element = `<ProtectedRoute>${elementComp}</ProtectedRoute>`;
+        element = `(\n            <ProtectedRoute>\n                ${elementComp}\n            </ProtectedRoute>\n        ),`;
     }
     else if (pageType === "anon") {
-        element = `<AnonRoute>${elementComp}</AnonRoute>`;
+        element = `(\n            <AnonRoute>\n                ${elementComp}\n            </AnonRoute>\n        ),`;
     }
     else {
         element = elementComp;
     }
-    return `{ path: ${pathName}, element: ${element} },\n$1`;
+    return `{\n        path: ${pathName},\n        element: ${element}\n    },\n$1`;
 };

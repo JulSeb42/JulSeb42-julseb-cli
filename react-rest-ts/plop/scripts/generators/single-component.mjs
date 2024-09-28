@@ -22,23 +22,20 @@ export const generateSingleFileComponent = (plop) => {
                 message: "Which HTML tag?",
                 default: "div",
             },
-            {
-                type: "input",
-                name: "components",
-                message: "Import other components?",
-            },
         ],
         actions: [
+            "Creating your new component",
             {
                 type: "add",
                 path: `${BASE_CLIENT_PATH}/components/{{ pascalCase name }}.tsx`,
-                templateFile: "./templates/single-component.hbs",
+                templateFile: "../templates/single-component.hbs",
             },
+            "Exporting your new component",
             {
                 type: "modify",
                 path: `${BASE_CLIENT_PATH}/components/index.ts`,
                 template: 'export * from "components/{{ pascalCase name }}"\n$1',
-                pattern: /(\/\/ prependHere)/g,
+                pattern: /(\/\* prepend - do not remove \*\/)/g,
             },
         ],
     });

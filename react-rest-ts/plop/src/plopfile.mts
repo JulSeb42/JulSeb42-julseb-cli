@@ -13,9 +13,9 @@ import {
 
 export default (plop: NodePlopAPI) => {
     /*====================== Client ======================*/
-    generateComponent(plop) // yarn plop:c
-    generateSingleFileComponent(plop) // yarn plop:sc
-    generatePage(plop) // yarn plop:p
+    generateComponent(plop) // yarn plop:c ✅
+    generateSingleFileComponent(plop) // yarn plop:sc ✅
+    generatePage(plop) // yarn plop:p ✅
     generateType(plop) // yarn plop:ty
 
     /*====================== Server ======================*/
