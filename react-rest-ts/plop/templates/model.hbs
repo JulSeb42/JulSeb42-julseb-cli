@@ -3,11 +3,11 @@
 import { Schema, model } from "mongoose"
 import type { {{ pascalCase name }} } from "../../shared/types"
 
-const userSchema = new Schema<{{ pascalCase name }}>(
+const {{ camelCase name }}Schema = new Schema<{{ pascalCase name }}>(
     {
         
     },
     { timestamps: true }
 )
 
-export const UserModel = model<User>("User", userSchema)
+export const {{ pascalCase name }}Model = model<{{ pascalCase name }}>("{{ pascalCase name }}", {{ camelCase name }}Schema)

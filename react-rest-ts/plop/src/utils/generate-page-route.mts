@@ -14,5 +14,5 @@ export const generatePageRoute = (pageType?: "protected" | "anon") => {
         element = elementComp
     }
 
-    return `{\n        path: ${pathName},\n        element: ${element}\n    },\n$1`
+    return `{\n        path: ${pathName},\n        element: ${element}\n    },\n$1    `
 }

@@ -73,7 +73,7 @@ export const generatePage = (plop: NodePlopAPI) => {
                     type: "modify",
                     path: `${BASE_CLIENT_PATH}/routes/paths.ts`,
                     template:
-                        '{{ constantCase name }}: "/{{ pathCase path }}",\n$1',
+                        '{{ constantCase name }}: "/{{ pathCase path }}",\n$1    ',
                     pattern: /(\/\* prepend path - do not remove \*\/)/g,
                 },
             ]

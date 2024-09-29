@@ -6,7 +6,7 @@ const SERVER_PATH_ROOTS = {
     AUTH: "/auth",
     UPLOADER: "/uploader",
     USERS: "/users",
-    // prependRoot
+    /* prepend path root - do not remove */
 }
 
 export const SERVER_PATHS = {
@@ -37,5 +37,5 @@ export const SERVER_PATHS = {
         EDIT_PASSWORD: (id = ":id") => `/edit-password/${id}`,
         DELETE_ACCOUNT: (id = ":id") => `/delete-account/${id}`,
     },
-    // prependServerPath
+    /* prepend server path - do not remove */
 }
