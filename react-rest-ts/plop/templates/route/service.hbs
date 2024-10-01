@@ -1,14 +1,14 @@
 /*=============================================== {{ pascalCase name }} service ===============================================*/
 
 import { http } from "api"
-import { SERVER_PATHS } from "shared"
 import { generateServerRoute } from "utils"
+import type { SERVER_PATHS } from "shared"
 import type { ApiResponse, {{ pascalCase name }} } from "types"
 
-const { {{ constantCase name }}: PATHS } = SERVER_PATHS
+type PATHS = keyof typeof SERVER_PATHS.{{ constantCase name }}
 
 const generateRoute = (
-    route: Exclude<keyof typeof PATHS, "ROOT">,
+    route: Exclude<PATHS, "ROOT">,
     id?: string
 ) => generateServerRoute("{{ constantCase name }}", route, id)
 

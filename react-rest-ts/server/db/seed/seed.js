@@ -3,7 +3,6 @@
 require("dotenv/config")
 const mongoose = require("mongoose")
 const bcrypt = require("bcryptjs")
-const { MONGODB_URI } = require("./utils/constants")
 const { getRandomString, getRandomAvatar } = require("ts-utils-julseb")
 
 // Convert TS model to JS model and add it to "./models"
@@ -14,7 +13,7 @@ const password = "Password42"
 const salt = bcrypt.genSaltSync()
 const hash = bcrypt.hashSync(password, salt)
 
-mongoose.connect(MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI)
 
 const fakeUser = {
     fullName: "Julien Sebag",

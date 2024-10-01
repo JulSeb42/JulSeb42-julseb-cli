@@ -5,7 +5,7 @@ import { SERVER_PATHS } from "../../shared"
 import auth from "./auth"
 import users from "./users"
 import uploader from "./uploader"
-/* prepend import - do not remove */
+// prependImport
 
 const router = Router()
 
@@ -16,6 +16,6 @@ router.get("/", (_, res) => {
 router.use(SERVER_PATHS.AUTH.ROOT, auth)
 router.use(SERVER_PATHS.USERS.ROOT, users)
 router.use(SERVER_PATHS.UPLOADER.ROOT, uploader)
-/* prepend router use - do not remove */
+// prependRouterUse
 
 export default router
