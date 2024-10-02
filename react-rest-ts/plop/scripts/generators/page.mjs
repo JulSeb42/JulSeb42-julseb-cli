@@ -1,5 +1,5 @@
 /*=============================================== Generate page ===============================================*/
-import { toKebabCase, toTitleCase } from "ts-utils-julseb";
+import { toKebabCase, toTitleCase } from "@julseb-lib/utils";
 import { generatePageRoute } from "../utils/generate-page-route.mjs";
 import { BASE_CLIENT_PATH } from "../utils/consts.mjs";
 export const generatePage = (plop) => {

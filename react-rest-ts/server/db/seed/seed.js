@@ -3,7 +3,7 @@
 require("dotenv/config")
 const mongoose = require("mongoose")
 const bcrypt = require("bcryptjs")
-const { getRandomString, getRandomAvatar } = require("ts-utils-julseb")
+const { getRandomString, getRandomAvatar } = require("@julseb-lib/utils")
 
 // Convert TS model to JS model and add it to "./models"
 const { UserModel } = require("./models/User.model")

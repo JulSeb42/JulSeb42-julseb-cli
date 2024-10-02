@@ -3,7 +3,7 @@
 import { Router } from "express"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
-import { passwordRegex, emailRegex, getRandomString } from "ts-utils-julseb"
+import { passwordRegex, emailRegex, getRandomString } from "@julseb-lib/utils"
 import { UserModel } from "../models"
 import { isAuthenticated } from "../middleware"
 import { jwtConfig, SALT_ROUNDS, TOKEN_SECRET, sendMail } from "../utils"

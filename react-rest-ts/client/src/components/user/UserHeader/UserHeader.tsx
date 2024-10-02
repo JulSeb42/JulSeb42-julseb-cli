@@ -30,7 +30,7 @@ export const UserHeader: FC<IUserHeader> = ({
     return (
         <Flexbox alignItems="center" gap="xs">
             <Avatar
-                img={{ src: user?.avatar, alt: `Avatar ${user?.fullName}` }}
+                img={user?.avatar && { src: user.avatar, alt: `Avatar ${user.fullName}` }}
             />
             <Text tag="h1">{title}</Text>
         </Flexbox>
