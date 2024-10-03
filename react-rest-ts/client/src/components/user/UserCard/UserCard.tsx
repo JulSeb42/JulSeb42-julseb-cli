@@ -1,7 +1,8 @@
 /*=============================================== UserCard component ===============================================*/
 
 import type { FC } from "react"
-import { Avatar, Text } from "@julseb-lib/react"
+import { Text } from "@julseb-lib/react"
+import { UserAvatar } from "components"
 import { PATHS } from "routes"
 import { StyledUserCard } from "components/user/UserCard/styles"
 import type { IUserCard } from "components/user/UserCard/types"
@@ -18,7 +19,7 @@ export const UserCard: FC<IUserCard> = ({ user }) => {
             padding="xs"
             borderRadius="m"
         >
-            <Avatar img={user?.avatar} size={48} />
+            <UserAvatar size={48} />
             <Text tag="strong">{user?.fullName}</Text>
         </StyledUserCard>
     )

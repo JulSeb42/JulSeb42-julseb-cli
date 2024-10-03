@@ -2,10 +2,7 @@
 
 import type { User } from "./User.type"
 
-export type SignupFormData = Pick<
-    User,
-    "fullName" | "email" | "password" | "avatar"
->
+export type SignupFormData = Pick<User, "fullName" | "email" | "password">
 
 export type LoginFormData = Pick<User, "email" | "password">
 

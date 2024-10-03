@@ -2,14 +2,14 @@
 
 import { useState, type ChangeEvent, type FormEvent } from "react"
 import { useNavigate } from "react-router-dom"
-import { Form, Input, passwordRegex, getRandomAvatar } from "@julseb-lib/react"
+import { Form, Input, passwordRegex } from "@julseb-lib/react"
 import type { LibValidationStatus } from "@julseb-lib/react/types"
 import { useAuthContext } from "context"
 import { authService } from "api"
 import { ErrorMessage } from "components"
 import { PATHS } from "routes"
+import { COMMON_TEXTS } from "shared"
 import type { IErrorMessage as ErrorMessageType } from "types"
-import { COMMON_TEXTS } from "../../../../../shared"
 
 export const SignupForm = () => {
     const { loginUser } = useAuthContext()
@@ -51,10 +51,7 @@ export const SignupForm = () => {
         }
 
         await authService
-            .signup({
-                ...inputs,
-                avatar: getRandomAvatar(),
-            })
+            .signup(inputs)
             .then(res => {
                 loginUser(res.data.authToken)
                 navigate(PATHS.THANK_YOU)

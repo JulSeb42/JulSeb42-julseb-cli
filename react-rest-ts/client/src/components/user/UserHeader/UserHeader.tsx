@@ -4,12 +4,12 @@ import type { FC } from "react"
 import {
     Flexbox,
     Text,
-    Avatar,
     SkeletonCard,
     Skeleton,
     SkeletonShine,
     getFirstName,
 } from "@julseb-lib/react"
+import { UserAvatar } from "../.."
 import type { IUserHeader } from "components/user/UserHeader/types"
 
 export const UserHeader: FC<IUserHeader> = ({
@@ -29,9 +29,7 @@ export const UserHeader: FC<IUserHeader> = ({
 
     return (
         <Flexbox alignItems="center" gap="xs">
-            <Avatar
-                img={user?.avatar && { src: user.avatar, alt: `Avatar ${user.fullName}` }}
-            />
+            <UserAvatar />
             <Text tag="h1">{title}</Text>
         </Flexbox>
     )
