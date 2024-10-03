@@ -1,30 +1,20 @@
 /*=============================================== UserAvatar component ===============================================*/
 
-import { Avatar, getInitials } from "@julseb-lib/react"
-import type { ILibAvatar } from "@julseb-lib/react/component-props"
-import { useAuthContext } from "context"
+import { Avatar, getInitials, Skeleton } from "@julseb-lib/react"
+import type { User } from "types"
 
-export const UserAvatar: FC<IAvatar> = props => {
-    const { user } = useAuthContext()
+export const UserAvatar: FC<IAvatar> = ({ size, user, isLoading }) => {
+    if (isLoading && !user)
+        return <Skeleton width={size} height={size} animation="shine" />
 
-    if (!user?.avatar)
-        return <Avatar {...props} letter={getInitials(user?.fullName || "")} />
+    if (!user.avatar || user.avatar === "")
+        return <Avatar letter={getInitials(user.fullName || "")} />
 
-    return (
-        <Avatar
-            {...props}
-            img={{ src: user.avatar, alt: `Avatar ${user.fullName}` }}
-        />
-    )
+    return <Avatar img={{ src: user.avatar, alt: `Avatar ${user.fullName}` }} />
 }
 
-type IAvatar = Omit<
-    ILibAvatar,
-    | "img"
-    | "letter"
-    | "icon"
-    | "iconSize"
-    | "iconBaseUrl"
-    | "backgroundColor"
-    | "contentColor"
->
+type IAvatar = {
+    user: User
+    isLoading?: boolean
+    size?: number
+}

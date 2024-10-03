@@ -18,7 +18,7 @@ export const UserHeader: FC<IUserHeader> = ({
     error,
     isAccount,
 }) => {
-    if (isLoading) return <UserHeaderSkeleton />
+    if (isLoading && !user) return <UserHeaderSkeleton />
 
     if (error?.response?.status === 400)
         return <Text>Error while fetching user's header: {error?.message}</Text>
@@ -27,12 +27,15 @@ export const UserHeader: FC<IUserHeader> = ({
         ? `Hello ${getFirstName(user?.fullName)}`
         : user?.fullName
 
-    return (
-        <Flexbox alignItems="center" gap="xs">
-            <UserAvatar />
-            <Text tag="h1">{title}</Text>
-        </Flexbox>
-    )
+    if (user)
+        return (
+            <Flexbox alignItems="center" gap="xs">
+                {user && <UserAvatar user={user} isLoading={isLoading} />}
+                <Text tag="h1">{title}</Text>
+            </Flexbox>
+        )
+
+    return null
 }
 
 const UserHeaderSkeleton = () => {

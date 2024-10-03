@@ -19,7 +19,7 @@ export const UserCard: FC<IUserCard> = ({ user }) => {
             padding="xs"
             borderRadius="m"
         >
-            <UserAvatar size={48} />
+            <UserAvatar user={user} size={48} />
             <Text tag="strong">{user?.fullName}</Text>
         </StyledUserCard>
     )
