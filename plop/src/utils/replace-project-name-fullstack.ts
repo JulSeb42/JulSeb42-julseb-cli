@@ -123,7 +123,8 @@ export function replaceProjectNameModifyFullStack(
     // ? Replace cloudinary config projectName
     // ? Replace index.html client title for projectName
 
-    const paths: Array<Exclude<ActionType, string>> = [
+    const paths: Array<ActionType> = [
+        `Replacing ${repoName} by your new project's name where needed`,
         {
             type: "modify",
             path: "package.json",

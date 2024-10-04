@@ -3,20 +3,6 @@
 import type { PackageManager } from "./types.js"
 
 export const projectTypes: Array<{ name: string; alias: string }> = [
-    // "Express Rest + Vite + React + TS", // Same with JS
-    // "Express GraphQL + Vite + React + TS", // Same with JS
-    // "Vite + React + TS", // Same with JS
-    // // Coming soon
-    // // "Next.js",
-    // // "Remix",
-    // // "Angular FE + Full",
-    // // "Vue FE + Full"
-    // "react-js",
-    // "react-js-graphql",
-    // "react-js-test",
-    // "react-ts",
-    // "react-ts-graphql",
-    // "react-ts-rest",
     { name: "react-rest", alias: "React + Rest API" },
     { name: "react-graphql", alias: "React + GraphQL API" },
     { name: "react-client", alias: "React (client only)" },
@@ -34,12 +20,7 @@ export const packageManagers: PackageManager[] = [
 
 export const packageManagersNames: string[] = packageManagers.map(m => m.name)
 
-export const REPOS_BASE_URL = "https://github.com/JulSeb42/JulSeb42-julseb-cli.git"
-
-export const REPOS_URLS = {
-    VITE_REST: "vite-rest",
-    VITE_APOLLO: "vite-apollo",
-    VITE_FE_ONLY: "vite-styled",
-}
+export const REPOS_BASE_URL =
+    "https://github.com/JulSeb42/JulSeb42-julseb-cli.git"
 
 export const CLIENT_LOCAL = "http://localhost:5173"

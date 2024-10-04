@@ -16,13 +16,17 @@ export function addCommandPrefix(
     })
 }
 
-export function addPathPrefix(commands: Exclude<ActionType, string>[]) {
-    return commands.map(command => ({
-        ...command,
-        path: (command as ModifyActionConfig).path
-            ? `${process.cwd()}/{{ kebabCase projectName }}/${
-                  (command as ModifyActionConfig).path
-              }`
-            : null,
-    }))
+export function addPathPrefix(commands: Array<ActionType>) {
+    return commands.map(command =>
+        typeof command === "string"
+            ? command
+            : {
+                  ...command,
+                  path: (command as ModifyActionConfig).path
+                      ? `${process.cwd()}/{{ kebabCase projectName }}/${
+                            (command as ModifyActionConfig).path
+                        }`
+                      : null,
+              }
+    )
 }

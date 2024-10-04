@@ -9,7 +9,6 @@ import {
 } from "../utils/constants.js"
 import { replaceProjectNameModifyFullStack } from "../utils/replace-project-name-fullstack.js"
 import { copyFullStackEnv } from "../utils/copy-env.js"
-import { removeCypress } from "../utils/remove-cypress.js"
 import { addCommandPrefix } from "../utils/add-command-prefix.js"
 
 export default (plop: NodePlopAPI) => {
@@ -43,12 +42,6 @@ export default (plop: NodePlopAPI) => {
                 default: packageManagers[1].name,
                 name: "packageManager",
             },
-            {
-                type: "confirm",
-                message: "Add Cypress tests on front end?",
-                default: false,
-                name: "cypressTesting",
-            },
         ],
 
         actions: data => {
@@ -68,38 +61,32 @@ export default (plop: NodePlopAPI) => {
 
             actions.push(
                 ...[
-                    "Cloning project",
+                    "Cloning your new project",
                     {
                         type: "runCommand",
                         command: `git init ${toKebabCase(data?.projectName)}`,
                     },
                     ...addCommandPrefix(data?.projectName, [
-                        "Remove and add again git",
                         {
                             type: "runCommand",
                             command: "rm -rf .git && git init",
                         },
-                        "Add git remote",
                         {
                             type: "runCommand",
                             command: `git remote add origin ${REPOS_BASE_URL}`,
                         },
-                        "Add sparseCheckout",
                         {
                             type: "runCommand",
                             command: "git config core.sparseCheckout true",
                         },
-                        "Echo",
                         {
                             type: "runCommand",
                             command: `echo "${boilerplate}" >> .git/info/sparse-checkout`,
                         },
-                        "Pull",
                         {
                             type: "runCommand",
                             command: "git pull origin master",
                         },
-                        "Move all files from cloned folder to new folder",
                         {
                             type: "runCommand",
                             command: "rm -rf ./plop",
@@ -117,12 +104,6 @@ export default (plop: NodePlopAPI) => {
                 projectType === projectTypes[0].name ||
                 projectType === projectTypes[1].name
             ) {
-                if (data?.cypressTesting === false) {
-                    actions.push(
-                        ...removeCypress(data.projectName, boilerplate)
-                    )
-                }
-
                 actions.push(
                     ...[
                         "Replace all titles inside your new app",
@@ -136,12 +117,6 @@ export default (plop: NodePlopAPI) => {
                 )
             }
 
-            if (projectType === projectTypes[2].name) {
-                if (data?.cypressTesting === false) {
-                }
-            }
-
-            // ? Init repo
             actions.push(
                 ...[
                     "Init git",
@@ -152,7 +127,6 @@ export default (plop: NodePlopAPI) => {
                 ]
             )
 
-            // ? Install packages
             actions.push(
                 ...[
                     "Start install...",
