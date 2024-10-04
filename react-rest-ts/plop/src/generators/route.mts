@@ -40,7 +40,7 @@ export const generateRoute = (plop: NodePlopAPI) => {
                 path: `${BASE_SERVER_PATH}/routes/index.ts`,
                 template:
                     "router.use(SERVER_PATHS.{{ constantCase name }}.ROOT, {{ camelCase name }})\n$1",
-                pattern: /(\/\* prepend router use - do not remove \*\/)/g,
+                pattern: /(\/\* prepend router - do not remove \*\/)/g,
             },
             "Creating a new interface in shared types",
             {

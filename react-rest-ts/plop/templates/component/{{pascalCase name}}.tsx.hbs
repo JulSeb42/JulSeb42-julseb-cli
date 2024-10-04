@@ -5,9 +5,9 @@ import { forwardRef } from "react"
 import { Styled{{ pascalCase name }} } from "./styles"
 import type { I{{ pascalCase name }} } from "./types"
 
-export const {{ pascalCase name }} = forwardRef<HTML{{ pascalCase attribute }}Element, I{{ pascalCase name }}>(({ {{#if test}}"data-testid": testid,{{/if}}{{#if children}} children,{{/if}}{{#if as}} as,{{/if}} }, ref) => {
+export const {{ pascalCase name }} = forwardRef<HTML{{ pascalCase attribute }}Element, I{{ pascalCase name }}>(({ {{#if children}} children,{{/if}}{{#if as}} as,{{/if}} }, ref) => {
     return (
-        <Styled{{ pascalCase name }}{{#if test}} data-testid={testid}{{/if}} ref={ref}{{#if as}} as={as}{{/if}}>
+        <Styled{{ pascalCase name }} ref={ref}{{#if as}} as={as}{{/if}}>
             {{#if children}}{children}{{/if}}
         </Styled{{ pascalCase name }}>
     )
@@ -18,9 +18,9 @@ export const {{ pascalCase name }} = forwardRef<HTML{{ pascalCase attribute }}El
 import { Styled{{ pascalCase name }} } from "./styles"
 import type { I{{ pascalCase name }} } from "./types"
 
-export const {{ pascalCase name }}: FC<I{{ pascalCase name }}> = ({ {{#if test}}"data-testid": testid,{{/if}}{{#if children}} children,{{/if}}{{#if as}} as,{{/if}} }) => {
+export const {{ pascalCase name }}: FC<I{{ pascalCase name }}> = ({ {{#if children}} children,{{/if}}{{#if as}} as,{{/if}} }) => {
     return (
-        <Styled{{ pascalCase name }}{{#if test}} data-testid={testid}{{/if}}{{#if as}} as={as}{{/if}}>
+        <Styled{{ pascalCase name }}{{#if as}} as={as}{{/if}}>
             {{#if children}}{children}{{/if}}
         </Styled{{ pascalCase name }}>
     )

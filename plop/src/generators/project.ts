@@ -109,7 +109,8 @@ export default (plop: NodePlopAPI) => {
                         "Replace all titles inside your new app",
                         ...(replaceProjectNameModifyFullStack(
                             boilerplate,
-                            projectLang!
+                            projectLang!,
+                            data?.projectName
                         ) as any),
                         "Create .env files",
                         ...copyFullStackEnv(data?.projectName),

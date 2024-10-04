@@ -17,7 +17,7 @@
         "typescript": "^5.5.4"
     },
     "dependencies": {
-        "ts-utils-julseb": "^2.4.5"
+        "@julseb-lib/utils": "^0.0.2"
     },
     "bin": {
         "@julseb-lib/julseb-cli": "index.js"

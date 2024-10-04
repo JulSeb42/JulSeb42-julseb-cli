@@ -1,5 +1,5 @@
 /*=============================================== Plopfile ===============================================*/
-import { generateComponent, generatePage, generateRoute, generateSingleFileComponent, generateType, } from "./generators/index.mjs";
+import { generateComponent, generatePage, generateRoute, generateSingleFileComponent, generateType, generateModelAndType, } from "./generators/index.mjs";
 // Generate components, etc.
 export default (plop) => {
     /*====================== Client ======================*/
@@ -8,6 +8,6 @@ export default (plop) => {
     generatePage(plop); // yarn plop:p ✅
     generateType(plop); // yarn plop:ty ✅
     /*====================== Server ======================*/
-    generateRoute(plop); // yarn plop:r
-    // TODO: model with type
+    generateRoute(plop); // yarn plop:r ✅
+    generateModelAndType(plop); // yarn plop:m ✅
 };
