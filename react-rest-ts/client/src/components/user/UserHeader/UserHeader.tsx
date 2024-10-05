@@ -1,6 +1,5 @@
 /*=============================================== UserHeader component ===============================================*/
 
-import type { FC } from "react"
 import {
     Flexbox,
     Text,

@@ -8,14 +8,16 @@ const router = Router()
 
 const { {{ constantCase name }}: PATHS } = SERVER_PATHS
 
-// Get all {{ pascalCase name }}s
+/*====================== Get all {{ pascalCase name }}s ======================*/
+
 router.get(PATHS.ALL_{{ constantCase name }}S, async (_, res, next) => {
     return await {{ pascalCase name }}Model.find()
         .then(found{{ pascalCase name }}s => res.status(200).json(found{{ pascalCase name }}s))
         .catch(err => next(err))
 })
 
-// Get {{ pascalCase name }} by id
+/*====================== Get {{ pascalCase name }} by id ======================*/
+
 router.get(PATHS.GET_{{ constantCase name }}(), async (req, res, next) => {
     return await {{ pascalCase name }}Model.findById(req.params.id)
         .then(found{{ pascalCase name }} => res.status(200).json(found{{ pascalCase name }}))

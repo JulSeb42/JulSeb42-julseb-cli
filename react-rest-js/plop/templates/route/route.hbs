@@ -1,25 +1,27 @@
 /*=============================================== {{ pascalCase name }} routes ===============================================*/
 
-import { Router } from "express"
-import { SERVER_PATHS } from "../../shared"
-import { {{ pascalCase name }}Model } from "../models"
+const { Router } = require( "express")
+const { SERVER_PATHS } = require( "../../shared")
+const { {{ pascalCase name }}Model } = require("../models")
 
 const router = Router()
 
 const { {{ constantCase name }}: PATHS } = SERVER_PATHS
 
-// Get all {{ pascalCase name }}s
+/*====================== Get all {{ pascalCase name }}s ======================*/
+
 router.get(PATHS.ALL_{{ constantCase name }}S, async (_, res, next) => {
     return await {{ pascalCase name }}Model.find()
         .then(found{{ pascalCase name }}s => res.status(200).json(found{{ pascalCase name }}s))
         .catch(err => next(err))
 })
 
-// Get {{ pascalCase name }} by id
+/*====================== Get {{ pascalCase name }} by id ======================*/
+
 router.get(PATHS.GET_{{ constantCase name }}(), async (req, res, next) => {
     return await {{ pascalCase name }}Model.findById(req.params.id)
         .then(found{{ pascalCase name }} => res.status(200).json(found{{ pascalCase name }}))
         .catch(err => next(err))
 })
 
-export default router
+module.exports = router

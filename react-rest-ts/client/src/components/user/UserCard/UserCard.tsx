@@ -1,6 +1,5 @@
 /*=============================================== UserCard component ===============================================*/
 
-import type { FC } from "react"
 import { Text } from "@julseb-lib/react"
 import { UserAvatar } from "components"
 import { PATHS } from "routes"

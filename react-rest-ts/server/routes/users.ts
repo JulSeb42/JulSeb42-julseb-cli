@@ -7,20 +7,25 @@ import { passwordRegex } from "@julseb-lib/utils"
 import { UserModel } from "../models"
 import { SALT_ROUNDS, TOKEN_SECRET, jwtConfig } from "../utils"
 import { COMMON_TEXTS, SERVER_PATHS } from "../../shared"
-import { EditAccountFormData, EditPasswordFormData } from "../../shared/types"
+import type {
+    EditAccountFormData,
+    EditPasswordFormData,
+} from "../../shared/types"
 
 const router = Router()
 
 const { USERS: PATHS } = SERVER_PATHS
 
-// Get all users
+/*====================== Get all users ======================*/
+
 router.get(PATHS.ALL_USERS, async (_, res, next) => {
     return await UserModel.find()
         .then(usersFromDb => res.status(200).json(usersFromDb))
         .catch(err => next(err))
 })
 
-// Get user by ID
+/*====================== Get user by ID ======================*/
+
 router.get(PATHS.USER(), async (req, res, next) => {
     return await UserModel.findById(req.params.id)
         .then(userFromDb => res.status(200).json(userFromDb))
@@ -32,7 +37,8 @@ router.get(PATHS.USER(), async (req, res, next) => {
         })
 })
 
-// Edit user
+/*====================== Edit user ======================*/
+
 router.put(PATHS.EDIT_ACCOUNT(), async (req, res, next) => {
     const { fullName } = req.body as EditAccountFormData
 
@@ -59,7 +65,8 @@ router.put(PATHS.EDIT_ACCOUNT(), async (req, res, next) => {
         .catch(err => next(err))
 })
 
-// Edit password
+/*====================== Edit password ======================*/
+
 router.put(PATHS.EDIT_PASSWORD(), async (req, res, next) => {
     const { oldPassword, newPassword } = req.body as EditPasswordFormData
 
@@ -104,7 +111,8 @@ router.put(PATHS.EDIT_PASSWORD(), async (req, res, next) => {
         .catch(err => next(err))
 })
 
-// Delete user
+/*====================== Delete user ======================*/
+
 router.delete(PATHS.DELETE_ACCOUNT(), async (req, res, next) => {
     return await UserModel.findByIdAndDelete(req.params.id)
         .then(() =>

@@ -1,21 +1,14 @@
 /*=============================================== {{ pascalCase name }} service ===============================================*/
 
 import { http } from "api"
-import { generateServerRoute } from "utils"
+import { SERVER_PATHS } from "shared"
 
-const generateRoute = (
-    route,
-    id
-) => generateServerRoute("{{ constantCase name }}", route, id)
+const { {{ constantCase name }}: PATHS } = SERVER_PATHS
 
 class {{ pascalCase name }}Service {
-    all{{ pascalCase name }}s() {
-        return http.get(generateRoute("ALL_{{ constantCase name }}S"))
-    }
+    all{{ pascalCase name }}s = async () => await http.get(PATHS.ALL_{{ constantCase name }}S)
 
-    get{{ pascalCase name }}(id) {
-        return http.get(generateRoute("GET_{{ constantCase name }}", id))
-    }
+    get{{ pascalCase name }} = async id => await http.get(PATHS.GET_{{ constantCase name }}(id))
 }
 
 export const {{ camelCase name }}Service = new {{ pascalCase name }}Service()

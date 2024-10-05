@@ -5,10 +5,10 @@ import { PageLoading } from "@julseb-lib/react"
 import { useAuthContext } from "context"
 import { PATHS } from "routes"
 
-export const ProtectedRoute = ({
+export const ProtectedRoute: FC<IProtectedRoute> = ({
     children,
     redirectTo = PATHS.LOGIN,
-}: IProtectedRoute) => {
+}) => {
     const { isLoggedIn, isLoading } = useAuthContext()
 
     return isLoading ? (

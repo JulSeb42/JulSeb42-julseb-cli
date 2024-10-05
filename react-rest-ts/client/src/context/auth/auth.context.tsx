@@ -6,7 +6,6 @@ import {
     createContext,
     useContext,
     type ReactNode,
-    type FC,
 } from "react"
 import { authService } from "api"
 import type { IAuthContext } from "context/types"

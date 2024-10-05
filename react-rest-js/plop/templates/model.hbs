@@ -1,6 +1,6 @@
 /*=============================================== {{ pascalCase name }} model ===============================================*/
 
-import { Schema, model } from "mongoose"
+const { Schema, model } = require("mongoose")
 
 const {{ camelCase name }}Schema = new Schema(
     {
@@ -9,4 +9,6 @@ const {{ camelCase name }}Schema = new Schema(
     { timestamps: true }
 )
 
-export const {{ pascalCase name }}Model = model("{{ pascalCase name }}", {{ camelCase name }}Schema)
+const {{ pascalCase name }}Model = model("{{ pascalCase name }}", {{ camelCase name }}Schema)
+
+module.exports = { {{ pascalCase name }}Model }

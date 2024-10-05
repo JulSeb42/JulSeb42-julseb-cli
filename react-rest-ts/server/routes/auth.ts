@@ -8,7 +8,7 @@ import { UserModel } from "../models"
 import { isAuthenticated } from "../middleware"
 import { jwtConfig, SALT_ROUNDS, TOKEN_SECRET, sendMail } from "../utils"
 import { COMMON_TEXTS, SERVER_PATHS } from "../../shared"
-import {
+import type {
     SignupFormData,
     LoginFormData,
     ForgotPasswordFormData,
@@ -18,7 +18,8 @@ const router = Router()
 
 const { AUTH: PATHS } = SERVER_PATHS
 
-// Signup
+/*====================== Signup ======================*/
+
 router.post(PATHS.SIGNUP, async (req, res, next) => {
     const { email, fullName, password } = req.body as SignupFormData
 
@@ -82,7 +83,8 @@ router.post(PATHS.SIGNUP, async (req, res, next) => {
         .catch(err => next(err))
 })
 
-// Login
+/*====================== Login ======================*/
+
 router.post(PATHS.LOGIN, async (req, res, next) => {
     const { email, password } = req.body as LoginFormData
 
@@ -119,7 +121,8 @@ router.post(PATHS.LOGIN, async (req, res, next) => {
         .catch(err => next(err))
 })
 
-// Verify if user is logged in
+/*====================== Verify if user is logged in ======================*/
+
 router.get(PATHS.LOGGED_IN, isAuthenticated, (req, res) => {
     // @ts-expect-error
     console.log(`req.payload: ${req.payload}`)
@@ -128,7 +131,8 @@ router.get(PATHS.LOGGED_IN, isAuthenticated, (req, res) => {
     return res.status(200).json(req.payload)
 })
 
-// Verify account
+/*====================== Verify account ======================*/
+
 router.put(PATHS.VERIFY(), async (req, res, next) => {
     const { id, token } = req.params
 
@@ -167,7 +171,8 @@ router.put(PATHS.VERIFY(), async (req, res, next) => {
     })
 })
 
-// Forgot password
+/*====================== Forgot password ======================*/
+
 router.post(PATHS.FORGOT_PASSWORD, async (req, res, next) => {
     const { email } = req.body as ForgotPasswordFormData
 
@@ -210,7 +215,8 @@ router.post(PATHS.FORGOT_PASSWORD, async (req, res, next) => {
         .catch(err => next(err))
 })
 
-// Reset password
+/*====================== Reset password ======================*/
+
 router.put(PATHS.RESET_PASSWORD, async (req, res, next) => {
     const { password, resetToken, id } = req.body
 

@@ -5,10 +5,10 @@ import { PageLoading } from "@julseb-lib/react"
 import { useAuthContext } from "context"
 import { PATHS } from "routes"
 
-export const AnonRoute = ({
+export const AnonRoute: FC<IAnonRoute> = ({
     children,
     redirectTo = PATHS.MY_ACCOUNT,
-}: IAnonRoute) => {
+}) => {
     const { isLoggedIn, isLoading } = useAuthContext()
 
     return isLoading ? (
