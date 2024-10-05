@@ -4,7 +4,6 @@ import { addPathPrefix } from "./add-command-prefix.js"
 
 export function replaceProjectNameModifyFullStack(
     repoName: string,
-    lang: string,
     projectName: string
 ) {
     // ? Replace vite-rest by toKebabCase(data.projectName) in server package.json
@@ -30,13 +29,13 @@ export function replaceProjectNameModifyFullStack(
         },
         {
             type: "modify",
-            path: `server/utils/consts.${lang}`,
+            path: `server/utils/consts.ts`,
             template: "{{ kebabCase projectName }}",
             pattern: repoName,
         },
         {
             type: "modify",
-            path: `server/config/cloudinary.config.${lang}`,
+            path: `server/config/cloudinary.config.ts`,
             template: "{{ kebabCase projectName }}",
             pattern: repoName,
         },
@@ -46,34 +45,13 @@ export function replaceProjectNameModifyFullStack(
             template: toTitleCase(projectName),
             pattern: repoName,
         },
-    ]
-
-    if (lang === "ts")
-        paths.push({
+        {
             type: "modify",
-            path: `shared/site-data.${lang}`,
+            path: `shared/site-data.ts`,
             template: toTitleCase(projectName),
             pattern: repoName,
-        })
-
-    if (lang === "js")
-        paths.push(
-            ...[
-                {
-                    type: "modify",
-                    // @ts-ignore
-                    path: `server/utils/site-data.${lang}`,
-                    template: toTitleCase(projectName),
-                    pattern: repoName,
-                },
-                {
-                    type: "modify",
-                    path: `client/src/data/site-data.${lang}`,
-                    template: toTitleCase(projectName),
-                    pattern: repoName,
-                },
-            ]
-        )
+        },
+    ]
 
     return addPathPrefix(paths)
 }

@@ -8,11 +8,6 @@ export const projectTypes: Array<{ name: string; alias: string }> = [
     { name: "react-client", alias: "React (client only)" },
 ]
 
-export const languages: Array<{ name: string; alias: string }> = [
-    { name: "js", alias: "JavaScript" },
-    { name: "ts", alias: "TypeScript" },
-]
-
 export const packageManagers: PackageManager[] = [
     { name: "npm", installCommand: "install", uninstallCommand: "uninstall" },
     { name: "yarn", installCommand: "", uninstallCommand: "remove" },

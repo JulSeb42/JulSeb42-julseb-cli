@@ -5,7 +5,6 @@ import {
     packageManagers,
     packageManagersNames,
     REPOS_BASE_URL,
-    languages,
 } from "../utils/constants.js"
 import { replaceProjectNameModifyFullStack } from "../utils/replace-project-name-fullstack.js"
 import { copyFullStackEnv } from "../utils/copy-env.js"
@@ -30,13 +29,6 @@ export default (plop: NodePlopAPI) => {
             },
             {
                 type: "list",
-                message: "Which language do you want?",
-                choices: languages.map(lang => lang.alias),
-                default: languages[1].alias,
-                name: "projectLang",
-            },
-            {
-                type: "list",
                 message: "What package manager are you using?",
                 choices: packageManagersNames,
                 default: packageManagers[1].name,
@@ -49,11 +41,6 @@ export default (plop: NodePlopAPI) => {
             const projectType = projectTypes.find(
                 type => data?.projectType === type.alias
             )?.name
-            const projectLang = languages.find(
-                lang => data?.projectLang === lang.alias
-            )?.name
-
-            const boilerplate = `${projectType}-${projectLang}`
 
             const packageManager = packageManagers.find(
                 m => m.name === data?.packageManager
@@ -81,7 +68,7 @@ export default (plop: NodePlopAPI) => {
                         },
                         {
                             type: "runCommand",
-                            command: `echo "${boilerplate}" >> .git/info/sparse-checkout`,
+                            command: `echo "${projectType}" >> .git/info/sparse-checkout`,
                         },
                         {
                             type: "runCommand",
@@ -93,7 +80,7 @@ export default (plop: NodePlopAPI) => {
                         },
                         {
                             type: "runCommand",
-                            command: `mv ${boilerplate}/* ./ && mv ${boilerplate}/.gitignore ./ && mv ${boilerplate}/.prettierrc ./ && rm -rf ${boilerplate}`,
+                            command: `mv ${projectType}/* ./ && mv ${projectType}/.gitignore ./ && mv ${projectType}/.prettierrc ./ && rm -rf ${projectType}`,
                         },
                         { type: "runCommand", command: "rm -rf .git" },
                     ]),
@@ -108,8 +95,7 @@ export default (plop: NodePlopAPI) => {
                     ...[
                         "Replace all titles inside your new app",
                         ...(replaceProjectNameModifyFullStack(
-                            boilerplate,
-                            projectLang!,
+                            projectType,
                             data?.projectName
                         ) as any),
                         "Create .env files",
