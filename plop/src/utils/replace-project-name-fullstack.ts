@@ -1,5 +1,5 @@
 import type { ActionType } from "plop"
-import { toTitleCase } from "@julseb-lib/utils"
+import { toKebabCase, toTitleCase } from "@julseb-lib/utils"
 import { addPathPrefix } from "./add-command-prefix.js"
 
 export function replaceProjectNameModifyFullStack(
@@ -49,6 +49,12 @@ export function replaceProjectNameModifyFullStack(
             type: "modify",
             path: `shared/site-data.ts`,
             template: toTitleCase(projectName),
+            pattern: repoName,
+        },
+        {
+            type: "modify",
+            path: "server/db/seed/seed.js",
+            template: toKebabCase(projectName),
             pattern: repoName,
         },
     ]
