@@ -1,5 +1,5 @@
 import type { NodePlopAPI, ActionType } from "plop"
-import { toKebabCase } from "ts-utils-julseb"
+import { toKebabCase } from "@julseb-lib/utils"
 import {
     projectTypes,
     packageManagers,
@@ -48,6 +48,7 @@ export default (plop: NodePlopAPI) => {
             const projectType = projectTypes.find(
                 type => data?.projectType === type.alias
             )?.name
+            const projectName = toKebabCase(data?.projectName)
 
             const packageManager = packageManagers.find(
                 m => m.name === data?.packageManager
@@ -58,7 +59,7 @@ export default (plop: NodePlopAPI) => {
                     "Cloning your new project",
                     {
                         type: "runCommand",
-                        command: `git init ${toKebabCase(data?.projectName)}`,
+                        command: `git init ${projectName}`,
                     },
                     ...addCommandPrefix(data?.projectName, [
                         {
@@ -103,18 +104,18 @@ export default (plop: NodePlopAPI) => {
                         "Replace all titles inside your new app",
                         ...(replaceProjectNameModifyFullStack(
                             projectType,
-                            data?.projectName
+                            projectName
                         ) as any),
                         "Create .env files",
-                        ...copyFullStackEnv(data?.projectName),
+                        ...copyFullStackEnv(projectName),
                     ]
                 )
 
                 if (data?.switch === false) {
-                    const projectPath = `../../${data?.projectName}`
+                    const projectPath = `../../${projectName}`
                     actions.push(
                         "Removing the theme switch",
-                        ...addCommandPrefix(data?.projectName, [
+                        ...addCommandPrefix(projectName, [
                             {
                                 type: "runCommand",
                                 command:
@@ -145,7 +146,7 @@ export default (plop: NodePlopAPI) => {
                     "Init git",
                     {
                         type: "runCommand",
-                        command: `cd ${data?.projectName} && rm -rf .git && git init && git add . && git commit -m "Initial commit"`,
+                        command: `cd ${projectName} && rm -rf .git && git init && git add . && git commit -m "Initial commit"`,
                     },
                 ]
             )
@@ -155,7 +156,7 @@ export default (plop: NodePlopAPI) => {
                     "Start install...",
                     {
                         type: "runCommand",
-                        command: `cd ${data?.projectName} && ${packageManager?.name} ${packageManager?.installCommand}`,
+                        command: `cd ${projectName} && ${packageManager?.name} ${packageManager?.installCommand}`,
                     },
                 ]
             )

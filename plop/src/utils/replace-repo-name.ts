@@ -1,4 +1,4 @@
-import { toKebabCase } from "ts-utils-julseb"
+import { toKebabCase } from "@julseb-lib/utils"
 
 export function replaceRepoName(repoName: string, projectName: string) {
     return [

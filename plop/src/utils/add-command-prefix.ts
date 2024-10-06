@@ -1,6 +1,6 @@
 import type { ActionType, ModifyActionConfig } from "plop"
-import { toKebabCase } from "ts-utils-julseb"
-import type { ExtendedActionTypes, ActionCommandType } from "./types.js"
+import { toKebabCase } from "@julseb-lib/utils"
+import type { ActionCommandType } from "./types.js"
 
 export function addCommandPrefix(
     projectName: string,
