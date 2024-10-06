@@ -8,7 +8,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "clean:plop": "rm -rf plop/scripts",
         "build:plop": "yarn clean:plop && tsc --p plop/tsconfig.json",
-        "plop": "yarn build:plop && npx ."
+        "plop": "yarn build:plop && npx . && yarn clean:plop"
     },
     "author": "Julien Sebag",
     "license": "MIT",

@@ -111,34 +111,30 @@ export default (plop: NodePlopAPI) => {
                 )
 
                 if (data?.switch === false) {
+                    const projectPath = `../../${data?.projectName}`
                     actions.push(
                         "Removing the theme switch",
                         ...addCommandPrefix(data?.projectName, [
                             {
                                 type: "runCommand",
                                 command:
-                                    "rm -rf client/src/App.tsx client/src/main.tsx client/src/layouts/Nav.tsx client/src/Page.tsx",
+                                    "rm -rf client/src/App.tsx client/src/main.tsx client/src/components/layouts/Nav.tsx client/src/components/layouts/Page.tsx",
                             },
                         ]),
                         {
                             type: "add",
-                            path: `client/src/App.tsx`,
-                            templateFile: "../../templates/react-rest/App.hbs",
+                            path: `${projectPath}/client/src/App.tsx`,
+                            templateFile: "../templates/react-rest/App.hbs",
                         },
                         {
                             type: "add",
-                            path: `client/src/main.tsx`,
-                            templateFile: "../../templates/react-rest/main.hbs",
+                            path: `${projectPath}/client/src/main.tsx`,
+                            templateFile: "../templates/react-rest/main.hbs",
                         },
                         {
                             type: "add",
-                            path: `client/src/components/layouts/Page.tsx`,
-                            templateFile: "../../templates/react-rest/Page.hbs",
-                        },
-                        {
-                            type: "runCommand",
-                            command:
-                                "rm -rf client/src/components/layouts/Nav.tsx",
+                            path: `${projectPath}/client/src/components/layouts/Page.tsx`,
+                            templateFile: "../templates/react-rest/Page.hbs",
                         }
                     )
                 }

@@ -19,3 +19,5 @@ export const REPOS_BASE_URL =
     "https://github.com/JulSeb42/JulSeb42-julseb-cli.git"
 
 export const CLIENT_LOCAL = "http://localhost:5173"
+
+// yarn plop hello-world "React + Rest API" yarn n
