@@ -34,6 +34,13 @@ export default (plop: NodePlopAPI) => {
                 default: packageManagers[1].name,
                 name: "packageManager",
             },
+            {
+                type: "confirm",
+                message:
+                    "Do you want to have a switch between light and dark theme?",
+                default: false,
+                name: "switch",
+            },
         ],
 
         actions: data => {
@@ -102,6 +109,39 @@ export default (plop: NodePlopAPI) => {
                         ...copyFullStackEnv(data?.projectName),
                     ]
                 )
+
+                if (data?.switch === false) {
+                    actions.push(
+                        "Removing the theme switch",
+                        ...addCommandPrefix(data?.projectName, [
+                            {
+                                type: "runCommand",
+                                command:
+                                    "rm -rf client/src/App.tsx client/src/main.tsx client/src/layouts/Nav.tsx client/src/Page.tsx",
+                            },
+                        ]),
+                        {
+                            type: "add",
+                            path: `client/src/App.tsx`,
+                            templateFile: "../../templates/react-rest/App.hbs",
+                        },
+                        {
+                            type: "add",
+                            path: `client/src/main.tsx`,
+                            templateFile: "../../templates/react-rest/main.hbs",
+                        },
+                        {
+                            type: "add",
+                            path: `client/src/components/layouts/Page.tsx`,
+                            templateFile: "../../templates/react-rest/Page.hbs",
+                        },
+                        {
+                            type: "runCommand",
+                            command:
+                                "rm -rf client/src/components/layouts/Nav.tsx",
+                        }
+                    )
+                }
             }
 
             actions.push(

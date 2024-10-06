@@ -8,14 +8,14 @@ export const ErrorMessage: FC<IErrorMessage> = ({ error }) => {
 
     if (Array.isArray(error)) {
         return error.map(err => (
-            <Alert color="danger" key={uuid()}>
+            <Alert alertColor="danger" key={uuid()}>
                 {err}
             </Alert>
         ))
     }
 
     return (
-        <Alert color="danger">
+        <Alert alertColor="danger">
             {typeof error === "string" ? error : error?.response?.data?.message}
         </Alert>
     )

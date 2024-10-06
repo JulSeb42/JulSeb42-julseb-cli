@@ -15,7 +15,7 @@ export const DangerZone: FC<IDangerZone> = ({ texts, buttonPrimary }) => {
             )}
 
             {isVisible && (
-                <Alert color="danger">
+                <Alert alertColor="danger">
                     <Text>{texts.body}</Text>
 
                     <Flexbox alignItems="center" gap="xs">
