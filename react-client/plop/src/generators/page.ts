@@ -57,7 +57,7 @@ export const generatePage = (plop: NodePlopAPI) => {
                 {
                     type: "modify",
                     path: `${BASE_PATH}/routes/routes.tsx`,
-                    template: `{\n        path: {{ pathCase path }},\n        element: <{{ pascalCase name }} />\n    },\n\t$1`,
+                    template: `{\n        path: PATHS.{{ constantCase name }},\n        element: <{{ pascalCase name }} />\n    },\n\t$1`,
                     pattern: /(\/\* prepend route - do not remove \*\/)/g,
                 },
                 "Adding path to paths list",
