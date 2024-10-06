@@ -86,10 +86,6 @@ export default (plop: NodePlopAPI) => {
                             type: "runCommand",
                             command: "rm -rf ./plop",
                         },
-                        {
-                            type: "runCommand",
-                            command: `mv ${projectType}/* ./ && mv ${projectType}/.gitignore ./ && mv ${projectType}/.prettierrc ./ && rm -rf ${projectType}`,
-                        },
                         { type: "runCommand", command: "rm -rf .git" },
                     ]),
                 ]
@@ -101,6 +97,10 @@ export default (plop: NodePlopAPI) => {
             ) {
                 actions.push(
                     ...[
+                        {
+                            type: "runCommand",
+                            command: `mv ${projectType}/* ./ && mv ${projectType}/.gitignore ./ && mv ${projectType}/.prettierrc ./ && rm -rf ${projectType}`,
+                        },
                         "Replace all titles inside your new app",
                         ...(replaceProjectNameModifyFullStack(
                             projectType,
@@ -139,6 +139,13 @@ export default (plop: NodePlopAPI) => {
                         }
                     )
                 }
+            }
+
+            if (projectType === projectTypes[2].name) {
+                actions.push({
+                    type: "runCommand",
+                    command: `mv ${projectType}/* ./ && mv ${projectType}/.gitignore ./ && mv ${projectType}/.prettierrc ./ && rm -rf ${projectType}`,
+                })
             }
 
             actions.push(
