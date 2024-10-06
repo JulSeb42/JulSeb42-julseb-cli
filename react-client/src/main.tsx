@@ -8,7 +8,7 @@ import "@julseb-lib/react/index.css"
 import "styles/index.css"
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-    <ThemeProviderWrapper stylesheetManager>
+    <ThemeProviderWrapper>
         <App />
     </ThemeProviderWrapper>
 )
