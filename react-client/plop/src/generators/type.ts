@@ -16,13 +16,6 @@ export const generateType = (plop: NodePlopAPI) => {
                 message: "Create it as interface?",
                 default: false,
             },
-            {
-                type: "confirm",
-                name: "shared",
-                message:
-                    "Add it to the shared folder? (will be created in the client directory if no)",
-                default: true,
-            },
         ],
         actions: data => {
             const fileNameAdd = `{{ pascalCase name }}.${
@@ -36,7 +29,9 @@ export const generateType = (plop: NodePlopAPI) => {
                 {
                     type: "add",
                     path: `${BASE_PATH}/types/${fileNameAdd}`,
-                    templateFile: "../templates/type.hbs",
+                    templateFile: `../templates/types/${
+                        data?.interface ? "interface" : "type"
+                    }.hbs`,
                 },
                 {
                     type: "modify",
@@ -46,21 +41,7 @@ export const generateType = (plop: NodePlopAPI) => {
                 },
             ]
 
-            const actionsClient = [
-                {
-                    type: "add",
-                    path: `${BASE_PATH}/types/${fileNameAdd}`,
-                    templateFile: "../templates/type.hbs",
-                },
-                {
-                    type: "modify",
-                    path: `${BASE_PATH}/types/index.ts`,
-                    template: `export * from "${fileName}"\n$1`,
-                    pattern: /(\/\* prepend - do not remove \*\/)/g,
-                },
-            ]
-
-            return data?.shared ? actions : actionsClient
+            return actions
         },
     })
 }
