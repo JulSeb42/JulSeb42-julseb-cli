@@ -7,7 +7,14 @@
         "dev": "vite --open",
         "build": "tsc && vite build",
         "lint": "./node_modules/.bin/eslint",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "build:plop": "rm -rf plop/scripts && tsc --p ./plop/tsconfig.json",
+        "clean:plop": "rm -rf plop/scripts",
+        "plop": "yarn build:plop && plop --plopfile 'plop/scripts/plopfile.js' && yarn clean:plop",
+        "plop:c": "yarn plop component",
+        "plop:sc": "yarn plop single-component",
+        "plop:p": "yarn plop page",
+        "plop:ty": "yarn plop type"
     },
     "dependencies": {
         "@julseb-lib/react": "^0.0.22",

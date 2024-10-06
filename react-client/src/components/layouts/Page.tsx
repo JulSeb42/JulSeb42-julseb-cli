@@ -3,9 +3,8 @@
 import { PageLayout } from "@julseb-lib/react"
 import type { LibMainSize } from "@julseb-lib/react/types"
 import type { ILibPageLayout } from "@julseb-lib/react/component-props"
-import { SITE_DATA } from "data"
+import { SITE_DATA, navLinks } from "data"
 import { PATHS } from "routes"
-import { Nav } from "components/layouts/Nav"
 
 export const Page: FC<IPage> = ({
     children,
@@ -32,7 +31,7 @@ export const Page: FC<IPage> = ({
             }}
             header={{
                 logo: { text: SITE_DATA.NAME, to: PATHS.ROOT },
-                nav: <Nav />,
+                links: navLinks,
             }}
             main={{ size: mainWidth }}
         >

@@ -1,4 +1,3 @@
 /*=============================================== Exports ===============================================*/
 
-export * from "routes/paths"
-export * from "routes/routes"
+export * from "./constants.js"
