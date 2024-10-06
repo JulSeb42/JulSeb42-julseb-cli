@@ -2,7 +2,7 @@
 
 import type { NodePlopAPI } from "plop"
 import { toKebabCase, toTitleCase } from "@julseb-lib/utils"
-import { BASE_CLIENT_PATH } from "../utils/index.js"
+import { BASE_PATH } from "../utils/index.js"
 
 export const generatePage = (plop: NodePlopAPI) => {
     const { setGenerator } = plop
@@ -41,14 +41,14 @@ export const generatePage = (plop: NodePlopAPI) => {
                 {
                     type: "add",
                     path: data?.multi
-                        ? `${BASE_CLIENT_PATH}/pages/{{ pascalCase name }}/{{ pascalCase name }}.tsx`
-                        : `${BASE_CLIENT_PATH}/pages/{{ pascalCase name }}.tsx`,
+                        ? `${BASE_PATH}/pages/{{ pascalCase name }}/{{ pascalCase name }}.tsx`
+                        : `${BASE_PATH}/pages/{{ pascalCase name }}.tsx`,
                     templateFile: "../templates/page/page-file.hbs",
                 },
                 "Importing your new page in routes file",
                 {
                     type: "modify",
-                    path: `${BASE_CLIENT_PATH}/routes/routes.tsx`,
+                    path: `${BASE_PATH}/routes/routes.tsx`,
                     template:
                         'import { {{ pascalCase name }} } from "pages/{{ pascalCase name }}"\n$1',
                     pattern: /(\/\* prepend import - do not remove \*\/)/g,
@@ -56,14 +56,14 @@ export const generatePage = (plop: NodePlopAPI) => {
                 "Adding your new page to the paths array",
                 {
                     type: "modify",
-                    path: `${BASE_CLIENT_PATH}/routes/routes.tsx`,
+                    path: `${BASE_PATH}/routes/routes.tsx`,
                     template: `{\n        path: {{ pathCase path }},\n        element: <{{ pascalCase name }} />\n    },\n\t$1`,
                     pattern: /(\/\* prepend route - do not remove \*\/)/g,
                 },
                 "Adding path to paths list",
                 {
                     type: "modify",
-                    path: `${BASE_CLIENT_PATH}/routes/paths.ts`,
+                    path: `${BASE_PATH}/routes/paths.ts`,
                     template:
                         '{{ constantCase name }}: "/{{ pathCase path }}",\n\t$1    ',
                     pattern: /(\/\* prepend path - do not remove \*\/)/g,
@@ -76,7 +76,7 @@ export const generatePage = (plop: NodePlopAPI) => {
                         "Creating export from new folder",
                         {
                             type: "add",
-                            path: `${BASE_CLIENT_PATH}/pages/{{ pascalCase name }}/index.ts`,
+                            path: `${BASE_PATH}/pages/{{ pascalCase name }}/index.ts`,
                             templateFile: "../templates/page/page-index.hbs",
                         },
                     ]

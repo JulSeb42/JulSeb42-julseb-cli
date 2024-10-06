@@ -11,10 +11,10 @@
         "build:plop": "rm -rf plop/scripts && tsc --p ./plop/tsconfig.json",
         "clean:plop": "rm -rf plop/scripts",
         "plop": "yarn build:plop && plop --plopfile 'plop/scripts/plopfile.js'",
-        "plop:c": "yarn plop component && yarn clean:plop",
-        "plop:sc": "yarn plop single-component && yarn clean:plop",
-        "plop:p": "yarn plop page && yarn clean:plop",
-        "plop:ty": "yarn plop type && yarn clean:plop"
+        "plop:c": "yarn plop component",
+        "plop:sc": "yarn plop single-component",
+        "plop:p": "yarn plop page",
+        "plop:ty": "yarn plop type"
     },
     "dependencies": {
         "@julseb-lib/react": "^0.0.22",

@@ -1,7 +1,7 @@
 /*=============================================== Generate component ===============================================*/
 
 import type { NodePlopAPI } from "plop"
-import { BASE_CLIENT_PATH } from "../utils/index.js"
+import { BASE_PATH } from "../utils/index.js"
 
 export const generateComponent = (plop: NodePlopAPI) => {
     const { setGenerator } = plop
@@ -49,7 +49,7 @@ export const generateComponent = (plop: NodePlopAPI) => {
             "Creating new files",
             {
                 type: "addMany",
-                destination: `${BASE_CLIENT_PATH}/components/{{ pascalCase name }}`,
+                destination: `${BASE_PATH}/components/{{ pascalCase name }}`,
                 templateFiles: "../templates/component/*.hbs",
                 base: "../templates/component",
             },
@@ -57,7 +57,7 @@ export const generateComponent = (plop: NodePlopAPI) => {
             "Exporting your new component",
             {
                 type: "modify",
-                path: `${BASE_CLIENT_PATH}/components/index.ts`,
+                path: `${BASE_PATH}/components/index.ts`,
                 template:
                     'export * from "components/{{ pascalCase name }}"\n$1',
                 pattern: /(\/\* prepend - do not remove \*\/)/g,

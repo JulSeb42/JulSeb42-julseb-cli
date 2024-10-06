@@ -1,7 +1,7 @@
 /*=============================================== Generate TS type ===============================================*/
 
 import type { NodePlopAPI } from "plop"
-import { BASE_SHARED_PATH, BASE_CLIENT_PATH } from "../utils/index.js"
+import { BASE_PATH } from "../utils/index.js"
 
 export const generateType = (plop: NodePlopAPI) => {
     const { setGenerator } = plop
@@ -35,12 +35,12 @@ export const generateType = (plop: NodePlopAPI) => {
             const actions = [
                 {
                     type: "add",
-                    path: `${BASE_SHARED_PATH}/types/${fileNameAdd}`,
+                    path: `${BASE_PATH}/types/${fileNameAdd}`,
                     templateFile: "../templates/type.hbs",
                 },
                 {
                     type: "modify",
-                    path: `${BASE_SHARED_PATH}/types/index.ts`,
+                    path: `${BASE_PATH}/types/index.ts`,
                     template: `export * from "${fileName}"\n$1`,
                     pattern: /(\/\* prepend - do not remove \*\/)/g,
                 },
@@ -49,12 +49,12 @@ export const generateType = (plop: NodePlopAPI) => {
             const actionsClient = [
                 {
                     type: "add",
-                    path: `${BASE_CLIENT_PATH}/types/${fileNameAdd}`,
+                    path: `${BASE_PATH}/types/${fileNameAdd}`,
                     templateFile: "../templates/type.hbs",
                 },
                 {
                     type: "modify",
-                    path: `${BASE_CLIENT_PATH}/types/index.ts`,
+                    path: `${BASE_PATH}/types/index.ts`,
                     template: `export * from "${fileName}"\n$1`,
                     pattern: /(\/\* prepend - do not remove \*\/)/g,
                 },
