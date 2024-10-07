@@ -1,6 +1,7 @@
 /*=============================================== Main ===============================================*/
 
 import ReactDOM from "react-dom/client"
+import { ThemeProviderWrapper } from "@julseb-lib/react"
 import { App } from "App"
 import { AuthProviderWrapper } from "context"
 
@@ -9,6 +10,8 @@ import "styles/index.css"
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <AuthProviderWrapper>
-        <App />
+        <ThemeProviderWrapper stylesheetManager>
+            <App />
+        </ThemeProviderWrapper>
     </AuthProviderWrapper>
 )

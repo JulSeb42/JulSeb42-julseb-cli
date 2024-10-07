@@ -1,14 +1,18 @@
 /*=============================================== App ===============================================*/
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import { PageLoading } from "@julseb-lib/react"
+import { PageLoading, ThemeProvider, useLibTheme } from "@julseb-lib/react"
 import { routes } from "routes"
 
 export const App = () => {
+    const { theme } = useLibTheme()
+
     return (
-        <RouterProvider
-            router={createBrowserRouter(routes)}
-            fallbackElement={<PageLoading />}
-        />
+        <ThemeProvider theme={theme}>
+            <RouterProvider
+                router={createBrowserRouter(routes)}
+                fallbackElement={<PageLoading />}
+            />
+        </ThemeProvider>
     )
 }

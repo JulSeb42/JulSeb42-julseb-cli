@@ -5,8 +5,7 @@ import type { LibMainSize } from "@julseb-lib/react/types"
 import type { ILibPageLayout } from "@julseb-lib/react/component-props"
 import { SITE_DATA } from "shared"
 import { PATHS } from "routes"
-import { useAuthContext } from "context"
-import { baseLinks, anonLinks, protectedLinks } from "data"
+import { Nav } from "./Nav"
 
 export const Page: FC<IPage> = ({
     children,
@@ -17,8 +16,6 @@ export const Page: FC<IPage> = ({
     cover,
     mainWidth = "default",
 }) => {
-    const { isLoggedIn, logoutUser } = useAuthContext()
-
     return (
         <PageLayout
             isLoading={isLoading}
@@ -35,15 +32,7 @@ export const Page: FC<IPage> = ({
             }}
             header={{
                 logo: { text: SITE_DATA.NAME, to: PATHS.ROOT },
-                links: [
-                    ...baseLinks,
-                    ...(isLoggedIn
-                        ? [
-                              ...protectedLinks,
-                              { text: "Logout", onClick: logoutUser },
-                          ]
-                        : anonLinks),
-                ],
+                nav: <Nav />,
             }}
             main={{ size: mainWidth }}
         >
