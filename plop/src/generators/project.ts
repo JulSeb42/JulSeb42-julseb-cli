@@ -49,6 +49,7 @@ export default (plop: NodePlopAPI) => {
                 type => data?.projectType === type.alias
             )?.name
             const projectName = toKebabCase(data?.projectName)
+            const projectPath = `../../${projectName}`
 
             const packageManager = packageManagers.find(
                 m => m.name === data?.packageManager
@@ -101,7 +102,6 @@ export default (plop: NodePlopAPI) => {
             ) {
                 actions.push(
                     ...[
-                       
                         "Replace all titles inside your new app",
                         ...(replaceProjectNameModifyFullStack(
                             projectType,
@@ -113,7 +113,6 @@ export default (plop: NodePlopAPI) => {
                 )
 
                 if (data?.switch === false) {
-                    const projectPath = `../../${projectName}`
                     actions.push(
                         "Removing the theme switch",
                         ...addCommandPrefix(projectName, [
@@ -142,11 +141,34 @@ export default (plop: NodePlopAPI) => {
                 }
             }
 
-            if (projectType === projectTypes[2].name) {
-                // actions.push({
-                //     type: "runCommand",
-                //     command: `mv ${projectType}/* ./ && mv ${projectType}/.gitignore ./ && mv ${projectType}/.prettierrc ./ && rm -rf ${projectType}`,
-                // })
+            if (
+                projectType === projectTypes[2].name &&
+                data?.switch === false
+            ) {
+                actions.push(
+                    ...addCommandPrefix(projectName, [
+                        {
+                            type: "runCommand",
+                            command:
+                                "rm -rf src/App.tsx src/main.tsx src/components/layouts/Page.tsx",
+                        },
+                    ]),
+                    {
+                        type: "add",
+                        templateFile: "../templates/react-client/App.hbs",
+                        path: `${projectPath}/src/App.tsx`,
+                    },
+                    {
+                        type: "add",
+                        templateFile: "../templates/react-client/App.hbs",
+                        path: `${projectPath}/src/main.tsx`,
+                    },
+                    {
+                        type: "add",
+                        templateFile: "../templates/react-client/Page.hbs",
+                        path: `${projectPath}/src/components/layouts/Page.tsx`,
+                    }
+                )
             }
 
             actions.push(
