@@ -96,10 +96,7 @@ export default (plop: NodePlopAPI) => {
                 ]
             )
 
-            if (
-                projectType === projectTypes[0].name ||
-                projectType === projectTypes[1].name
-            ) {
+            if (projectType === projectTypes[0].name) {
                 actions.push(
                     ...[
                         "Replace all titles inside your new app",
@@ -142,7 +139,7 @@ export default (plop: NodePlopAPI) => {
             }
 
             if (
-                projectType === projectTypes[2].name &&
+                projectType === projectTypes[1].name &&
                 data?.switch === false
             ) {
                 actions.push(
@@ -180,6 +177,31 @@ export default (plop: NodePlopAPI) => {
                     },
                 ]
             )
+
+            if (packageManager?.name === "npm") {
+                actions.push(
+                    "Replace all instances of yarn by npm",
+                    {
+                        type: "modify",
+                        path: `${projectPath}/package.json`,
+                        template: "npm run",
+                        pattern: /(yarn)/g,
+                    },
+                    {
+                        type: "modify",
+                        path: `${projectPath}/plop/src/plopfile.mts`,
+                        template: "npm run",
+                        pattern: /(yarn)/g,
+                    }
+                )
+
+                actions.push("Replace install command in package.json", {
+                    type: "modify",
+                    path: `${projectPath}/package.json`,
+                    template: '"install": "cd client && npm install"',
+                    pattern: /("install": "cd client && npm run")/g,
+                })
+            }
 
             actions.push(
                 ...[

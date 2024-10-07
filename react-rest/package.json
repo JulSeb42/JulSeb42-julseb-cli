@@ -3,7 +3,6 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "start": "node server.js",
         "build": "cd client && yarn build",
         "build:plop": "rm -rf plop/scripts && tsc --p ./plop/tsconfig.json",
         "install": "cd client && yarn",
