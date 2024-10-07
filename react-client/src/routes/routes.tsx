@@ -4,7 +4,7 @@
 import { PATHS } from "routes"
 import { Homepage } from "pages/Homepage"
 import { NotFound } from "pages/NotFound"
-import { AboutPage } from "pages/Abour"
+import { AboutPage } from "pages/About"
 /* prepend import - do not remove */
 
 type Route = {

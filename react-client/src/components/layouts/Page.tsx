@@ -1,11 +1,11 @@
 /*=============================================== Page ===============================================*/
 
-import { PageLayout } from "@julseb-lib/react"
+import { useState, useEffect } from "react"
+import { PageLayout, ButtonIcon, useLibTheme } from "@julseb-lib/react"
 import type { LibMainSize } from "@julseb-lib/react/types"
 import type { ILibPageLayout } from "@julseb-lib/react/component-props"
-import { SITE_DATA } from "data"
+import { SITE_DATA, navLinks } from "data"
 import { PATHS } from "routes"
-import { Nav } from "./Nav"
 
 export const Page: FC<IPage> = ({
     children,
@@ -16,6 +16,14 @@ export const Page: FC<IPage> = ({
     cover,
     mainWidth = "default",
 }) => {
+    const { selectedTheme, toggleTheme } = useLibTheme()
+    const [icon, setIcon] = useState<undefined | "sun" | "moon">(undefined)
+
+    useEffect(() => {
+        if (selectedTheme === "light") setIcon("moon")
+        if (selectedTheme === "dark") setIcon("sun")
+    }, [selectedTheme])
+
     return (
         <PageLayout
             isLoading={isLoading}
@@ -32,7 +40,17 @@ export const Page: FC<IPage> = ({
             }}
             header={{
                 logo: { text: SITE_DATA.NAME, to: PATHS.ROOT },
-                nav: <Nav />,
+                nav: (
+                    <ButtonIcon
+                        icon={icon as string}
+                        size={24}
+                        variant="transparent"
+                        color="background"
+                        onClick={toggleTheme}
+                        aria-label="Toggle theme"
+                    />
+                ),
+                links: navLinks,
             }}
             main={{ size: mainWidth }}
         >
