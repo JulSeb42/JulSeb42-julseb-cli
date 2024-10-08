@@ -1,6 +1,6 @@
 /*=============================================== Page ===============================================*/
 
-import { PageLayout } from "@julseb-lib/react"
+import { PageLayout     } from "@julseb-lib/react"
 import type { LibMainSize } from "@julseb-lib/react/types"
 import type { ILibPageLayout } from "@julseb-lib/react/component-props"
 import { SITE_DATA } from "shared"

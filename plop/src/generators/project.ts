@@ -201,6 +201,8 @@ export default (plop: NodePlopAPI) => {
                     template: '"install": "cd client && npm install"',
                     pattern: /("install": "cd client && npm run")/g,
                 })
+
+                // TODO: Add replace yarn in readme
             }
 
             actions.push(

@@ -1,4 +1,4 @@
-# React Express JWT
+# React Rest
 
 A boilerplate for fullstack projects written in TypeScript, React, Express and MongoDb.
 
@@ -6,30 +6,39 @@ A boilerplate for fullstack projects written in TypeScript, React, Express and M
 
 Rename the file `template.env` to `.env`, and replace the values with your email, password, etc. Do the same thing in the `client` folder.
 
-Then run `npm install` at the root of the project. Since we're using [Concurrently](https://www.npmjs.com/package/concurrently) this will install packages for backend and frontend.
+Then run `yarn` at the root of the project. Since we're using [Concurrently](https://www.npmjs.com/package/concurrently) this will install packages for backend and frontend.
 
 ## Run project
 
-Run `npm run dev` at the root of the project. Once again, thanks to Concurrently, backend and frontend will run at the same time.
+Run `yarn dev` at the root of the project. Once again, thanks to Concurrently, backend and frontend will run at the same time.
 
 ## Packages
 
 ### Backend
 
--   [Express](https://expressjs.com/)
--   [Express JWT](https://www.npmjs.com/package/express-jwt)
--   [JSON web token](https://jwt.io/)
--   [Bcrypt js](https://www.npmjs.com/package/bcryptjs)
--   [Mongoose](https://mongoosejs.com/)
--   [Nodemailer](https://nodemailer.com/about/)
--   [JS utils](https://www.npmjs.com/package/js-utils-julseb): own package, with basic functions written in JavaScript
+-   [Express]()
+-   [ExpressJWT]()
+-   [JulSeb utils](): Small library of util functions, [documentation here]() <!-- TODO: Add url -->
+-   [Mongoose]()
+-   [Nodemailer]()
+-   [Plop]()
 
 ### Frontend
 
 -   [React](https://reactjs.org/)
+-   [React Router](https://reactrouter.com/en/main)
 -   [Axios](https://axios-http.com/docs/intro)
 -   [Styled components](https://styled-components.com/)
--   [TSX library](https://documentation-components-react.vercel.app/): own package, with basic React UI components
+-   [@julseb-lib/react](): basic React components <!-- TODO: Add url -->
+
+## Plop functions
+
+-   `yarn plop:c`: generates a React component
+-   `yarn plop:sc`: generates a React single file component
+-   `yarn plop:p`: generates a React page
+-   `yarn plop:r`: generates a new route on server and client
+-   `yarn plop:m`: generates a new Mongoose model
+-   `yarn plop:ty`: generates a new type either in shared directory or only on client directory
 
 ## Backend
 
@@ -43,7 +52,7 @@ All the models can be found in `models` folder.
 
 ### Create data
 
-Find an example for adding bulk data inside a database in `db/seed.js`.
+Find an example for adding bulk data inside a database in `server/db/seed.js`.
 
 ## Frontend
 
@@ -57,4 +66,4 @@ Create your pages in `client/src/pages`. Then, go to `client/src/routes/routes.j
 
 ### Styling
 
-Most of components come from `TSX library` package. If you need new components, you can add them in `client/src/components`.
+Most of components come from `@julseb-lib/react` package. If you need new components, you can add them in `client/src/components`.
