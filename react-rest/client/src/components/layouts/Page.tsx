@@ -1,6 +1,6 @@
 /*=============================================== Page ===============================================*/
 
-import { PageLayout     } from "@julseb-lib/react"
+import { PageLayout, ResetScroll } from "@julseb-lib/react"
 import type { LibMainSize } from "@julseb-lib/react/types"
 import type { ILibPageLayout } from "@julseb-lib/react/component-props"
 import { SITE_DATA } from "shared"
@@ -37,6 +37,8 @@ export const Page: FC<IPage> = ({
             main={{ size: mainWidth }}
         >
             {children}
+
+            <ResetScroll />
         </PageLayout>
     )
 }
