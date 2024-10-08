@@ -32,7 +32,7 @@ const realUser = {
     verifyToken: getRandomString(20),
 }
 
-const fakeUsers = generateNumbers(0, 10).map(n => {
+const fakeUsers = generateNumbers(0, 98).map(() => {
     const sex = getRandom(["male", "female"])
     const fullName = faker.person.fullName(sex)
 

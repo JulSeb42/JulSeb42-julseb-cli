@@ -39,7 +39,7 @@ export const EditAccountForm = () => {
         userService
             .editAccount(user?._id!, {
                 ...inputs,
-                avatar: avatar || "",
+                avatar,
             })
             .then(res => {
                 setUser(res.data.user)
@@ -72,7 +72,7 @@ export const EditAccountForm = () => {
                     disabled
                 />
                 <ImageUploader
-                    value={avatar}
+                    value={avatar || ""}
                     setImageUrl={setAvatar}
                     setIsLoading={setIsLoading}
                     id="avatar"

@@ -1,7 +1,16 @@
 /*=============================================== UsersList ===============================================*/
 
 import type { AxiosResponse } from "axios"
-import { useFetch, Text, Grid, generateNumbers } from "@julseb-lib/react"
+import styled from "styled-components"
+import {
+    useFetch,
+    Text,
+    Grid,
+    generateNumbers,
+    Pagination,
+    usePaginatedData,
+    SPACERS,
+} from "@julseb-lib/react"
 import { userService } from "api"
 import { UserCard, UserCardSkeleton } from "components"
 import type { User } from "types"
@@ -12,6 +21,8 @@ export const UsersList = () => {
     )
     const users: Array<User> | null = response?.data
 
+    const { paginatedData, totalPages } = usePaginatedData<User>(users ?? [], 15)
+
     if (loading || (!response && !error)) return <UsersListSkeleton />
 
     if (error) return <Text>Error while fetching users: {error.message}</Text>
@@ -19,11 +30,15 @@ export const UsersList = () => {
     if (!users?.length) return <Text>No user yet.</Text>
 
     return (
-        <Grid col={3} gap="s">
-            {users.map(user => (
-                <UserCard user={user} key={user._id} />
-            ))}
-        </Grid>
+        <>
+            <StyledGrid col={3} gap="s" alignContent="start">
+                {paginatedData.map(user => (
+                    <UserCard user={user} key={user._id} />
+                ))}
+            </StyledGrid>
+
+            <Pagination totalPages={totalPages} />
+        </>
     )
 }
 
@@ -36,3 +51,7 @@ const UsersListSkeleton = () => {
         </Grid>
     )
 }
+
+const StyledGrid = styled(Grid)`
+    min-height: calc(82px * 3 + ${SPACERS.S} * 3);
+`
