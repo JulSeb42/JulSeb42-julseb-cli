@@ -1,7 +1,7 @@
 /*=============================================== Page ===============================================*/
 
 import { useState, useEffect } from "react"
-import { PageLayout, ButtonIcon, useLibTheme } from "@julseb-lib/react"
+import { PageLayout, ButtonIcon, useLibTheme, ResetScroll } from "@julseb-lib/react"
 import type { LibMainSize } from "@julseb-lib/react/types"
 import type { ILibPageLayout } from "@julseb-lib/react/component-props"
 import { SITE_DATA, navLinks } from "data"
@@ -55,6 +55,8 @@ export const Page: FC<IPage> = ({
             main={{ size: mainWidth }}
         >
             {children}
+
+            <ResetScroll />
         </PageLayout>
     )
 }
