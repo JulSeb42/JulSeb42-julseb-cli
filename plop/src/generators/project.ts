@@ -202,6 +202,20 @@ export default (plop: NodePlopAPI) => {
                     pattern: /("install": "cd client && npm run")/g,
                 })
 
+                actions.push("Replace all examples with yarn in README", {
+                    type: "modify",
+                    path: `${projectPath}/README.md`,
+                    template: "`npm install`",
+                    pattern: "`yarn`",
+                })
+
+                actions.push({
+                    type: "modify",
+                    path: `${projectPath}/README.md`,
+                    template: "npm run",
+                    pattern: /(yarn)/g,
+                })
+
                 // TODO: Add replace yarn in readme
             }
 
