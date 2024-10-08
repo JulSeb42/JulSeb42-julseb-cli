@@ -14,11 +14,10 @@ export const ErrorMessage: FC<IErrorMessage> = ({ error }) => {
         ))
     }
 
-    return (
-        <Alert alertColor="danger">
-            {typeof error === "string" ? error : error?.response?.data?.message}
-        </Alert>
-    )
+    if (typeof error === "string")
+        return <Alert alertColor="danger">{error}</Alert>
+
+    return <Alert alertColor="danger">{error?.response?.data?.message}</Alert>
 }
 
 interface IErrorMessage {

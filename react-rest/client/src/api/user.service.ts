@@ -1,7 +1,8 @@
 /*=============================================== User service ===============================================*/
 
 import { http } from "api"
-import { SERVER_PATHS } from "shared"
+import { generateServerRoute } from "utils"
+import type { SERVER_PATHS } from "shared"
 import type {
     ApiResponse,
     User,
@@ -9,23 +10,26 @@ import type {
     EditPasswordFormData,
 } from "types"
 
-const { USERS: PATHS } = SERVER_PATHS
+type PATHS = keyof typeof SERVER_PATHS.USERS
+
+const generateRoute = (route: Exclude<PATHS, "ROOT">, id?: string) =>
+    generateServerRoute("USERS", route, id)
 
 class UserService {
     allUsers = async (): ApiResponse<Array<User>> =>
-        await http.get(PATHS.ALL_USERS)
+        await http.get(generateRoute("ALL_USERS"))
 
     getUser = async (id: string): ApiResponse<User> =>
-        await http.get(PATHS.USER(id))
+        await http.get(generateRoute("USER", id))
 
     editAccount = async (id: string, data: EditAccountFormData) =>
-        await http.put(PATHS.EDIT_ACCOUNT(id), data)
+        await http.put(generateRoute("EDIT_ACCOUNT", id), data)
 
     editPassword = async (id: string, data: EditPasswordFormData) =>
-        await http.put(PATHS.EDIT_ACCOUNT(id), data)
+        await http.put(generateRoute("EDIT_PASSWORD", id), data)
 
     deleteAccount = async (id: string) =>
-        await http.delete(PATHS.DELETE_ACCOUNT(id))
+        await http.delete(generateRoute("DELETE_ACCOUNT", id))
 }
 
 export const userService = new UserService()
