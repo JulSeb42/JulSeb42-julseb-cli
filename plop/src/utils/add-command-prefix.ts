@@ -1,5 +1,6 @@
 import type { ActionType, ModifyActionConfig } from "plop"
 import { toKebabCase } from "@julseb-lib/utils"
+import { BASE_PATH } from "./constants.js"
 import type { ActionCommandType } from "./types.js"
 
 export function addCommandPrefix(
@@ -11,7 +12,9 @@ export function addCommandPrefix(
 
         return {
             ...command,
-            command: `cd ${toKebabCase(projectName)} && ${command.command}`,
+            command: `cd ${BASE_PATH}/${toKebabCase(projectName)} && ${
+                command.command
+            }`,
         }
     })
 }
@@ -23,7 +26,7 @@ export function addPathPrefix(commands: Array<ActionType>) {
             : {
                   ...command,
                   path: (command as ModifyActionConfig).path
-                      ? `${process.cwd()}/{{ kebabCase projectName }}/${
+                      ? `${BASE_PATH}/{{ kebabCase projectName }}/${
                             (command as ModifyActionConfig).path
                         }`
                       : null,

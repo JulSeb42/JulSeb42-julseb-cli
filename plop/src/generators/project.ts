@@ -5,6 +5,7 @@ import {
     packageManagers,
     packageManagersNames,
     REPOS_BASE_URL,
+    BASE_PATH,
 } from "../utils/constants.js"
 import { replaceProjectNameModifyFullStack } from "../utils/replace-project-name-fullstack.js"
 import { copyFullStackEnv } from "../utils/copy-env.js"
@@ -143,6 +144,7 @@ export default (plop: NodePlopAPI) => {
                 data?.switch === false
             ) {
                 actions.push(
+                    "Removing the theme switch",
                     ...addCommandPrefix(projectName, [
                         {
                             type: "runCommand",
@@ -215,8 +217,6 @@ export default (plop: NodePlopAPI) => {
                     template: "npm run",
                     pattern: /(yarn)/g,
                 })
-
-                // TODO: Add replace yarn in readme
             }
 
             actions.push(
@@ -226,6 +226,7 @@ export default (plop: NodePlopAPI) => {
                         type: "runCommand",
                         command: `cd ${projectName} && ${packageManager?.name} ${packageManager?.installCommand}`,
                     },
+                    { type: "runCommand", command: `cd ${projectName}` },
                 ]
             )
 

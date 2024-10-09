@@ -1,5 +1,6 @@
 /*=============================================== Clone specific folder from Github ===============================================*/
 
+import { BASE_PATH } from "./constants.js"
 import type { ActionCommandType } from "./types.js"
 
 /**
@@ -12,7 +13,7 @@ export function cloneFolder(
 ): Array<ActionCommandType> {
     const commands: Array<ActionCommandType> = [
         { type: "runCommand", command: `git init ${projectName}` },
-        { type: "runCommand", command: `cd ${projectName}` },
+        { type: "runCommand", command: `cd ${BASE_PATH}/${projectName}` },
         {
             type: "runCommand",
             command: `git remote add origin https://github.com/JulSeb42/JulSeb42-julseb-cli.git`,

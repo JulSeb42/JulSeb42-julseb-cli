@@ -8,6 +8,8 @@ export const projectTypes: Array<{ name: string; alias: string }> = [
     { name: "react-client", alias: "React (client only)" },
 ]
 
+export const BASE_PATH = process.cwd()
+
 export const packageManagers: PackageManager[] = [
     {
         name: "npm",
