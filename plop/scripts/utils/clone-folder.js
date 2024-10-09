@@ -1,4 +1,5 @@
 /*=============================================== Clone specific folder from Github ===============================================*/
+import { BASE_PATH } from "./constants.js";
 /**
  * @param projectName string
  * @param boilerplate string
@@ -6,7 +7,7 @@
 export function cloneFolder(projectName, boilerplate) {
     const commands = [
         { type: "runCommand", command: `git init ${projectName}` },
-        { type: "runCommand", command: `cd ${projectName}` },
+        { type: "runCommand", command: `cd ${BASE_PATH}/${projectName}` },
         {
             type: "runCommand",
             command: `git remote add origin https://github.com/JulSeb42/JulSeb42-julseb-cli.git`,

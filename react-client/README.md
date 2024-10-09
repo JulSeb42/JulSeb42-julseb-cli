@@ -16,7 +16,8 @@ Run `yarn dev` at the root of the project.
 -   [React router](https://reactrouter.com/en/main)
 -   [Axios](https://axios-http.com/docs/intro)
 -   [Styled components](https://styled-components.com/)
--   [@julseb-lib/react](): basic React components <!-- TODO: Add url -->
+-   [@julseb-lib/react](https://julseb-lib-documentation.vercel.app/): basic React components
+-   [Plop](https://plopjs.com/)
 
 ## Plop functions
 

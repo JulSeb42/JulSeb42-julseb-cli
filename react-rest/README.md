@@ -16,12 +16,12 @@ Run `yarn dev` at the root of the project. Once again, thanks to Concurrently, b
 
 ### Backend
 
--   [Express]()
--   [ExpressJWT]()
--   [JulSeb utils](): Small library of util functions, [documentation here]() <!-- TODO: Add url -->
--   [Mongoose]()
--   [Nodemailer]()
--   [Plop]()
+-   [Express](https://expressjs.com/)
+-   [ExpressJWT](https://www.npmjs.com/package/express-jwt)
+-   [JulSeb utils](https://www.npmjs.com/package/@julseb-lib/utils): Small library of util functions, [documentation here](https://julseb-lib-documentation.vercel.app/helpers/js-utils)
+-   [Mongoose](https://mongoosejs.com/)
+-   [Nodemailer](https://nodemailer.com/)
+-   [Plop](https://plopjs.com/)
 
 ### Frontend
 
@@ -29,7 +29,7 @@ Run `yarn dev` at the root of the project. Once again, thanks to Concurrently, b
 -   [React Router](https://reactrouter.com/en/main)
 -   [Axios](https://axios-http.com/docs/intro)
 -   [Styled components](https://styled-components.com/)
--   [@julseb-lib/react](): basic React components <!-- TODO: Add url -->
+-   [@julseb-lib/react](https://julseb-lib-documentation.vercel.app//): basic React components
 
 ## Plop functions
 

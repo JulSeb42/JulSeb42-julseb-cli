@@ -152,19 +152,20 @@ export default (plop: NodePlopAPI) => {
                                 "rm -rf src/App.tsx src/main.tsx src/components/layouts/Page.tsx",
                         },
                     ]),
+
                     {
                         type: "add",
-                        templateFile: "../templates/react-client/App.hbs",
+                        templateFile: `${BASE_PATH}/templates/react-client/App.hbs`,
                         path: `${projectPath}/src/App.tsx`,
                     },
                     {
                         type: "add",
-                        templateFile: "../templates/react-client/App.hbs",
+                        templateFile: `${BASE_PATH}/templates/react-client/App.hbs`,
                         path: `${projectPath}/src/main.tsx`,
                     },
                     {
                         type: "add",
-                        templateFile: "../templates/react-client/Page.hbs",
+                        templateFile: `${BASE_PATH}/templates/react-client/Page.hbs`,
                         path: `${projectPath}/src/components/layouts/Page.tsx`,
                     }
                 )
