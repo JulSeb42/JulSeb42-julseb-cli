@@ -221,14 +221,13 @@ export default (plop: NodePlopAPI) => {
             }
 
             actions.push(
-                ...[
-                    "Start install...",
-                    {
-                        type: "runCommand",
-                        command: `cd ${projectName} && ${packageManager?.name} ${packageManager?.installCommand}`,
-                    },
-                    { type: "runCommand", command: `cd ${projectName}` },
-                ]
+                "Start install...",
+                {
+                    type: "runCommand",
+                    command: `cd ${projectName} && ${packageManager?.name} ${packageManager?.installCommand}`,
+                },
+                { type: "runCommand", command: `cd ${projectName}` },
+                `All good!\nNow just type \`cd ${projectName}\` and have fun 🚀`
             )
 
             return actions

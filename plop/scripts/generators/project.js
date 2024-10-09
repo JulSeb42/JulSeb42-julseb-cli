@@ -165,14 +165,10 @@ export default (plop) => {
                     pattern: /(yarn)/g,
                 });
             }
-            actions.push(...[
-                "Start install...",
-                {
-                    type: "runCommand",
-                    command: `cd ${projectName} && ${packageManager === null || packageManager === void 0 ? void 0 : packageManager.name} ${packageManager === null || packageManager === void 0 ? void 0 : packageManager.installCommand}`,
-                },
-                { type: "runCommand", command: `cd ${projectName}` },
-            ]);
+            actions.push("Start install...", {
+                type: "runCommand",
+                command: `cd ${projectName} && ${packageManager === null || packageManager === void 0 ? void 0 : packageManager.name} ${packageManager === null || packageManager === void 0 ? void 0 : packageManager.installCommand}`,
+            }, { type: "runCommand", command: `cd ${projectName}` }, `All good!\nNow just type \`cd ${projectName}\` and have fun 🚀`);
             return actions;
         },
     });
