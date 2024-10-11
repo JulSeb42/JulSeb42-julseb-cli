@@ -10,12 +10,11 @@ import { dirname } from "node:path"
 import { fileURLToPath } from "node:url"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const configPath = path.join(__dirname, "plop/scripts/plopfile.js")
 
 Plop.prepare(
     {
         cwd: argv.cwd,
-        configPath,
+        configPath: path.join(__dirname, "scripts/plopfile.js"),
         preload: argv.preload || [],
         completion: argv.completion,
     },
