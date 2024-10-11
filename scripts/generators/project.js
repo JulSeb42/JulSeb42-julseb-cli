@@ -164,7 +164,6 @@ export default (plop) => {
                     template: "npm run",
                     pattern: /(yarn)/g,
                 });
-                // TODO: Add replace yarn in readme
             }
             actions.push(...[
                 "Start install...",
@@ -173,6 +172,7 @@ export default (plop) => {
                     command: `cd ${projectName} && ${packageManager === null || packageManager === void 0 ? void 0 : packageManager.name} ${packageManager === null || packageManager === void 0 ? void 0 : packageManager.installCommand}`,
                 },
             ]);
+            actions.push(`All good, now run \`cd ${projectName}\` and have fun coding 🚀`);
             return actions;
         },
     });
