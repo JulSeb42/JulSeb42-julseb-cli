@@ -51,6 +51,8 @@ export default (plop: NodePlopAPI) => {
             const projectName = toKebabCase(data?.projectName)
             const projectPath = `../../${projectName}`
 
+            const pathToReplace = `${process.cwd()}/${projectName}`
+
             const packageManager = packageManagers.find(
                 m => m.name === data?.packageManager
             )
@@ -112,27 +114,28 @@ export default (plop: NodePlopAPI) => {
                 if (data?.switch === false) {
                     actions.push(
                         "Removing the theme switch",
-                        ...addCommandPrefix(projectName, [
-                            {
-                                type: "runCommand",
-                                command:
-                                    "rm -rf client/src/App.tsx client/src/main.tsx client/src/components/layouts/Nav.tsx client/src/components/layouts/Page.tsx",
-                            },
-                        ]),
+                        {
+                            type: "runCommand",
+                            command: `cd ${projectName} && rm -rf client/src/App.tsx client/src/main.tsx client/src/components/layouts/Nav.tsx client/src/components/layouts/Page.tsx`,
+                        },
                         {
                             type: "add",
-                            path: `${projectPath}/client/src/App.tsx`,
+                            path: `${pathToReplace}/client/src/App.tsx`,
                             templateFile: "../templates/react-rest/App.hbs",
+                            // skipIfExists: true,
                         },
+                        // React + Rest API yarn n
                         {
                             type: "add",
-                            path: `${projectPath}/client/src/main.tsx`,
+                            path: `${pathToReplace}/client/src/main.tsx`,
                             templateFile: "../templates/react-rest/main.hbs",
+                            // skipIfExists: true,
                         },
                         {
                             type: "add",
-                            path: `${projectPath}/client/src/components/layouts/Page.tsx`,
+                            path: `${pathToReplace}/client/src/components/layouts/Page.tsx`,
                             templateFile: "../templates/react-rest/Page.hbs",
+                            // skipIfExists: true,
                         }
                     )
                 }
@@ -143,27 +146,25 @@ export default (plop: NodePlopAPI) => {
                 data?.switch === false
             ) {
                 actions.push(
-                    ...addCommandPrefix(projectName, [
-                        {
-                            type: "runCommand",
-                            command:
-                                "rm -rf src/App.tsx src/main.tsx src/components/layouts/Page.tsx",
-                        },
-                    ]),
+                    "Removing the theme switch",
                     {
-                        type: "add",
-                        templateFile: "../templates/react-client/App.hbs",
-                        path: `${projectPath}/src/App.tsx`,
+                        type: "runCommand",
+                        command: `cd ${projectName} && rm -rf src/App.tsx src/main.tsx src/components/layouts/Page.tsx`,
                     },
                     {
                         type: "add",
                         templateFile: "../templates/react-client/App.hbs",
-                        path: `${projectPath}/src/main.tsx`,
+                        path: `${pathToReplace}/src/App.tsx`,
+                    },
+                    {
+                        type: "add",
+                        templateFile: "../templates/react-client/main.hbs",
+                        path: `${pathToReplace}/src/main.tsx`,
                     },
                     {
                         type: "add",
                         templateFile: "../templates/react-client/Page.hbs",
-                        path: `${projectPath}/src/components/layouts/Page.tsx`,
+                        path: `${pathToReplace}/src/components/layouts/Page.tsx`,
                     }
                 )
             }
