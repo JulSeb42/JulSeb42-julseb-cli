@@ -228,6 +228,11 @@ export default (plop: NodePlopAPI) => {
                 ]
             )
 
+            actions.push("Cleaning...", {
+                type: "runCommand",
+                command: `cd ${projectName} && rm -rf templates`
+            })
+
             actions.push(
                 `All good, now run \`cd ${projectName}\` and have fun coding 🚀`
             )
