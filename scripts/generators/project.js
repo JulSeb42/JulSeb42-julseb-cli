@@ -1,6 +1,6 @@
 import { toKebabCase } from "@julseb-lib/utils";
 import { projectTypes, packageManagers, packageManagersNames, REPOS_BASE_URL, } from "../utils/constants.js";
-import { replaceProjectNameModifyFullStack } from "../utils/replace-project-name-fullstack.js";
+import { replaceProjectNameModifyFullStack, replaceProjectNameModifyClient, } from "../utils/replace-project-name-fullstack.js";
 import { copyFullStackEnv } from "../utils/copy-env.js";
 import { addCommandPrefix } from "../utils/add-command-prefix.js";
 export default (plop) => {
@@ -110,24 +110,29 @@ export default (plop) => {
                     });
                 }
             }
-            if (projectType === projectTypes[1].name &&
-                (data === null || data === void 0 ? void 0 : data.switch) === false) {
-                actions.push("Removing the theme switch", {
-                    type: "runCommand",
-                    command: `cd ${projectName} && rm -rf src/App.tsx src/main.tsx src/components/layouts/Page.tsx`,
-                }, {
-                    type: "add",
-                    templateFile: "../templates/react-client/App.hbs",
-                    path: `${pathToReplace}/src/App.tsx`,
-                }, {
-                    type: "add",
-                    templateFile: "../templates/react-client/main.hbs",
-                    path: `${pathToReplace}/src/main.tsx`,
-                }, {
-                    type: "add",
-                    templateFile: "../templates/react-client/Page.hbs",
-                    path: `${pathToReplace}/src/components/layouts/Page.tsx`,
-                });
+            if (projectType === projectTypes[1].name) {
+                actions.push(...[
+                    "Replace all titles inside your new app",
+                    ...replaceProjectNameModifyClient(projectType, projectName),
+                ]);
+                if ((data === null || data === void 0 ? void 0 : data.switch) === false) {
+                    actions.push("Removing the theme switch", {
+                        type: "runCommand",
+                        command: `cd ${projectName} && rm -rf src/App.tsx src/main.tsx src/components/layouts/Page.tsx`,
+                    }, {
+                        type: "add",
+                        templateFile: "../templates/react-client/App.hbs",
+                        path: `${pathToReplace}/src/App.tsx`,
+                    }, {
+                        type: "add",
+                        templateFile: "../templates/react-client/main.hbs",
+                        path: `${pathToReplace}/src/main.tsx`,
+                    }, {
+                        type: "add",
+                        templateFile: "../templates/react-client/Page.hbs",
+                        path: `${pathToReplace}/src/components/layouts/Page.tsx`,
+                    });
+                }
             }
             actions.push(...[
                 "Init git",
@@ -176,7 +181,7 @@ export default (plop) => {
             ]);
             actions.push("Cleaning...", {
                 type: "runCommand",
-                command: `cd ${projectName} && rm -rf templates`
+                command: `cd ${projectName} && rm -rf templates`,
             });
             actions.push(`All good, now run \`cd ${projectName}\` and have fun coding 🚀`);
             return actions;

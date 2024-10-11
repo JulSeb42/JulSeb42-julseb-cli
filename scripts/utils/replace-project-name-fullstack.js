@@ -54,3 +54,27 @@ export function replaceProjectNameModifyFullStack(repoName, projectName) {
     ];
     return addPathPrefix(paths);
 }
+export function replaceProjectNameModifyClient(repoName, projectName) {
+    const paths = [
+        `Replacing ${repoName} by your new project's name where needed`,
+        {
+            type: "modify",
+            path: "package.json",
+            template: toKebabCase(projectName),
+            pattern: repoName,
+        },
+        {
+            type: "modify",
+            path: "index.html",
+            template: toTitleCase(projectName),
+            pattern: repoName,
+        },
+        {
+            type: "modify",
+            path: "src/data/site-data.ts",
+            template: toTitleCase(projectName),
+            pattern: repoName,
+        },
+    ];
+    return addPathPrefix(paths);
+}
