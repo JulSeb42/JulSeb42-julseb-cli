@@ -1,13 +1,8 @@
 /*=============================================== Generate route ===============================================*/
 
-import type { NodePlopAPI } from "plop"
-import {
-    BASE_SERVER_PATH,
-    BASE_CLIENT_PATH,
-    BASE_SHARED_PATH,
-} from "../utils/consts.mjs"
+import { BASE_SERVER_PATH, BASE_CLIENT_PATH, BASE_SHARED_PATH } from "../utils"
 
-export const generateRoute = (plop: NodePlopAPI) => {
+module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
     const { setGenerator } = plop
 
     setGenerator("route", {

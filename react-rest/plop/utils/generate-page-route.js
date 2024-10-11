@@ -1,6 +1,6 @@
 /*=============================================== Generate page route ===============================================*/
 
-export const generatePageRoute = (pageType?: "protected" | "anon") => {
+module.exports = pageType => {
     const pathName = "PATHS.{{ constantCase name }}"
     const elementComp = "<{{ pascalCase name }} />"
 

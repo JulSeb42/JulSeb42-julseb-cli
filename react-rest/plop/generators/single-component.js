@@ -1,9 +1,8 @@
 /*=============================================== Generate single file component ===============================================*/
 
-import type { NodePlopAPI } from "plop"
-import { BASE_CLIENT_PATH } from "../utils/consts.mjs"
+import { BASE_CLIENT_PATH } from "../utils"
 
-export const generateSingleFileComponent = (plop: NodePlopAPI) => {
+module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
     const { setGenerator } = plop
 
     setGenerator("single-component", {

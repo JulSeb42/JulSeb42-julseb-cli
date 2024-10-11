@@ -1,11 +1,9 @@
 /*=============================================== Generate page ===============================================*/
 
-import type { NodePlopAPI } from "plop"
 import { toKebabCase, toTitleCase } from "@julseb-lib/utils"
-import { generatePageRoute } from "../utils/generate-page-route.mjs"
-import { BASE_CLIENT_PATH } from "../utils/consts.mjs"
+import { generatePageRoute, BASE_CLIENT_PATH } from "../utils"
 
-export const generatePage = (plop: NodePlopAPI) => {
+module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
     const { setGenerator } = plop
 
     setGenerator("page", {
@@ -20,13 +18,13 @@ export const generatePage = (plop: NodePlopAPI) => {
                 type: "input",
                 name: "title",
                 message: "Enter page title",
-                default: (data: { name: string }) => toTitleCase(data.name),
+                default: data => toTitleCase(data.name),
             },
             {
                 type: "input",
                 name: "path",
                 message: "Enter url path",
-                default: (data: { name: string }) => toKebabCase(data.name),
+                default: data => toKebabCase(data.name),
             },
             {
                 type: "confirm",

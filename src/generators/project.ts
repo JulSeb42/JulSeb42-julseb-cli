@@ -215,8 +215,6 @@ export default (plop: NodePlopAPI) => {
                     template: "npm run",
                     pattern: /(yarn)/g,
                 })
-
-                // TODO: Add replace yarn in readme
             }
 
             actions.push(
@@ -227,6 +225,10 @@ export default (plop: NodePlopAPI) => {
                         command: `cd ${projectName} && ${packageManager?.name} ${packageManager?.installCommand}`,
                     },
                 ]
+            )
+
+            actions.push(
+                `All good, now run \`cd ${projectName}\` and have fun coding 🚀`
             )
 
             return actions

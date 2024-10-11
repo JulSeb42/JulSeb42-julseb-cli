@@ -1,9 +1,8 @@
 /*=============================================== Generate model & type ===============================================*/
 
-import type { NodePlopAPI } from "plop"
-import { BASE_SERVER_PATH, BASE_SHARED_PATH } from "../utils/consts.mjs"
+import { BASE_SERVER_PATH, BASE_SHARED_PATH } from "../utils"
 
-export const generateModelAndType = (plop: NodePlopAPI) => {
+module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
     const { setGenerator } = plop
 
     setGenerator("model", {

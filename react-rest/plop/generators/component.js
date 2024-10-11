@@ -1,9 +1,8 @@
 /*=============================================== Generate component ===============================================*/
 
-import type { NodePlopAPI } from "plop"
-import { BASE_CLIENT_PATH } from "../utils/index.mjs"
+import { BASE_CLIENT_PATH } from "../utils"
 
-export const generateComponent = (plop: NodePlopAPI) => {
+module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
     const { setGenerator } = plop
 
     setGenerator("component", {
@@ -24,7 +23,7 @@ export const generateComponent = (plop: NodePlopAPI) => {
                 type: "input",
                 name: "attribute",
                 message: "Enter HTML attribute",
-                default: (data: { tag: string }) => data.tag,
+                default: data => data.tag,
             },
             {
                 type: "confirm",
