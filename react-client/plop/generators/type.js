@@ -1,9 +1,8 @@
 /*=============================================== Generate TS type ===============================================*/
 
-import type { NodePlopAPI } from "plop"
 import { BASE_PATH } from "../utils/index.js"
 
-export const generateType = (plop: NodePlopAPI) => {
+module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
     const { setGenerator } = plop
 
     setGenerator("type", {

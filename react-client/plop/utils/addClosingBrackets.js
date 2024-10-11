@@ -1,12 +1,10 @@
 /*=============================================== Add Closing Brackets ===============================================*/
 
-import type { NodePlopAPI } from "plop"
-
 /**
  * Use as {{addClosingBrackets}}
  */
 
-export default (plop: NodePlopAPI) => {
+module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
     const { setHelper } = plop
 
     setHelper("addClosingBrackets", () => {

@@ -21,7 +21,7 @@ const {
 module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
     /*====================== Actions ======================*/
 
-    runCommandAction(plop) // With this helper you can run commands in a terminal
+    runCommandAction(plop) // With this helper you can run commands in a terminal => { type: "runCommand", command: "console.log("hello world")" }
 
     /*====================== Utils ======================*/
 

@@ -1,15 +1,13 @@
 /*=============================================== Add Open Brackets ===============================================*/
 
-import type { NodePlopAPI } from "plop"
-
 /**
  * Use as {{addOpenBrackets}}
  */
 
-export default (plop: NodePlopAPI) => {
+module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
     const { setHelper } = plop
 
-    setHelper("addOpenBrackets", (text: string) => {
+    setHelper("addOpenBrackets", () => {
         return `{{`
     })
 }
