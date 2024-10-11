@@ -4,12 +4,11 @@
     "private": true,
     "scripts": {
         "build": "cd client && yarn build",
-        "build:plop": "rm -rf plop/scripts && tsc --p ./plop/tsconfig.json",
         "install": "cd client && yarn",
         "server": "tsx server/index.ts",
         "client": "cd client && yarn dev",
         "dev": "concurrently --kill-others 'yarn server' 'yarn client'",
-        "plop": "yarn build:plop && plop --plopfile 'plop/scripts/plopfile.mjs'",
+        "plop": "plop --plopfile 'plop/plopfile.js'",
         "plop:c": "yarn plop component",
         "plop:sc": "yarn plop single-component",
         "plop:p": "yarn plop page",
