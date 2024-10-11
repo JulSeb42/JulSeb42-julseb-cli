@@ -5,7 +5,6 @@ import {
     packageManagers,
     packageManagersNames,
     REPOS_BASE_URL,
-    BASE_PATH,
 } from "../utils/constants.js"
 import { replaceProjectNameModifyFullStack } from "../utils/replace-project-name-fullstack.js"
 import { copyFullStackEnv } from "../utils/copy-env.js"
@@ -144,7 +143,6 @@ export default (plop: NodePlopAPI) => {
                 data?.switch === false
             ) {
                 actions.push(
-                    "Removing the theme switch",
                     ...addCommandPrefix(projectName, [
                         {
                             type: "runCommand",
@@ -152,20 +150,19 @@ export default (plop: NodePlopAPI) => {
                                 "rm -rf src/App.tsx src/main.tsx src/components/layouts/Page.tsx",
                         },
                     ]),
-
                     {
                         type: "add",
-                        templateFile: `${BASE_PATH}/templates/react-client/App.hbs`,
+                        templateFile: "../templates/react-client/App.hbs",
                         path: `${projectPath}/src/App.tsx`,
                     },
                     {
                         type: "add",
-                        templateFile: `${BASE_PATH}/templates/react-client/App.hbs`,
+                        templateFile: "../templates/react-client/App.hbs",
                         path: `${projectPath}/src/main.tsx`,
                     },
                     {
                         type: "add",
-                        templateFile: `${BASE_PATH}/templates/react-client/Page.hbs`,
+                        templateFile: "../templates/react-client/Page.hbs",
                         path: `${projectPath}/src/components/layouts/Page.tsx`,
                     }
                 )
@@ -218,16 +215,18 @@ export default (plop: NodePlopAPI) => {
                     template: "npm run",
                     pattern: /(yarn)/g,
                 })
+
+                // TODO: Add replace yarn in readme
             }
 
             actions.push(
-                "Start install...",
-                {
-                    type: "runCommand",
-                    command: `cd ${projectName} && ${packageManager?.name} ${packageManager?.installCommand}`,
-                },
-                { type: "runCommand", command: `cd ${projectName}` },
-                `All good!\nNow just type \`cd ${projectName}\` and have fun 🚀`
+                ...[
+                    "Start install...",
+                    {
+                        type: "runCommand",
+                        command: `cd ${projectName} && ${packageManager?.name} ${packageManager?.installCommand}`,
+                    },
+                ]
             )
 
             return actions

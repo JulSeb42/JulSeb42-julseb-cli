@@ -4,7 +4,6 @@ export const projectTypes = [
     // { name: "react-graphql", alias: "React + GraphQL API" },
     { name: "react-client", alias: "React (client only)" },
 ];
-export const BASE_PATH = process.cwd();
 export const packageManagers = [
     {
         name: "npm",
