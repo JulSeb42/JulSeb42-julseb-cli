@@ -1,6 +1,6 @@
 /*=============================================== Generate model & type ===============================================*/
 
-import { BASE_SERVER_PATH, BASE_SHARED_PATH } from "../utils"
+const { BASE_SERVER_PATH, BASE_SHARED_PATH } = require("../utils")
 
 module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
     const { setGenerator } = plop

@@ -1,6 +1,6 @@
 /*=============================================== Generate single file component ===============================================*/
 
-import { BASE_CLIENT_PATH } from "../utils"
+const { BASE_CLIENT_PATH } = require("../utils")
 
 module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
     const { setGenerator } = plop

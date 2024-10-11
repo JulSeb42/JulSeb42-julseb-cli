@@ -1,6 +1,6 @@
 /*=============================================== Generate TS type ===============================================*/
 
-import { BASE_SHARED_PATH, BASE_CLIENT_PATH } from "../utils"
+const { BASE_SHARED_PATH, BASE_CLIENT_PATH } = require("../utils")
 
 module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
     const { setGenerator } = plop

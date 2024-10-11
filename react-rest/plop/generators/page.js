@@ -1,7 +1,7 @@
 /*=============================================== Generate page ===============================================*/
 
-import { toKebabCase, toTitleCase } from "@julseb-lib/utils"
-import { generatePageRoute, BASE_CLIENT_PATH } from "../utils"
+const { toKebabCase, toTitleCase } = require("@julseb-lib/utils")
+const { generatePageRoute, BASE_CLIENT_PATH } = require("../utils")
 
 module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
     const { setGenerator } = plop
