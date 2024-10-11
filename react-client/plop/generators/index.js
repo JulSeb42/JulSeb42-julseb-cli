@@ -1,13 +1,6 @@
 /*=============================================== Exports ===============================================*/
 
-const generateComponent = require("./component")
-const generatePage = require("./page")
-const generateSingleComponent = require("./single-component")
-const generateType = require("./type")
-
-module.exports = {
-    generateComponent,
-    generatePage,
-    generateSingleComponent,
-    generateType,
-}
+export { default as generateComponent } from "./component.js"
+export { default as generatePage } from "./page.js"
+export { default as generateSingleComponent } from "./single-component.js"
+export { default as generateType } from "./type.js"

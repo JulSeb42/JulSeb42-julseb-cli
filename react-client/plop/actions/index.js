@@ -1,7 +1,3 @@
 /*=============================================== Exports ===============================================*/
 
-const runCommand = require("./run-command")
-
-module.exports = {
-    runCommand,
-}
+export { default as runCommand } from "./run-command.js"

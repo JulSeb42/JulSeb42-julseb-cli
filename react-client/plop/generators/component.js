@@ -2,7 +2,7 @@
 
 import { BASE_PATH } from "../utils/index.js"
 
-module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
+export default (/** @type {import('plop').NodePlopAPI} */ plop) => {
     const { setGenerator } = plop
 
     setGenerator("component", {
@@ -49,8 +49,8 @@ module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
             {
                 type: "addMany",
                 destination: `${BASE_PATH}/components/{{ pascalCase name }}`,
-                templateFiles: "../templates/component/*.hbs",
-                base: "../templates/component",
+                templateFiles: "./templates/component/*.hbs",
+                base: "./templates/component",
             },
 
             "Exporting your new component",

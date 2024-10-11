@@ -1,8 +1,8 @@
 /*=============================================== Run command action ===============================================*/
 
-const { exec } = require("child_process")
+import { exec } from "child_process"
 
-module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
+export default (/** @type {import('plop').NodePlopAPI} */ plop) => {
     const { setActionType } = plop
 
     setActionType(

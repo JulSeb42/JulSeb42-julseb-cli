@@ -1,5 +1,5 @@
 /*=============================================== Constants ===============================================*/
 
-const BASE_PATH = "../../src"
+const BASE_PATH = "../src"
 
-module.exports = { BASE_PATH }
+export default BASE_PATH

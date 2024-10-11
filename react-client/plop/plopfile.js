@@ -1,17 +1,17 @@
 /*=============================================== Plopfile ===============================================*/
 
-const { runCommand } = require("./actions")
-const {
+import { runCommand } from "./actions/index.js"
+import {
     generateComponent,
     generatePage,
     generateSingleComponent,
     generateType,
-} = require("./generators")
-const {
+} from "./generators/index.js"
+import {
     surroundBrackets,
     addOpenBrackets,
     addClosingBrackets,
-} = require("./utils")
+} from "./utils/index.js"
 
 export default (/** @type {import('plop').NodePlopAPI} */ plop) => {
     /*====================== Actions ======================*/

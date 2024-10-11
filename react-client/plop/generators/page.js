@@ -3,7 +3,7 @@
 import { toKebabCase, toTitleCase } from "@julseb-lib/utils"
 import { BASE_PATH } from "../utils/index.js"
 
-module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
+export default (/** @type {import('plop').NodePlopAPI} */ plop) => {
     const { setGenerator } = plop
 
     setGenerator("page", {

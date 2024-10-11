@@ -4,7 +4,7 @@
  * Use as {{addClosingBrackets}}
  */
 
-module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
+export default (/** @type {import('plop').NodePlopAPI} */ plop) => {
     const { setHelper } = plop
 
     setHelper("addClosingBrackets", () => {

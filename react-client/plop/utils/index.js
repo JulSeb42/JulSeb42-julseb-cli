@@ -1,13 +1,6 @@
 /*=============================================== Exports ===============================================*/
 
-const { BASE_PATH } = require("./constants")
-const surroundBrackets = require("./surround-brackets")
-const addOpenBrackets = require("./addOpenBrackets")
-const addClosingBrackets = require("./addClosingBrackets")
-
-module.exports = {
-    BASE_PATH,
-    surroundBrackets,
-    addOpenBrackets,
-    addClosingBrackets,
-}
+export { default as BASE_PATH } from "./constants.js"
+export { default as surroundBrackets } from "./surround-brackets.js"
+export { default as addOpenBrackets } from "./addOpenBrackets.js"
+export { default as addClosingBrackets } from "./addClosingBrackets.js"
