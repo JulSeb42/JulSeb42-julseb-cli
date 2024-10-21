@@ -31,7 +31,7 @@ export default (/** @type {import('plop').NodePlopAPI} */ plop) => {
             {
                 type: "add",
                 path: `${BASE_PATH}/components/{{ pascalCase name }}.tsx`,
-                templateFile: "../templates/single-component.hbs",
+                templateFile: "./templates/single-component.hbs",
             },
             "Exporting your new component",
             {

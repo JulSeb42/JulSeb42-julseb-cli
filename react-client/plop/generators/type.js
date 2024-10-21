@@ -28,7 +28,7 @@ export default (/** @type {import('plop').NodePlopAPI} */ plop) => {
                 {
                     type: "add",
                     path: `${BASE_PATH}/types/${fileNameAdd}`,
-                    templateFile: `../templates/types/${
+                    templateFile: `./templates/types/${
                         data?.interface ? "interface" : "type"
                     }.hbs`,
                 },

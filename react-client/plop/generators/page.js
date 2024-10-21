@@ -24,7 +24,7 @@ export default (/** @type {import('plop').NodePlopAPI} */ plop) => {
                 type: "input",
                 name: "path",
                 message: "Enter url path",
-                default: data => toKebabCase(data.name),
+                default: data => `/${toKebabCase(data.name)}`,
             },
             {
                 type: "confirm",
@@ -42,7 +42,7 @@ export default (/** @type {import('plop').NodePlopAPI} */ plop) => {
                     path: data?.multi
                         ? `${BASE_PATH}/pages/{{ pascalCase name }}/{{ pascalCase name }}.tsx`
                         : `${BASE_PATH}/pages/{{ pascalCase name }}.tsx`,
-                    templateFile: "../templates/page/page-file.hbs",
+                    templateFile: "./templates/page/page-file.hbs",
                 },
                 "Importing your new page in routes file",
                 {
@@ -76,7 +76,7 @@ export default (/** @type {import('plop').NodePlopAPI} */ plop) => {
                         {
                             type: "add",
                             path: `${BASE_PATH}/pages/{{ pascalCase name }}/index.ts`,
-                            templateFile: "../templates/page/page-index.hbs",
+                            templateFile: "./templates/page/page-index.hbs",
                         },
                     ]
                 )
