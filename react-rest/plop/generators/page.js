@@ -24,7 +24,7 @@ module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
                 type: "input",
                 name: "path",
                 message: "Enter url path",
-                default: data => toKebabCase(data.name),
+                default: data => `/${toKebabCase(data.name)}`,
             },
             {
                 type: "confirm",
@@ -49,7 +49,7 @@ module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
                     path: data?.multi
                         ? `${BASE_CLIENT_PATH}/pages/{{ pascalCase name }}/{{ pascalCase name }}.tsx`
                         : `${BASE_CLIENT_PATH}/pages/{{ pascalCase name }}.tsx`,
-                    templateFile: "../templates/page/page-file.hbs",
+                    templateFile: "./templates/page/page-file.hbs",
                 },
                 "Importing your new page in routes file",
                 {
@@ -71,7 +71,7 @@ module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
                     type: "modify",
                     path: `${BASE_CLIENT_PATH}/routes/paths.ts`,
                     template:
-                        '{{ constantCase name }}: "/{{ pathCase path }}",\n$1    ',
+                        '{{ constantCase name }}: "/{{ pathCase path }}",\n\t$1    ',
                     pattern: /(\/\* prepend path - do not remove \*\/)/g,
                 },
             ]
@@ -83,7 +83,7 @@ module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
                         {
                             type: "add",
                             path: `${BASE_CLIENT_PATH}/pages/{{ pascalCase name }}/index.ts`,
-                            templateFile: "../templates/page/page-index.hbs",
+                            templateFile: "./templates/page/page-index.hbs",
                         },
                     ]
                 )

@@ -14,7 +14,7 @@ module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
             {
                 type: "add",
                 path: `${BASE_SERVER_PATH}/models/{{ pascalCase name }}.model.ts`,
-                templateFile: "../templates/model.hbs",
+                templateFile: "./templates/model.hbs",
             },
             {
                 type: "modify",
@@ -25,7 +25,7 @@ module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
             {
                 type: "add",
                 path: `${BASE_SHARED_PATH}/types/{{ pascalCase name }}.type.ts`,
-                templateFile: "../templates/types/type.hbs",
+                templateFile: "./templates/types/type.hbs",
             },
             {
                 type: "modify",

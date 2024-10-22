@@ -49,8 +49,8 @@ module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
             {
                 type: "addMany",
                 destination: `${BASE_CLIENT_PATH}/components/{{ pascalCase name }}`,
-                templateFiles: "../templates/component/*.hbs",
-                base: "../templates/component",
+                templateFiles: "./templates/component/*.hbs",
+                base: "./templates/component",
             },
 
             "Exporting your new component",

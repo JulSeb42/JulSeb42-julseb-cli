@@ -35,7 +35,9 @@ module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
                 {
                     type: "add",
                     path: `${BASE_SHARED_PATH}/types/${fileNameAdd}`,
-                    templateFile: "../templates/type.hbs",
+                    templateFile: `./templates/types/${
+                        data?.interface ? "interface" : "type"
+                    }.hbs`,
                 },
                 {
                     type: "modify",
@@ -49,7 +51,9 @@ module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
                 {
                     type: "add",
                     path: `${BASE_CLIENT_PATH}/types/${fileNameAdd}`,
-                    templateFile: "../templates/type.hbs",
+                    templateFile: `./templates/types/${
+                        data?.interface ? "interface" : "type"
+                    }.hbs`,
                 },
                 {
                     type: "modify",

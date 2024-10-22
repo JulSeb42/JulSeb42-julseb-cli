@@ -23,7 +23,7 @@ module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
             {
                 type: "add",
                 path: `${BASE_SERVER_PATH}/routes/{{ kebabCase name }}.ts`,
-                templateFile: "../templates/route/route.hbs",
+                templateFile: "./templates/route/route.hbs",
             },
             "Importing your new route to all the other routes",
             {
@@ -45,7 +45,7 @@ module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
             {
                 type: "add",
                 path: `${BASE_SHARED_PATH}/types/{{ pascalCase name }}.interface.ts`,
-                templateFile: "../templates/types/interface.hbs",
+                templateFile: "./templates/types/interface.hbs",
             },
             "Exporting your new interface",
             {
@@ -58,7 +58,7 @@ module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
             {
                 type: "add",
                 path: `${BASE_SERVER_PATH}/models/{{ pascalCase name }}.model.ts`,
-                templateFile: "../templates/model.hbs",
+                templateFile: "./templates/model.hbs",
             },
             "Exporting the new model",
             {
@@ -86,7 +86,7 @@ module.exports = (/** @type {import('plop').NodePlopAPI} */ plop) => {
             {
                 type: "add",
                 path: `${BASE_CLIENT_PATH}/api/{{ kebabCase name }}.service.ts`,
-                templateFile: "../templates/route/service.hbs",
+                templateFile: "./templates/route/service.hbs",
             },
             "Exporting the new service",
             {

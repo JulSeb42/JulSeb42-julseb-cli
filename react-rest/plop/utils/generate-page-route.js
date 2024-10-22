@@ -14,5 +14,5 @@ module.exports = pageType => {
         element = elementComp
     }
 
-    return `{\n        path: ${pathName},\n        element: ${element}\n    },\n$1    `
+    return `{\n        path: ${pathName},\n        element: ${element}\n    },\n\t$1    `
 }
