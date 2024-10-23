@@ -19,6 +19,7 @@ export const PATHS = {
     EDIT_ACCOUNT: "/my-account/edit",
     EDIT_PASSWORD: "/my-account/edit-password",
 
-    ADMIN: "/admin",
-	/* prepend path - do not remove */    
+    ADMIN_HOME: "/admin",
+	ADMIN_USERS: "/admin/users",
+	/* prepend path - do not remove */
 }

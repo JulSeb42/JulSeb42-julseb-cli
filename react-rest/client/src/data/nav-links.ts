@@ -1,9 +1,9 @@
 /*=============================================== NavLinks ===============================================*/
 
 import { PATHS } from "routes"
-import type { INavLink } from "types"
+import type { INavLink, INavLinkExtended } from "types"
 
-export const navLinks: Array<INavLink> = [
+export const navLinks: Array<INavLinkExtended> = [
     { text: "Homepage", to: PATHS.ROOT, type: "none", role: "user", end: true },
     { text: "All users", to: PATHS.USERS, type: "none", role: "user" },
 
@@ -16,5 +16,10 @@ export const navLinks: Array<INavLink> = [
         type: "protected",
         role: "user",
     },
-    { text: "Admin", to: PATHS.ADMIN, type: "protected", role: "admin" },
+    { text: "Admin", to: PATHS.ADMIN_HOME, type: "protected", role: "admin" },
+]
+
+export const adminNavLinks: Array<INavLink> = [
+    { text: "Home", to: PATHS.ADMIN_HOME },
+    { text: "Users", to: PATHS.ADMIN_USERS },
 ]

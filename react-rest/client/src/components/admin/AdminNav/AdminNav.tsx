@@ -1,9 +1,8 @@
 /*=============================================== AdminNav component ===============================================*/
 
 import { StyledAdminNav } from "./styles"
-import type { IAdminNav } from "./types"
 
-export const AdminNav: FC<IAdminNav> = ({  }) => {
+export const AdminNav = () => {
     return (
         <StyledAdminNav>
             

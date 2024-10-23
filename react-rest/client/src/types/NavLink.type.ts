@@ -5,7 +5,11 @@ import type { UserRole } from "types"
 
 export type INavLink = LibButtonLinkRequired & {
     text: string
+
+    end?: boolean
+}
+
+export type INavLinkExtended = INavLink & {
     type: "none" | "protected" | "anon"
     role: UserRole
-    end?: boolean
 }

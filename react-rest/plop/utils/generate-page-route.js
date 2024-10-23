@@ -1,18 +1,18 @@
 /*=============================================== Generate page route ===============================================*/
 
 module.exports = (pageType, isAdmin) => {
-    const pathName = "PATHS.{{ constantCase name }}"
+    const pathName = `PATHS.${isAdmin ? "ADMIN_" : ""}{{ constantCase name }}`
     const elementComp = "<{{ pascalCase name }} />"
 
     let element
 
     if (pageType === "protected" || isAdmin) {
-        element = `(\n            <ProtectedRoute>\n                ${elementComp}\n            </ProtectedRoute>\n        ),`
+        element = `(\n\t\t\t<ProtectedRoute>\n\t\t\t\t${elementComp}\n\t\t\t</ProtectedRoute>\n\t\t),`
     } else if (pageType === "anon") {
-        element = `(\n            <AnonRoute>\n                ${elementComp}\n            </AnonRoute>\n        ),`
+        element = `(\n\t\t\t<AnonRoute>\n\t\t\t\t${elementComp}\n\t\t\t</AnonRoute>\n\t\t),`
     } else {
         element = elementComp
     }
 
-    return `{\n        path: ${pathName},\n        element: ${element}\n    },\n\t$1    `
+    return `{\n\t\tpath: ${pathName},\n\t\telement: ${element}\n\t},\n$1\t`
 }

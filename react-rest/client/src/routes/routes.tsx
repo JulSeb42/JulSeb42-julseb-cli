@@ -17,6 +17,7 @@ import {
 } from "pages/auth"
 import { MyAccount, EditAccount, EditPassword } from "pages/account"
 import { Admin } from "pages/admin/Admin"
+import { Users } from "pages/admin/Users"
 /* prepend import - do not remove */
 
 type Route = {
@@ -113,16 +114,24 @@ export const routes: Array<Route> = [
             </ProtectedRoute>
         ),
     },
-    
+
     {
-        path: PATHS.ADMIN,
+        path: PATHS.ADMIN_HOME,
         element: (
             <ProtectedRoute>
                 <Admin />
             </ProtectedRoute>
         ),
     },
-	/* prepend route - do not remove */    
+    {
+        path: PATHS.ADMIN_USERS,
+        element: (
+            <ProtectedRoute>
+                <Users />
+            </ProtectedRoute>
+        ),
+    },
+    /* prepend route - do not remove */
 
     ...redirects,
 ]
