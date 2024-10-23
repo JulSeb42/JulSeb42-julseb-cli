@@ -4,24 +4,43 @@ import { useEffect, useState } from "react"
 import { NavLink } from "react-router-dom"
 import { uuid, Skeleton, ButtonIcon, useLibTheme } from "@julseb-lib/react"
 import { useAuthContext } from "context"
-import { baseLinks, anonLinks, protectedLinks } from "data"
+import { navLinks } from "data"
 import type { INavLink } from "types"
 
 export const Nav = () => {
-    const { isLoggedIn, logoutUser, isLoading } = useAuthContext()
-    const [allLinks, setAllLinks] = useState<Array<INavLink>>(baseLinks)
+    const { isLoggedIn, logoutUser, isLoading, user } = useAuthContext()
+    const [allLinks, setAllLinks] = useState<Array<INavLink>>(undefined as any)
 
     const { toggleTheme, selectedTheme } = useLibTheme()
 
     useEffect(() => {
         if (isLoggedIn) {
             setAllLinks([
-                ...baseLinks,
-                ...protectedLinks,
-                { text: "Logout", onClick: logoutUser },
+                ...navLinks.filter(link => {
+                    if (user?.role === "admin")
+                        return (
+                            link.type === "protected" ||
+                            link.type === "none" ||
+                            link.role === "admin"
+                        )
+                    return (
+                        (link.type === "protected" || link.type === "none") &&
+                        link.role !== "admin"
+                    )
+                }),
+                {
+                    text: "Logout",
+                    onClick: logoutUser,
+                    type: "protected",
+                    role: "user",
+                },
             ])
         } else {
-            setAllLinks([...baseLinks, ...anonLinks])
+            setAllLinks(
+                navLinks.filter(
+                    link => link.type === "anon" || link.type === "none"
+                )
+            )
         }
     }, [isLoggedIn])
 

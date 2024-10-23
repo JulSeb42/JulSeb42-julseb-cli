@@ -29,7 +29,7 @@ export const UserHeader: FC<IUserHeader> = ({
     if (user)
         return (
             <Flexbox alignItems="center" gap="xs">
-                {user && <UserAvatar user={user} isLoading={isLoading} />}
+                <UserAvatar user={user} isLoading={isLoading} />
                 <Text tag="h1">{title}</Text>
             </Flexbox>
         )

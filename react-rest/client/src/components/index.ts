@@ -8,4 +8,5 @@ export * from "components/user/UserAvatar"
 export * from "components/user/UserHeader"
 export * from "components/user/UserCard"
 export * from "components/user/UserCardSkeleton"
+export * from "components/admin/AdminPage"
 /* prepend - do not remove */
