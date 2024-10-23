@@ -30,11 +30,12 @@ const realUser = {
     password: hash,
     verified: true,
     verifyToken: getRandomString(20),
+    role: "admin",
 }
 
 const fakeUsers = generateNumbers(0, 98).map(() => {
-    const sex = getRandom(["male", "female"])
-    const fullName = faker.person.fullName(sex)
+    const gender = getRandom(["male", "female"])
+    const fullName = faker.person.fullName(gender)
 
     return {
         fullName,
@@ -42,7 +43,8 @@ const fakeUsers = generateNumbers(0, 98).map(() => {
         password: hash,
         verified: true,
         verifyToken: getRandomString(20),
-        avatar: getRandomAvatar(sex),
+        avatar: getRandomAvatar(gender),
+        role: "user",
     }
 })
 

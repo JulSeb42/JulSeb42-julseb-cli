@@ -11,6 +11,7 @@ const userSchema = new Schema(
         verifyToken: String,
         resetToken: String,
         avatar: String,
+        role: { type: String, enum: ["user", "admin"], default: "user" },
     },
     { timestamps: true }
 )

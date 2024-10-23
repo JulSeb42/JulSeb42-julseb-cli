@@ -1,5 +1,8 @@
 /*=============================================== User ===============================================*/
 
+export const userRoles = ["user", "admin"]
+export type UserRole = keyof typeof userRoles
+
 export type User = {
     _id: string
     email: string
@@ -9,6 +12,7 @@ export type User = {
     verifyToken: string
     resetToken?: string
     avatar: string
+    role: UserRole
 }
 
 export type EditAccountFormData = Pick<User, "fullName" | "avatar">

@@ -1,7 +1,7 @@
 /*=============================================== User model ===============================================*/
 
 import { Schema, model } from "mongoose"
-import type { User } from "../../shared/types"
+import { userRoles, type User, type UserRole } from "../../shared/types"
 
 const userSchema = new Schema<User>(
     {
@@ -12,6 +12,11 @@ const userSchema = new Schema<User>(
         verifyToken: String,
         resetToken: String,
         avatar: String,
+        role: {
+            type: String,
+            enum: userRoles,
+            default: "user" as UserRole,
+        },
     },
     { timestamps: true }
 )
