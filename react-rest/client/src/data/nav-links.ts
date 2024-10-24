@@ -1,7 +1,7 @@
 /*=============================================== NavLinks ===============================================*/
 
 import { PATHS } from "routes"
-import type { INavLink, INavLinkExtended } from "types"
+import type { INavLinkExtended, INavLinkAdmin } from "types"
 
 export const navLinks: Array<INavLinkExtended> = [
     { text: "Homepage", to: PATHS.ROOT, type: "none", role: "user", end: true },
@@ -19,7 +19,11 @@ export const navLinks: Array<INavLinkExtended> = [
     { text: "Admin", to: PATHS.ADMIN_HOME, type: "protected", role: "admin" },
 ]
 
-export const adminNavLinks: Array<INavLink> = [
-    { text: "Home", to: PATHS.ADMIN_HOME },
-    { text: "Users", to: PATHS.ADMIN_USERS },
+export const adminNavLinks: Array<INavLinkAdmin> = [
+    { text: "Home", to: PATHS.ADMIN_HOME, icon: "home", end: true },
+    { text: "Users", to: PATHS.ADMIN_USERS, icon: "user" },
+]
+
+export const adminBottomLinks: Array<INavLinkAdmin> = [
+    { text: "Back to app", to: PATHS.ROOT, icon: "link-external", blank: true },
 ]

@@ -3,7 +3,7 @@
 import { Helmet } from "@julseb-lib/react"
 import { SITE_DATA } from "shared"
 import { AdminNav } from "./AdminNav"
-import { AdminWrapper } from "./AdminWrapper/AdminWrapper"
+import { AdminMain } from "./AdminMain"
 
 export const AdminPage: FC<IAdminPage> = ({ title, children }) => {
     return (
@@ -16,8 +16,9 @@ export const AdminPage: FC<IAdminPage> = ({ title, children }) => {
                 type={SITE_DATA.TYPE}
                 language={SITE_DATA.LANGUAGE}
             />
+
             <AdminNav />
-            <AdminWrapper>{children}</AdminWrapper>
+            <AdminMain>{children}</AdminMain>
         </>
     )
 }

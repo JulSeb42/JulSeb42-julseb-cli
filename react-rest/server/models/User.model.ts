@@ -12,7 +12,7 @@ const userSchema = new Schema<User>(
         verifyToken: String,
         resetToken: String,
         avatar: String,
-        role: { type: String, enum: userRoles, default: "user" },
+        role: { type: String, enum: Object.keys(userRoles), default: "user" },
     },
     { timestamps: true }
 )
