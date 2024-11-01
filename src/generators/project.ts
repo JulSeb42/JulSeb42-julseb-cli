@@ -175,15 +175,6 @@ export default (plop: NodePlopAPI) => {
                         }
                     )
 
-                    // if (projectType === projectTypes[1].name) {
-                    //     actions.push({
-                    //         type: "modify",
-                    //         path: `${projectPath}/seed/seed.ts`,
-                    //         template: "npm run",
-                    //         pattern: /(yarn)/g,
-                    //     })
-                    // }
-
                     actions.push("Replace install command in package.json", {
                         type: "modify",
                         path: `${projectPath}/package.json`,
