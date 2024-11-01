@@ -1,10 +1,10 @@
 import { toKebabCase, toTitleCase } from "@julseb-lib/utils";
 import { addPathPrefix } from "./add-command-prefix.js";
-export function replaceProjectNameModifyFullStack(repoName, projectName) {
+export function replaceProjectNameModifyFullStack(projectType, projectName) {
     // ? Replace vite-rest by toKebabCase(data.projectName) in server package.json
     // ? Replace client-vite-rest by toKebabCase(`client-${projectName}`) in client package.json
     // ? Replace MONGODB_URI vite-rest in server/consts
-    // ? Replace repoName by toTitleCase(data.projectName) in shared site-data
+    // ? Replace projectType by toTitleCase(data.projectName) in shared site-data
     // ? Replace cloudinary config projectName
     // ? Replace index.html client title for projectName
     const paths = [
@@ -12,43 +12,43 @@ export function replaceProjectNameModifyFullStack(repoName, projectName) {
             type: "modify",
             path: "package.json",
             template: "{{ kebabCase projectName }}",
-            pattern: repoName,
+            pattern: projectType,
         },
         {
             type: "modify",
             path: "client/package.json",
             template: "client-{{ kebabCase projectName }}",
-            pattern: `client-${repoName}`,
+            pattern: `client-${projectType}`,
         },
         {
             type: "modify",
             path: `server/utils/consts.ts`,
             template: "{{ kebabCase projectName }}",
-            pattern: repoName,
+            pattern: projectType,
         },
         {
             type: "modify",
             path: `server/config/cloudinary.config.ts`,
             template: "{{ kebabCase projectName }}",
-            pattern: repoName,
+            pattern: projectType,
         },
         {
             type: "modify",
             path: "client/index.html",
             template: toTitleCase(projectName),
-            pattern: repoName,
+            pattern: projectType,
         },
         {
             type: "modify",
             path: `shared/site-data.ts`,
             template: toTitleCase(projectName),
-            pattern: repoName,
+            pattern: projectType,
         },
         {
             type: "modify",
             path: "seed/seed.ts",
             template: toKebabCase(projectName),
-            pattern: repoName,
+            pattern: projectType,
         },
     ];
     return addPathPrefix(paths);

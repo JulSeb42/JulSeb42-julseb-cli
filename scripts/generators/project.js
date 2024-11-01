@@ -104,53 +104,42 @@ export default (plop) => {
                         path: `${pathToReplace}/src/components/layouts/Page.tsx`,
                     });
                 }
-            }
-            if ((packageManager === null || packageManager === void 0 ? void 0 : packageManager.name) === "npm") {
-                actions.push("Replace all instances of yarn by npm", {
-                    type: "modify",
-                    path: `${projectPath}/package.json`,
-                    template: "npm run",
-                    pattern: /(yarn)/g,
-                }, {
-                    type: "modify",
-                    path: `${projectPath}/plop/plopfile.ts`,
-                    template: "npm run",
-                    pattern: /(yarn)/g,
-                });
-                if (projectType === projectTypes[1].name) {
+                if ((packageManager === null || packageManager === void 0 ? void 0 : packageManager.name) === "npm") {
+                    actions.push("Replace all instances of yarn by npm", {
+                        type: "modify",
+                        path: `${projectPath}/package.json`,
+                        template: "npm run",
+                        pattern: /(yarn)/g,
+                    }, {
+                        type: "modify",
+                        path: `${projectPath}/plop/plopfile.ts`,
+                        template: "npm run",
+                        pattern: /(yarn)/g,
+                    });
+                    actions.push("Replace install command in package.json", {
+                        type: "modify",
+                        path: `${projectPath}/package.json`,
+                        template: '"install": "cd client && npm install"',
+                        pattern: /("install": "cd client && npm run")/g,
+                    });
+                    actions.push("Replace all examples with yarn in README", {
+                        type: "modify",
+                        path: `${projectPath}/README.md`,
+                        template: "`npm install`",
+                        pattern: "`yarn`",
+                    });
                     actions.push({
                         type: "modify",
-                        path: `${projectPath}/seed/seed.ts`,
+                        path: `${projectPath}/README.md`,
                         template: "npm run",
                         pattern: /(yarn)/g,
                     });
                 }
-                actions.push("Replace install command in package.json", {
-                    type: "modify",
-                    path: `${projectPath}/package.json`,
-                    template: '"install": "cd client && npm install"',
-                    pattern: /("install": "cd client && npm run")/g,
-                });
-                actions.push("Replace all examples with yarn in README", {
-                    type: "modify",
-                    path: `${projectPath}/README.md`,
-                    template: "`npm install`",
-                    pattern: "`yarn`",
-                });
-                actions.push({
-                    type: "modify",
-                    path: `${projectPath}/README.md`,
-                    template: "npm run",
-                    pattern: /(yarn)/g,
-                });
             }
-            actions.push(...[
-                "Start install...",
-                {
-                    type: "runCommand",
-                    command: `cd ${projectName} && ${packageManager === null || packageManager === void 0 ? void 0 : packageManager.name} ${packageManager === null || packageManager === void 0 ? void 0 : packageManager.installCommand}`,
-                },
-            ]);
+            actions.push("Start install...", {
+                type: "runCommand",
+                command: `cd ${projectName} && ${packageManager === null || packageManager === void 0 ? void 0 : packageManager.name} ${packageManager === null || packageManager === void 0 ? void 0 : packageManager.installCommand}`,
+            });
             actions.push("Init git", {
                 type: "runCommand",
                 command: `cd ${projectName} && git init && git add . && git commit -m "Initial commit"`,
