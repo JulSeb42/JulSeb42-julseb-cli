@@ -15,11 +15,11 @@ export default (plop: NodePlopAPI) => {
                         stdout: string,
                         stderr: string
                     ) => {
-                        // console.log({ config })
+                        // console.log(config)
 
-                        // if (config.message) {
-                        //     console.log(config.message)
-                        // }
+                        if (config.message) {
+                            console.log(config.message)
+                        }
 
                         if (error) {
                             console.error(error.message)

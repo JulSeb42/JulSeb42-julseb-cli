@@ -1,13 +1,18 @@
+import chalk from "chalk";
+import figlet from "figlet";
 import runCommandAction from "./actions/run-command.js";
 import projectGenerator from "./generators/project.js";
 import surroundBracketsHelper from "./helpers/surroundBrackets.js";
 import addOpenBrackets from "./helpers/addOpenBrackets.js";
 import addClosingBrackets from "./helpers/addClosingBrackets.js";
 const plop = (plop) => {
-    // Function to run commands inside the terminal
+    /*====================== Greetings ======================*/
+    console.log(chalk.blueBright(figlet.textSync("JulSeb CLI", { horizontalLayout: "full" })));
+    /*====================== Actions ======================*/
     runCommandAction(plop);
+    /*====================== Generators ======================*/
     projectGenerator(plop); // plop:p
-    // Helpers
+    /*====================== Helpers ======================*/
     surroundBracketsHelper(plop); // Use as {{surroundBrackets "pascalCase name" }}
     addOpenBrackets(plop); // Use as {{ addOpenBrackets }}
     addClosingBrackets(plop); // Use as {{ addClosingBrackets }}

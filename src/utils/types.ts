@@ -16,6 +16,7 @@ export type PackageManager = {
 export type ActionCommandType = {
     type: "runCommand"
     command: string
+    message?: string
 }
 
 export type ExtendedActionTypes =
@@ -25,7 +26,8 @@ export type ExtendedActionTypes =
     | AddManyActionConfig
     | ModifyActionConfig
     | AppendActionConfig
-    | CustomActionFunction | string
+    | CustomActionFunction
+    | string
 
 export type PlopCaseModifier =
     | "camelCase"

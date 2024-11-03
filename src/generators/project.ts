@@ -1,3 +1,4 @@
+// @ts-ignore
 import type { NodePlopAPI, ActionType } from "plop"
 import { toKebabCase } from "@julseb-lib/utils"
 import {
@@ -21,6 +22,7 @@ export default (plop: NodePlopAPI) => {
                 type: "input",
                 message: "Enter project's name",
                 name: "projectName",
+                default: "hello-world",
             },
             {
                 type: "list",
@@ -63,7 +65,6 @@ export default (plop: NodePlopAPI) => {
             )
 
             actions.push(
-                "Cloning your new project",
                 {
                     type: "runCommand",
                     command: `mkdir ${projectName}`,
@@ -125,15 +126,12 @@ export default (plop: NodePlopAPI) => {
                 }
 
                 if (packageManager?.name === "npm") {
-                    actions.push(
-                        "Replace all instances of yarn by npm",
-                        {
-                            type: "modify",
-                            path: `${projectPath}/package.json`,
-                            template: "npm run",
-                            pattern: /(yarn)/g,
-                        },
-                    )
+                    actions.push("Replace all instances of yarn by npm", {
+                        type: "modify",
+                        path: `${projectPath}/package.json`,
+                        template: "npm run",
+                        pattern: /(yarn)/g,
+                    })
 
                     actions.push("Replace install command in package.json", {
                         type: "modify",
@@ -192,21 +190,12 @@ export default (plop: NodePlopAPI) => {
                 }
 
                 if (packageManager?.name === "npm") {
-                    actions.push(
-                        "Replace all instances of yarn by npm",
-                        {
-                            type: "modify",
-                            path: `${projectPath}/package.json`,
-                            template: "npm run",
-                            pattern: /(yarn)/g,
-                        },
-                        // {
-                        //     type: "modify",
-                        //     path: `${projectPath}/plop/plopfile.ts`,
-                        //     template: "npm run",
-                        //     pattern: /(yarn)/g,
-                        // }
-                    )
+                    actions.push("Replace all instances of yarn by npm", {
+                        type: "modify",
+                        path: `${projectPath}/package.json`,
+                        template: "npm run",
+                        pattern: /(yarn)/g,
+                    })
 
                     actions.push("Replace install command in package.json", {
                         type: "modify",
@@ -231,7 +220,7 @@ export default (plop: NodePlopAPI) => {
                 }
             }
 
-            actions.push("Start install...", {
+            actions.push("Installing packages...", {
                 type: "runCommand",
                 command: `cd ${projectName} && ${packageManager?.name} ${packageManager?.installCommand}`,
             })

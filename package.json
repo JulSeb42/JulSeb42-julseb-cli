@@ -1,6 +1,6 @@
 {
     "name": "@julseb-lib/julseb-cli",
-    "version": "0.0.54",
+    "version": "0.0.55",
     "description": "Repository for `julseb-cli`.",
     "main": "index.js",
     "type": "module",
@@ -9,18 +9,22 @@
         "clean:plop": "rm -rf scripts",
         "build:plop": "npm run clean:plop && tsc --p tsconfig.json",
         "clean:demo": "rm -rf hello-world",
-        "plop": "npm run build:plop && npx .",
-        "plop:local": "npm run clean:demo && cross-env NODE_OPTIONS='--import tsx' plop --plopfile=src/plopfile.ts"
+        "plop": "yarn clean:demo && npm run build:plop && npx .",
+        "plop:local": "npm run clean:demo && cross-env NODE_OPTIONS='--import tsx' plop --plopfile=src/plopfile.ts",
+        "watch": "tsc --watch"
     },
     "author": "Julien Sebag",
     "license": "MIT",
     "devDependencies": {
+        "@types/figlet": "^1.7.0",
         "cross-env": "^7.0.3",
         "tsx": "^4.19.2",
         "typescript": "^5.6.3"
     },
     "dependencies": {
         "@julseb-lib/utils": "^0.0.2",
+        "chalk": "^5.3.0",
+        "figlet": "^1.8.0",
         "minimist": "^1.2.8",
         "plop": "^4.0.1"
     },
