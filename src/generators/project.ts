@@ -22,7 +22,6 @@ export default (plop: NodePlopAPI) => {
                 type: "input",
                 message: "Enter project's name",
                 name: "projectName",
-                default: "hello-world",
             },
             {
                 type: "list",
