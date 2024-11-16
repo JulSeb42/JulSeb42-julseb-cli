@@ -157,7 +157,7 @@ export default (plop) => {
                     });
                 }
             }
-            actions.push("Installing packages...", {
+            actions.push("Installing packages, this may take a while...", {
                 type: "runCommand",
                 command: `cd ${projectName} && ${packageManager === null || packageManager === void 0 ? void 0 : packageManager.name} ${packageManager === null || packageManager === void 0 ? void 0 : packageManager.installCommand}`,
             });

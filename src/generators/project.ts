@@ -219,7 +219,7 @@ export default (plop: NodePlopAPI) => {
                 }
             }
 
-            actions.push("Installing packages...", {
+            actions.push("Installing packages, this may take a while...", {
                 type: "runCommand",
                 command: `cd ${projectName} && ${packageManager?.name} ${packageManager?.installCommand}`,
             })
