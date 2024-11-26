@@ -48,13 +48,17 @@ export default (plop: NodePlopAPI) => {
 
         actions: data => {
             const actions: (ActionType & { command?: string })[] = []
+
             const projectType = projectTypes.find(
                 type => data?.projectType === type.alias
             )?.name
+
             const cloneProject = projectTypes.find(
                 type => data?.projectType === type.alias
             )?.clone
+
             const projectName = toKebabCase(data?.projectName)
+
             const projectPath = `../${projectName}`
 
             const pathToReplace = `${process.cwd()}/${projectName}`
@@ -123,36 +127,6 @@ export default (plop: NodePlopAPI) => {
                         }
                     )
                 }
-
-                if (packageManager?.name === "npm") {
-                    actions.push("Replace all instances of yarn by npm", {
-                        type: "modify",
-                        path: `${projectPath}/package.json`,
-                        template: "npm run",
-                        pattern: /(yarn)/g,
-                    })
-
-                    actions.push("Replace install command in package.json", {
-                        type: "modify",
-                        path: `${projectPath}/package.json`,
-                        template: '"install": "cd client && npm install"',
-                        pattern: /("install": "cd client && npm run")/g,
-                    })
-
-                    actions.push("Replace all examples with yarn in README", {
-                        type: "modify",
-                        path: `${projectPath}/README.md`,
-                        template: "`npm install`",
-                        pattern: "`yarn`",
-                    })
-
-                    actions.push({
-                        type: "modify",
-                        path: `${projectPath}/README.md`,
-                        template: "npm run",
-                        pattern: /(yarn)/g,
-                    })
-                }
             }
 
             if (projectType === projectTypes[1].name) {
@@ -189,32 +163,25 @@ export default (plop: NodePlopAPI) => {
                 }
 
                 if (packageManager?.name === "npm") {
-                    actions.push("Replace all instances of yarn by npm", {
+                    actions.push("Replace all instances of npm by yarn", {
                         type: "modify",
                         path: `${projectPath}/package.json`,
-                        template: "npm run",
-                        pattern: /(yarn)/g,
+                        template: "yarn",
+                        pattern: /(npm run)/g,
                     })
 
                     actions.push("Replace install command in package.json", {
                         type: "modify",
                         path: `${projectPath}/package.json`,
-                        template: '"install": "cd client && npm install"',
-                        pattern: /("install": "cd client && npm run")/g,
+                        template: '"install": "cd client && yarn"',
+                        pattern: /("install": "cd client && yarn run")/g,
                     })
 
                     actions.push("Replace all examples with yarn in README", {
                         type: "modify",
                         path: `${projectPath}/README.md`,
-                        template: "`npm install`",
-                        pattern: "`yarn`",
-                    })
-
-                    actions.push({
-                        type: "modify",
-                        path: `${projectPath}/README.md`,
-                        template: "npm run",
-                        pattern: /(yarn)/g,
+                        template: "`yarn`",
+                        pattern: /(npm run)/g,
                     })
                 }
             }
