@@ -83,32 +83,6 @@ export default (plop) => {
                         templateFile: "../templates/react-rest/Page.hbs",
                     });
                 }
-                if ((packageManager === null || packageManager === void 0 ? void 0 : packageManager.name) === "npm") {
-                    actions.push("Replace all instances of yarn by npm", {
-                        type: "modify",
-                        path: `${projectPath}/package.json`,
-                        template: "npm run",
-                        pattern: /(yarn)/g,
-                    });
-                    actions.push("Replace install command in package.json", {
-                        type: "modify",
-                        path: `${projectPath}/package.json`,
-                        template: '"install": "cd client && npm install"',
-                        pattern: /("install": "cd client && npm run")/g,
-                    });
-                    actions.push("Replace all examples with yarn in README", {
-                        type: "modify",
-                        path: `${projectPath}/README.md`,
-                        template: "`npm install`",
-                        pattern: "`yarn`",
-                    });
-                    actions.push({
-                        type: "modify",
-                        path: `${projectPath}/README.md`,
-                        template: "npm run",
-                        pattern: /(yarn)/g,
-                    });
-                }
             }
             if (projectType === projectTypes[1].name) {
                 actions.push(...replaceProjectNameModifyClient(projectType, projectName));
@@ -131,29 +105,23 @@ export default (plop) => {
                     });
                 }
                 if ((packageManager === null || packageManager === void 0 ? void 0 : packageManager.name) === "npm") {
-                    actions.push("Replace all instances of yarn by npm", {
+                    actions.push("Replace all instances of npm by yarn", {
                         type: "modify",
                         path: `${projectPath}/package.json`,
-                        template: "npm run",
-                        pattern: /(yarn)/g,
+                        template: "yarn",
+                        pattern: /(npm run)/g,
                     });
                     actions.push("Replace install command in package.json", {
                         type: "modify",
                         path: `${projectPath}/package.json`,
-                        template: '"install": "cd client && npm install"',
-                        pattern: /("install": "cd client && npm run")/g,
+                        template: '"install": "cd client && yarn"',
+                        pattern: /("install": "cd client && yarn run")/g,
                     });
                     actions.push("Replace all examples with yarn in README", {
                         type: "modify",
                         path: `${projectPath}/README.md`,
-                        template: "`npm install`",
-                        pattern: "`yarn`",
-                    });
-                    actions.push({
-                        type: "modify",
-                        path: `${projectPath}/README.md`,
-                        template: "npm run",
-                        pattern: /(yarn)/g,
+                        template: "`yarn`",
+                        pattern: /(npm run)/g,
                     });
                 }
             }

@@ -1,15 +1,15 @@
 {
     "name": "@julseb-lib/julseb-cli",
-    "version": "0.0.57",
+    "version": "0.0.58",
     "description": "Repository for `julseb-cli`.",
     "main": "index.js",
     "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "clean:plop": "rm -rf scripts",
-        "build:plop": "npm run clean:plop && tsc --p tsconfig.json",
         "clean:demo": "rm -rf hello-world",
-        "plop": "yarn clean:demo && npm run build:plop && npx .",
+        "plop": "yarn clean:demo && npm run build && npx .",
+        "build": "npm run clean:plop && tsc --p tsconfig.json",
         "watch": "tsc --watch"
     },
     "author": "Julien Sebag",
@@ -21,6 +21,7 @@
     "dependencies": {
         "@julseb-lib/utils": "^0.0.2",
         "chalk": "^5.3.0",
+        "cli-welcome": "^3.0.0",
         "figlet": "^1.8.0",
         "minimist": "^1.2.8",
         "plop": "^4.0.1"
