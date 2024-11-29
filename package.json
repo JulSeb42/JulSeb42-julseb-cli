@@ -1,6 +1,6 @@
 {
     "name": "@julseb-lib/julseb-cli",
-    "version": "0.0.61",
+    "version": "0.0.63",
     "description": "Repository for `julseb-cli`.",
     "main": "index.js",
     "type": "module",
