@@ -14,7 +14,7 @@ const plop = (plop) => {
         color: "#000000",
         bold: true,
         clear: true,
-        version: "",
+        version: "1.0.0",
     });
     /*====================== Actions ======================*/
     runCommandAction(plop);
