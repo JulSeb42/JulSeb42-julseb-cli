@@ -81,6 +81,10 @@ export default (plop) => {
                         type: "add",
                         path: `${pathToReplace}/client/src/components/layouts/Page.tsx`,
                         templateFile: "../templates/react-rest/Page.hbs",
+                    }, {
+                        type: "add",
+                        path: `${pathToReplace}/client/src/components/layouts/Nav.tsx`,
+                        templateFile: "../templates/react-rest/Nav.hbs",
                     });
                 }
             }
