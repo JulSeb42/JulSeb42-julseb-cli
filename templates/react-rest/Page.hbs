@@ -1,61 +1,40 @@
 /*=============================================== Page ===============================================*/
 
-import { PageLayout } from "@julseb-lib/react"
+import { PageLoading, Wrapper, Main } from "@julseb-lib/react"
+import { Header } from "./Header"
+import { BaseLayout, type IBaseLayout } from "./BaseLayout"
 import type { LibMainSize } from "@julseb-lib/react/types"
-import type { ILibPageLayout } from "@julseb-lib/react/component-props"
-import { SITE_DATA } from "shared"
-import { PATHS } from "routes"
-import { useAuthContext } from "context"
-import { baseLinks, anonLinks, protectedLinks } from "data"
 
 export const Page: FC<IPage> = ({
     children,
     isLoading,
-    title,
-    description,
-    keywords,
-    cover,
-    mainWidth = "default",
+    mainSize,
+    noWrapper,
+    ...rest
 }) => {
-    const { isLoggedIn, logoutUser } = useAuthContext()
-
     return (
-        <PageLayout
-            isLoading={isLoading}
-            helmet={{addOpenBrackets }}
-                title: `${title} | ${SITE_DATA.NAME}`,
-                description,
-                keywords: [...SITE_DATA.KEYWORDS, keywords] as Array<string>,
-                cover: cover || SITE_DATA.COVER,
-                siteName: SITE_DATA.NAME,
-                favicon: SITE_DATA.FAVICON,
-                author: SITE_DATA.AUTHOR,
-                type: SITE_DATA.TYPE,
-                language: SITE_DATA.LANGUAGE,
-            {{addClosingBrackets}}
-            header={{addOpenBrackets}}
-                logo: { text: SITE_DATA.NAME, to: PATHS.ROOT },
-                links: [
-                    ...baseLinks,
-                    ...(isLoggedIn
-                        ? [
-                              ...protectedLinks,
-                              { text: "Logout", onClick: logoutUser },
-                          ]
-                        : anonLinks),
-                ],
-            {{addClosingBrackets}}
-            main={{surroundBrackets "size: mainWidth" }} 
-        >
-            {children}
-        </PageLayout>
+        <BaseLayout {...rest}>
+            {isLoading ? (
+                <PageLoading />
+            ) : (
+                <>
+                    <Header />
+                    {!noWrapper ? (
+                        <Wrapper>
+                            <Main size={mainSize}>{children}</Main>
+                        </Wrapper>
+                    ) : (
+                        <Main size={mainSize}>{children}</Main>
+                    )}
+                </>
+            )}
+        </BaseLayout>
     )
 }
 
-type IPage = ILibPageLayout & {
-    title: string
-    description?: string
-    keywords?: string | Array<string>
-    cover?: string
-    mainWidth?: LibMainSize
+interface IPage extends IBaseLayout {
+    children?: Children
+    isLoading?: boolean
+    mainSize?: LibMainSize
+    noWrapper?: boolean
 }
