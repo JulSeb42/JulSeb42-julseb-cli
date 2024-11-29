@@ -1,4 +1,3 @@
-// @ts-ignore
 import type { NodePlopAPI, ActionType } from "plop"
 import { toKebabCase } from "@julseb-lib/utils"
 import {
@@ -37,13 +36,6 @@ export default (plop: NodePlopAPI) => {
                 default: packageManagers[0].name,
                 name: "packageManager",
             },
-            {
-                type: "confirm",
-                message:
-                    "Do you want to have a switch between light and dark theme?",
-                default: false,
-                name: "switch",
-            },
         ],
 
         actions: data => {
@@ -52,17 +44,11 @@ export default (plop: NodePlopAPI) => {
             const projectType = projectTypes.find(
                 type => data?.projectType === type.alias
             )?.name
-
             const cloneProject = projectTypes.find(
                 type => data?.projectType === type.alias
             )?.clone
-
             const projectName = toKebabCase(data?.projectName)
-
             const projectPath = `../${projectName}`
-
-            const pathToReplace = `${process.cwd()}/${projectName}`
-
             const packageManager = packageManagers.find(
                 m => m.name === data?.packageManager
             )
@@ -102,93 +88,39 @@ export default (plop: NodePlopAPI) => {
                     "Create .env files",
                     ...(copyFullStackEnv(projectName) as any)
                 )
-
-                if (data?.switch === false) {
-                    actions.push(
-                        "Removing the theme switch",
-                        {
-                            type: "runCommand",
-                            command: `cd ${projectName} && rm -rf client/src/App.tsx client/src/main.tsx client/src/components/layouts/Nav.tsx client/src/components/layouts/Page.tsx`,
-                        },
-                        {
-                            type: "add",
-                            path: `${pathToReplace}/client/src/App.tsx`,
-                            templateFile: "../templates/react-rest/App.hbs",
-                        },
-                        {
-                            type: "add",
-                            path: `${pathToReplace}/client/src/main.tsx`,
-                            templateFile: "../templates/react-rest/main.hbs",
-                        },
-                        {
-                            type: "add",
-                            path: `${pathToReplace}/client/src/components/layouts/Page.tsx`,
-                            templateFile: "../templates/react-rest/Page.hbs",
-                        },
-                        {
-                            type: "add",
-                            path: `${pathToReplace}/client/src/components/layouts/Nav.tsx`,
-                            templateFile: "../templates/react-rest/Nav.hbs",
-                        }
-                    )
-                }
             }
 
             if (projectType === projectTypes[1].name) {
                 actions.push(
+                    "Replace all titles inside your new app",
                     ...(replaceProjectNameModifyClient(
                         projectType,
                         projectName
                     ) as any)
                 )
+            }
 
-                if (data?.switch === false) {
-                    actions.push(
-                        "Removing the theme switch",
-                        {
-                            type: "runCommand",
-                            command: `cd ${projectName} && rm -rf src/App.tsx src/main.tsx src/components/layouts/Page.tsx`,
-                        },
-                        {
-                            type: "add",
-                            templateFile: "../templates/react-client/App.hbs",
-                            path: `${pathToReplace}/src/App.tsx`,
-                        },
-                        {
-                            type: "add",
-                            templateFile: "../templates/react-client/main.hbs",
-                            path: `${pathToReplace}/src/main.tsx`,
-                        },
-                        {
-                            type: "add",
-                            templateFile: "../templates/react-client/Page.hbs",
-                            path: `${pathToReplace}/src/components/layouts/Page.tsx`,
-                        }
-                    )
-                }
+            if (packageManager?.name === "npm") {
+                actions.push("Replace all instances of npm by yarn", {
+                    type: "modify",
+                    path: `${projectPath}/package.json`,
+                    template: "yarn",
+                    pattern: /(npm run)/g,
+                })
 
-                if (packageManager?.name === "npm") {
-                    actions.push("Replace all instances of npm by yarn", {
-                        type: "modify",
-                        path: `${projectPath}/package.json`,
-                        template: "yarn",
-                        pattern: /(npm run)/g,
-                    })
+                actions.push("Replace install command in package.json", {
+                    type: "modify",
+                    path: `${projectPath}/package.json`,
+                    template: '"install": "cd client && yarn"',
+                    pattern: /("install": "cd client && yarn run")/g,
+                })
 
-                    actions.push("Replace install command in package.json", {
-                        type: "modify",
-                        path: `${projectPath}/package.json`,
-                        template: '"install": "cd client && yarn"',
-                        pattern: /("install": "cd client && yarn run")/g,
-                    })
-
-                    actions.push("Replace all examples with yarn in README", {
-                        type: "modify",
-                        path: `${projectPath}/README.md`,
-                        template: "`yarn`",
-                        pattern: /(npm run)/g,
-                    })
-                }
+                actions.push("Replace all examples with yarn in README", {
+                    type: "modify",
+                    path: `${projectPath}/README.md`,
+                    template: "`yarn`",
+                    pattern: /(npm run)/g,
+                })
             }
 
             actions.push("Installing packages, this may take a while...", {
