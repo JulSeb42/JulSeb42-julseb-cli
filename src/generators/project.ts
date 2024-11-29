@@ -11,6 +11,10 @@ import {
 } from "../utils/replace-project-name-fullstack.js"
 import { copyFullStackEnv } from "../utils/copy-env.js"
 import { addCommandPrefix } from "../utils/add-command-prefix.js"
+import {
+    themeSwitchFull,
+    themeSwitchClient,
+} from "../utils/add-theme-switch.js"
 
 export default (plop: NodePlopAPI) => {
     const { setGenerator } = plop
@@ -28,6 +32,12 @@ export default (plop: NodePlopAPI) => {
                 choices: projectTypes.map(project => project.alias),
                 default: projectTypes[0].alias,
                 name: "projectType",
+            },
+            {
+                type: "confirm",
+                message: "Do you want a theme switch on your app?",
+                default: false,
+                name: "theme",
             },
             {
                 type: "list",
@@ -49,6 +59,7 @@ export default (plop: NodePlopAPI) => {
             )?.clone
             const projectName = toKebabCase(data?.projectName)
             const projectPath = `../${projectName}`
+            const shellProjectPath = `./${projectName}`
             const packageManager = packageManagers.find(
                 m => m.name === data?.packageManager
             )
@@ -88,6 +99,12 @@ export default (plop: NodePlopAPI) => {
                     "Create .env files",
                     ...(copyFullStackEnv(projectName) as any)
                 )
+
+                if (data?.theme) {
+                    actions.push(
+                        ...themeSwitchFull(shellProjectPath, projectPath)
+                    )
+                }
             }
 
             if (projectType === projectTypes[1].name) {
@@ -98,6 +115,12 @@ export default (plop: NodePlopAPI) => {
                         projectName
                     ) as any)
                 )
+
+                if (data?.theme) {
+                    actions.push(
+                        ...themeSwitchClient(shellProjectPath, projectPath)
+                    )
+                }
             }
 
             if (packageManager?.name === "npm") {

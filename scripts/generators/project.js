@@ -3,6 +3,7 @@ import { projectTypes, packageManagers, packageManagersNames, } from "../utils/c
 import { replaceProjectNameModifyFullStack, replaceProjectNameModifyClient, } from "../utils/replace-project-name-fullstack.js";
 import { copyFullStackEnv } from "../utils/copy-env.js";
 import { addCommandPrefix } from "../utils/add-command-prefix.js";
+import { themeSwitchFull, themeSwitchClient, } from "../utils/add-theme-switch.js";
 export default (plop) => {
     const { setGenerator } = plop;
     setGenerator("project", {
@@ -20,6 +21,12 @@ export default (plop) => {
                 name: "projectType",
             },
             {
+                type: "confirm",
+                message: "Do you want a theme switch on your app?",
+                default: false,
+                name: "theme",
+            },
+            {
                 type: "list",
                 message: "What package manager are you using?",
                 choices: packageManagersNames,
@@ -34,6 +41,7 @@ export default (plop) => {
             const cloneProject = (_b = projectTypes.find(type => (data === null || data === void 0 ? void 0 : data.projectType) === type.alias)) === null || _b === void 0 ? void 0 : _b.clone;
             const projectName = toKebabCase(data === null || data === void 0 ? void 0 : data.projectName);
             const projectPath = `../${projectName}`;
+            const shellProjectPath = `./${projectName}`;
             const packageManager = packageManagers.find(m => m.name === (data === null || data === void 0 ? void 0 : data.packageManager));
             actions.push({
                 type: "runCommand",
@@ -58,9 +66,15 @@ export default (plop) => {
             ]));
             if (projectType === projectTypes[0].name) {
                 actions.push("Replace all titles inside your new app", ...replaceProjectNameModifyFullStack(projectType, projectName), "Create .env files", ...copyFullStackEnv(projectName));
+                if (data === null || data === void 0 ? void 0 : data.theme) {
+                    actions.push(...themeSwitchFull(shellProjectPath, projectPath));
+                }
             }
             if (projectType === projectTypes[1].name) {
                 actions.push("Replace all titles inside your new app", ...replaceProjectNameModifyClient(projectType, projectName));
+                if (data === null || data === void 0 ? void 0 : data.theme) {
+                    actions.push(...themeSwitchClient(shellProjectPath, projectPath));
+                }
             }
             if ((packageManager === null || packageManager === void 0 ? void 0 : packageManager.name) === "npm") {
                 actions.push("Replace all instances of npm by yarn", {
