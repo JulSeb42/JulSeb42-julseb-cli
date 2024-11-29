@@ -17,7 +17,7 @@ const plop = (plop: NodePlopAPI) => {
         color: "#000000",
         bold: true,
         clear: true,
-        version: "",
+        version: "1.0.0",
     })
 
     /*====================== Actions ======================*/
