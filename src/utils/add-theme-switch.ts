@@ -12,7 +12,7 @@ export const themeSwitchFull = (shellPath: string, projectPath: string) => {
         {
             type: "add",
             path: `${projectPath}/client/src/main.tsx`,
-            templateFile: "../templates/react-rest/switch-full/main.hbs",
+            templateFile: `../templates/react-rest/switch-full/main.hbs`,
         },
         {
             type: "add",

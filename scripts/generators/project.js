@@ -43,7 +43,7 @@ export default (plop) => {
             const projectPath = `../${projectName}`;
             const shellProjectPath = `./${projectName}`;
             const packageManager = packageManagers.find(m => m.name === (data === null || data === void 0 ? void 0 : data.packageManager));
-            actions.push({
+            actions.push("Start cloning your project", {
                 type: "runCommand",
                 command: `mkdir ${projectName}`,
             }, ...addCommandPrefix(projectName, [

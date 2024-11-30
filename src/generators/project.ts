@@ -65,6 +65,7 @@ export default (plop: NodePlopAPI) => {
             )
 
             actions.push(
+                "Start cloning your project",
                 {
                     type: "runCommand",
                     command: `mkdir ${projectName}`,
