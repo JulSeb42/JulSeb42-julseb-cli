@@ -48,7 +48,7 @@ export const themeSwitchClient = (shellPath, projectPath) => {
     const actions = [
         {
             type: "runCommand",
-            command: `rm -rf ${shellPath}/src/App.tsx ${shellPath}/src/main.tsx ${shellPath}/src/components/FactCard/styles.tsx ${shellPath}/src/components/layouts/Header/Nav.tsx ${shellPath}/src/components/layouts/Header/SwitchTheme.tsx ${shellPath}/src/pages/DemoApi.tsx ${shellPath}/src/types/global.d.ts`,
+            command: `rm -rf ${shellPath}/src/App.tsx ${shellPath}/src/main.tsx ${shellPath}/src/components/layouts/Header/Nav.tsx ${shellPath}/src/components/layouts/Header/SwitchTheme.tsx ${shellPath}/src/types/global.d.ts`,
         },
         {
             type: "add",
@@ -59,11 +59,6 @@ export const themeSwitchClient = (shellPath, projectPath) => {
             type: "add",
             path: `${projectPath}/src/main.tsx`,
             templateFile: "../templates/react-client/switch/main.hbs",
-        },
-        {
-            type: "add",
-            path: `${projectPath}/src/components/FactCard/styles.tsx`,
-            templateFile: "../templates/react-client/switch/FactCardStyles.hbs",
         },
         {
             type: "add",
@@ -79,11 +74,6 @@ export const themeSwitchClient = (shellPath, projectPath) => {
             type: "add",
             path: `${projectPath}/src/types/global.d.ts`,
             templateFile: "../templates/react-client/switch/global.d.ts.hbs",
-        },
-        {
-            type: "add",
-            path: `${projectPath}/src/pages/DemoApi.tsx`,
-            templateFile: "../templates/react-client/switch/DemoApi.hbs",
         },
     ];
     return actions;
