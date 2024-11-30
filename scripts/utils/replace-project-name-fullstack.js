@@ -55,7 +55,6 @@ export function replaceProjectNameModifyFullStack(projectType, projectName) {
 }
 export function replaceProjectNameModifyClient(repoName, projectName) {
     const paths = [
-        `Replacing ${repoName} by your new project's name where needed`,
         {
             type: "modify",
             path: "package.json",

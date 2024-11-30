@@ -14,7 +14,7 @@ import { addCommandPrefix } from "../utils/add-command-prefix.js"
 import {
     themeSwitchFull,
     themeSwitchClient,
-} from "../utils/add-theme-switch.js"
+} from "../utils/remove-theme-switch.js"
 
 export default (plop: NodePlopAPI) => {
     const { setGenerator } = plop

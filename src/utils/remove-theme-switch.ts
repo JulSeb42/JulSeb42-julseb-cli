@@ -1,6 +1,9 @@
 /*=============================================== Add theme switch ===============================================*/
-export const themeSwitchFull = (shellPath, projectPath) => {
-    const actions = [
+
+import type { ActionType } from "plop"
+
+export const themeSwitchFull = (shellPath: string, projectPath: string) => {
+    const actions: (ActionType & { command?: string })[] = [
         "Adding a Theme Switch for the whole app",
         {
             type: "runCommand",
@@ -24,12 +27,14 @@ export const themeSwitchFull = (shellPath, projectPath) => {
         {
             type: "add",
             path: `${projectPath}/client/src/components/admin/AdminNav/styles.tsx`,
-            templateFile: "../templates/react-rest/switch-full/AdminNavStyles.hbs",
+            templateFile:
+                "../templates/react-rest/switch-full/AdminNavStyles.hbs",
         },
         {
             type: "add",
             path: `${projectPath}/client/src/components/admin/AdminUserCard/styles.tsx`,
-            templateFile: "../templates/react-rest/switch-full/AdminUserCardStyles.hbs",
+            templateFile:
+                "../templates/react-rest/switch-full/AdminUserCardStyles.hbs",
         },
         {
             type: "add",
@@ -41,11 +46,13 @@ export const themeSwitchFull = (shellPath, projectPath) => {
             path: `${projectPath}/client/src/components/layouts/Nav.tsx`,
             templateFile: "../templates/react-rest/switch-full/Nav.hbs",
         },
-    ];
-    return actions;
-};
-export const themeSwitchClient = (shellPath, projectPath) => {
-    const actions = [
+    ]
+
+    return actions
+}
+
+export const themeSwitchClient = (shellPath: string, projectPath: string) => {
+    const actions: (ActionType & { command?: string })[] = [
         {
             type: "runCommand",
             command: `rm -rf ${shellPath}/src/App.tsx ${shellPath}/src/main.tsx ${shellPath}/src/components/layouts/Header/Nav.tsx ${shellPath}/src/components/layouts/Header/SwitchTheme.tsx ${shellPath}/src/types/global.d.ts`,
@@ -67,14 +74,15 @@ export const themeSwitchClient = (shellPath, projectPath) => {
         },
         {
             type: "add",
-            path: `${projectPath}/src/components/layouts/Header/SwitchTheme.tsx`,
-            templateFile: "../templates/react-client/switch/HeaderSwitchTheme.hbs",
-        },
-        {
-            type: "add",
             path: `${projectPath}/src/types/global.d.ts`,
             templateFile: "../templates/react-client/switch/global.d.ts.hbs",
         },
-    ];
-    return actions;
-};
+        {
+            type: "add",
+            path: `${projectPath}/src/components/layouts/Header/NavSwitch.tsx`,
+            templateFile: "../templates/react-client/switch/SwitchTheme.hbs"
+        }
+    ]
+
+    return actions
+}

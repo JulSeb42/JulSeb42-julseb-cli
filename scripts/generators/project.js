@@ -3,7 +3,7 @@ import { projectTypes, packageManagers, packageManagersNames, } from "../utils/c
 import { replaceProjectNameModifyFullStack, replaceProjectNameModifyClient, } from "../utils/replace-project-name-fullstack.js";
 import { copyFullStackEnv } from "../utils/copy-env.js";
 import { addCommandPrefix } from "../utils/add-command-prefix.js";
-import { themeSwitchFull, themeSwitchClient, } from "../utils/add-theme-switch.js";
+import { themeSwitchFull, themeSwitchClient, } from "../utils/remove-theme-switch.js";
 export default (plop) => {
     const { setGenerator } = plop;
     setGenerator("project", {
