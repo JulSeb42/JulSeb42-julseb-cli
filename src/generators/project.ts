@@ -103,7 +103,53 @@ export default (plop: NodePlopAPI) => {
 
                 if (data?.theme) {
                     actions.push(
-                        ...themeSwitchFull(shellProjectPath, projectPath)
+                        "Removing all pages which will use the theme",
+                        {
+                            type: "runCommand",
+                            command: `rm -rf ${shellProjectPath}/client/src/main.tsx ${shellProjectPath}/client/src/App.tsx ${shellProjectPath}/client/src/components/admin/AdminNav/AdminNav.tsx ${shellProjectPath}/client/src/components/admin/AdminNav/styles.tsx ${shellProjectPath}/client/src/components/admin/AdminUserCard/styles.tsx ${shellProjectPath}/client/src/types/global.d.ts ${shellProjectPath}/client/src/components/layouts/Nav.tsx`,
+                        },
+                        "Adding pages using the theme switch",
+                        {
+                            type: "add",
+                            path: `${process.cwd()}/{{ kebabCase projectName }}/client/src/main.tsx`,
+                            templateFile: `../templates/react-rest/switch-full/main.hbs`,
+                        },
+                        {
+                            type: "add",
+                            path: `${process.cwd()}/{{ kebabCase projectName }}/client/src/App.tsx`,
+                            templateFile:
+                                "../templates/react-rest/switch-full/App.hbs",
+                        },
+                        {
+                            type: "add",
+                            path: `${process.cwd()}/{{ kebabCase projectName }}/client/src/components/admin/AdminNav/AdminNav.tsx`,
+                            templateFile:
+                                "../templates/react-rest/switch-full/AdminNav.hbs",
+                        },
+                        {
+                            type: "add",
+                            path: `${process.cwd()}/{{ kebabCase projectName }}/client/src/components/admin/AdminNav/styles.tsx`,
+                            templateFile:
+                                "../templates/react-rest/switch-full/AdminNavStyles.hbs",
+                        },
+                        {
+                            type: "add",
+                            path: `${process.cwd()}/{{ kebabCase projectName }}/client/src/components/admin/AdminUserCard/styles.tsx`,
+                            templateFile:
+                                "../templates/react-rest/switch-full/AdminUserCardStyles.hbs",
+                        },
+                        {
+                            type: "add",
+                            path: `${process.cwd()}/{{ kebabCase projectName }}/client/src/types/global.d.ts`,
+                            templateFile:
+                                "../templates/react-rest/switch-full/global.d.ts.hbs",
+                        },
+                        {
+                            type: "add",
+                            path: `${process.cwd()}/{{ kebabCase projectName }}/client/src/components/layouts/Nav.tsx`,
+                            templateFile:
+                                "../templates/react-rest/switch-full/Nav.hbs",
+                        }
                     )
                 }
             }

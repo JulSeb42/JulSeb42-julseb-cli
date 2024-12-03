@@ -3,7 +3,7 @@ import { projectTypes, packageManagers, packageManagersNames, } from "../utils/c
 import { replaceProjectNameModifyFullStack, replaceProjectNameModifyClient, } from "../utils/replace-project-name-fullstack.js";
 import { copyFullStackEnv } from "../utils/copy-env.js";
 import { addCommandPrefix } from "../utils/add-command-prefix.js";
-import { themeSwitchFull, themeSwitchClient, } from "../utils/remove-theme-switch.js";
+import { themeSwitchClient, } from "../utils/remove-theme-switch.js";
 export default (plop) => {
     const { setGenerator } = plop;
     setGenerator("project", {
@@ -67,7 +67,38 @@ export default (plop) => {
             if (projectType === projectTypes[0].name) {
                 actions.push("Replace all titles inside your new app", ...replaceProjectNameModifyFullStack(projectType, projectName), "Create .env files", ...copyFullStackEnv(projectName));
                 if (data === null || data === void 0 ? void 0 : data.theme) {
-                    actions.push(...themeSwitchFull(shellProjectPath, projectPath));
+                    actions.push("Removing all pages which will use the theme", {
+                        type: "runCommand",
+                        command: `rm -rf ${shellProjectPath}/client/src/main.tsx ${shellProjectPath}/client/src/App.tsx ${shellProjectPath}/client/src/components/admin/AdminNav/AdminNav.tsx ${shellProjectPath}/client/src/components/admin/AdminNav/styles.tsx ${shellProjectPath}/client/src/components/admin/AdminUserCard/styles.tsx ${shellProjectPath}/client/src/types/global.d.ts ${shellProjectPath}/client/src/components/layouts/Nav.tsx`,
+                    }, "Adding pages using the theme switch", {
+                        type: "add",
+                        path: `${process.cwd()}/{{ kebabCase projectName }}/client/src/main.tsx`,
+                        templateFile: `../templates/react-rest/switch-full/main.hbs`,
+                    }, {
+                        type: "add",
+                        path: `${process.cwd()}/{{ kebabCase projectName }}/client/src/App.tsx`,
+                        templateFile: "../templates/react-rest/switch-full/App.hbs",
+                    }, {
+                        type: "add",
+                        path: `${process.cwd()}/{{ kebabCase projectName }}/client/src/components/admin/AdminNav/AdminNav.tsx`,
+                        templateFile: "../templates/react-rest/switch-full/AdminNav.hbs",
+                    }, {
+                        type: "add",
+                        path: `${process.cwd()}/{{ kebabCase projectName }}/client/src/components/admin/AdminNav/styles.tsx`,
+                        templateFile: "../templates/react-rest/switch-full/AdminNavStyles.hbs",
+                    }, {
+                        type: "add",
+                        path: `${process.cwd()}/{{ kebabCase projectName }}/client/src/components/admin/AdminUserCard/styles.tsx`,
+                        templateFile: "../templates/react-rest/switch-full/AdminUserCardStyles.hbs",
+                    }, {
+                        type: "add",
+                        path: `${process.cwd()}/{{ kebabCase projectName }}/client/src/types/global.d.ts`,
+                        templateFile: "../templates/react-rest/switch-full/global.d.ts.hbs",
+                    }, {
+                        type: "add",
+                        path: `${process.cwd()}/{{ kebabCase projectName }}/client/src/components/layouts/Nav.tsx`,
+                        templateFile: "../templates/react-rest/switch-full/Nav.hbs",
+                    });
                 }
             }
             if (projectType === projectTypes[1].name) {
