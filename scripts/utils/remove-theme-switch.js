@@ -1,4 +1,3 @@
-/*=============================================== Add theme switch ===============================================*/
 export const themeSwitchFull = (shellPath, projectPath) => {
     const actions = [
         "Adding a Theme Switch for the whole app",
@@ -73,8 +72,8 @@ export const themeSwitchClient = (shellPath, projectPath) => {
         {
             type: "add",
             path: `${projectPath}/src/components/layouts/Header/NavSwitch.tsx`,
-            templateFile: "../templates/react-client/switch/SwitchTheme.hbs"
-        }
+            templateFile: "../templates/react-client/switch/SwitchTheme.hbs",
+        },
     ];
     return actions;
 };

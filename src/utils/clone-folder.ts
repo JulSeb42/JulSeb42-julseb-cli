@@ -1,5 +1,3 @@
-/*=============================================== Clone specific folder from Github ===============================================*/
-
 import type { ActionCommandType } from "./types.js"
 
 /**

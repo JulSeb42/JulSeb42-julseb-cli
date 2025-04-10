@@ -1,4 +1,3 @@
-/*=============================================== Clone specific folder from Github ===============================================*/
 /**
  * @param projectName string
  * @param boilerplate string

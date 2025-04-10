@@ -7,8 +7,6 @@ import addOpenBrackets from "./helpers/addOpenBrackets.js"
 import addClosingBrackets from "./helpers/addClosingBrackets.js"
 
 const plop = (plop: NodePlopAPI) => {
-    /*====================== Greetings ======================*/
-
     welcome({
         title: "Julseb CLI",
         tagLine: "A tool to generate React with TS apps",
@@ -20,15 +18,9 @@ const plop = (plop: NodePlopAPI) => {
         version: "1.0.0",
     })
 
-    /*====================== Actions ======================*/
-
     runCommandAction(plop)
 
-    /*====================== Generators ======================*/
-
     projectGenerator(plop) // plop:p
-
-    /*====================== Helpers ======================*/
 
     surroundBracketsHelper(plop) // Use as {{surroundBrackets "pascalCase name" }}
     addOpenBrackets(plop) // Use as {{ addOpenBrackets }}

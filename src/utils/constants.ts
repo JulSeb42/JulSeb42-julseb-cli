@@ -1,5 +1,3 @@
-/*=============================================== Constants ===============================================*/
-
 import type { PackageManager } from "./types.js"
 
 export const projectTypes: Array<{

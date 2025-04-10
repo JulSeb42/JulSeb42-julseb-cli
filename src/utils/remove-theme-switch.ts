@@ -1,5 +1,3 @@
-/*=============================================== Add theme switch ===============================================*/
-
 import type { ActionType } from "plop"
 
 export const themeSwitchFull = (shellPath: string, projectPath: string) => {
@@ -80,8 +78,8 @@ export const themeSwitchClient = (shellPath: string, projectPath: string) => {
         {
             type: "add",
             path: `${projectPath}/src/components/layouts/Header/NavSwitch.tsx`,
-            templateFile: "../templates/react-client/switch/SwitchTheme.hbs"
-        }
+            templateFile: "../templates/react-client/switch/SwitchTheme.hbs",
+        },
     ]
 
     return actions

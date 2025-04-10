@@ -1,4 +1,3 @@
-/*=============================================== Constants ===============================================*/
 export const projectTypes = [
     {
         name: "julseb-lib-boilerplate-fullstack",
