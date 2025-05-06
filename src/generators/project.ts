@@ -8,8 +8,9 @@ import {
 import {
     replaceProjectNameModifyFullStack,
     replaceProjectNameModifyClient,
+    replaceProjectNameServer,
 } from "../utils/replace-project-name-fullstack.js"
-import { copyFullStackEnv } from "../utils/copy-env.js"
+import { copyFullStackEnv, copyServerEnv } from "../utils/copy-env.js"
 import { addCommandPrefix } from "../utils/add-command-prefix.js"
 import {
     themeSwitchFull,
@@ -38,6 +39,7 @@ export default (plop: NodePlopAPI) => {
                 message: "Do you want a theme switch on your app?",
                 default: false,
                 name: "theme",
+                when: data => data.projectType !== projectTypes[2].alias,
             },
             {
                 type: "list",
@@ -168,6 +170,18 @@ export default (plop: NodePlopAPI) => {
                         ...themeSwitchClient(shellProjectPath, projectPath)
                     )
                 }
+            }
+
+            if (projectType === projectTypes[2].name) {
+                actions.push(
+                    "Replace all titles inside your new app",
+                    ...(replaceProjectNameServer(
+                        projectType,
+                        projectName
+                    ) as any),
+                    "Create .env files",
+                    ...(copyServerEnv(projectName) as any)
+                )
             }
 
             if (packageManager?.name === "npm") {

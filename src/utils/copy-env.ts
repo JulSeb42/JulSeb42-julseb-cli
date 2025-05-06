@@ -31,3 +31,27 @@ export function copyFullStackEnv(projectName: string) {
 
     return [...commands, ...otherActions]
 }
+
+export function copyServerEnv(projectName: string) {
+    // ? Copy template.env to .env in server & client
+    // ? Replace <url-to-client> in server .env by http://localhost:5173
+    // ? Replace <your-db-name> in server .env by toKebabCase(data.projectName)
+
+    const commands = addCommandPrefix(projectName, [
+        {
+            type: "runCommand",
+            command: "cp template.env .env",
+        },
+    ])
+
+    const otherActions = addPathPrefix([
+        {
+            type: "modify",
+            template: "{{ kebabCase projectName }}",
+            path: ".env",
+            pattern: "<your-db-name>",
+        },
+    ])
+
+    return [...commands, ...otherActions]
+}

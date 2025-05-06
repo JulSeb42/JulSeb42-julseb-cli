@@ -1,7 +1,7 @@
 import { toKebabCase } from "@julseb-lib/utils";
 import { projectTypes, packageManagers, packageManagersNames, } from "../utils/constants.js";
-import { replaceProjectNameModifyFullStack, replaceProjectNameModifyClient, } from "../utils/replace-project-name-fullstack.js";
-import { copyFullStackEnv } from "../utils/copy-env.js";
+import { replaceProjectNameModifyFullStack, replaceProjectNameModifyClient, replaceProjectNameServer, } from "../utils/replace-project-name-fullstack.js";
+import { copyFullStackEnv, copyServerEnv } from "../utils/copy-env.js";
 import { addCommandPrefix } from "../utils/add-command-prefix.js";
 import { themeSwitchClient, } from "../utils/remove-theme-switch.js";
 export default (plop) => {
@@ -25,6 +25,7 @@ export default (plop) => {
                 message: "Do you want a theme switch on your app?",
                 default: false,
                 name: "theme",
+                when: data => data.projectType !== projectTypes[2].alias,
             },
             {
                 type: "list",
@@ -106,6 +107,9 @@ export default (plop) => {
                 if (data === null || data === void 0 ? void 0 : data.theme) {
                     actions.push(...themeSwitchClient(shellProjectPath, projectPath));
                 }
+            }
+            if (projectType === projectTypes[2].name) {
+                actions.push("Replace all titles inside your new app", ...replaceProjectNameServer(projectType, projectName), "Create .env files", ...copyServerEnv(projectName));
             }
             if ((packageManager === null || packageManager === void 0 ? void 0 : packageManager.name) === "npm") {
                 actions.push("Replace all instances of npm by yarn", {

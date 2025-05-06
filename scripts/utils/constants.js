@@ -10,6 +10,11 @@ export const projectTypes = [
         alias: "React (client only)",
         clone: "https://github.com/JulSeb42/julseb-lib-boilerplate-client.git",
     },
+    {
+        name: "julseb-lib-express-rest",
+        alias: "Server app",
+        clone: "https://github.com/JulSeb42/julseb-lib-express-rest.git",
+    },
 ];
 export const packageManagers = [
     {

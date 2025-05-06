@@ -76,3 +76,38 @@ export function replaceProjectNameModifyClient(repoName, projectName) {
     ];
     return addPathPrefix(paths);
 }
+export function replaceProjectNameServer(projectType, projectName) {
+    const paths = [
+        {
+            type: "modify",
+            path: "package.json",
+            template: "{{ kebabCase projectName }}",
+            pattern: projectType,
+        },
+        {
+            type: "modify",
+            path: `server/utils/consts.ts`,
+            template: "{{ kebabCase projectName }}",
+            pattern: projectType,
+        },
+        {
+            type: "modify",
+            path: `server/config/cloudinary.config.ts`,
+            template: "{{ kebabCase projectName }}",
+            pattern: projectType,
+        },
+        {
+            type: "modify",
+            path: `server/data/site-data.ts`,
+            template: toTitleCase(projectName),
+            pattern: projectType,
+        },
+        {
+            type: "modify",
+            path: "server/data/seed/seed.ts",
+            template: toKebabCase(projectName),
+            pattern: projectType,
+        },
+    ];
+    return addPathPrefix(paths);
+}
