@@ -104,7 +104,7 @@ export function replaceProjectNameServer(projectType, projectName) {
         },
         {
             type: "modify",
-            path: "server/data/seed/seed.ts",
+            path: "seed/seed.ts",
             template: toKebabCase(projectName),
             pattern: projectType,
         },
