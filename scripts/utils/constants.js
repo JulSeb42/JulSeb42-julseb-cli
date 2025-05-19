@@ -12,7 +12,7 @@ export const projectTypes = [
     },
     {
         name: "julseb-lib-express-rest",
-        alias: "Server app",
+        alias: "Server app (Express with TypeScript)",
         clone: "https://github.com/JulSeb42/julseb-lib-express-rest.git",
     },
 ];
