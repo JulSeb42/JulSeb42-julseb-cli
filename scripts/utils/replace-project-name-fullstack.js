@@ -40,7 +40,7 @@ export function replaceProjectNameModifyFullStack(projectType, projectName) {
         },
         {
             type: "modify",
-            path: `shared/site-data.ts`,
+            path: `client/src/data/site-data.ts`,
             template: toTitleCase(projectName),
             pattern: projectType,
         },
